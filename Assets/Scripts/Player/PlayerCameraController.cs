@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class PlayerCameraController : MonoBehaviour
 {
-    
+    public void Rotate()
+    {
+
+    }
 }
