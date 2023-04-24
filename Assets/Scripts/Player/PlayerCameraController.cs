@@ -19,21 +19,26 @@ public class PlayerCameraController : MonoBehaviour
 
     private void Update()
     {
-        if (isAiming)
+        if (!LockTurret)
         {
-            _camera.transform.position = _CameraLockPositionAim.transform.position;
-            _camera.transform.rotation = _CameraLockPositionAim.transform.rotation;
+            turret.transform.RotateAround(turret.position, turret.up, scaledDelta.x);
+            cannon.transform.Rotate(scaledDelta.y, 0, 0);
+
+            if (isAiming)
+            {
+                _camera.transform.position = _CameraLockPositionAim.transform.position;
+                _camera.transform.rotation = _CameraLockPositionAim.transform.rotation;
+            }
+            else
+            {
+                _camera.transform.position = _CameraLockPositionTurret.transform.position;
+                _camera.transform.rotation = _CameraLockPositionTurret.transform.rotation;
+            }
         }
         else
         {
             _camera.transform.RotateAround(turret.position, turret.up, scaledDelta.x);
             _camera.transform.RotateAround(turret.position, turret.up, scaledDelta.y);
-        }
-
-        if (!LockTurret)
-        {
-            turret.transform.RotateAround(turret.position, turret.up, scaledDelta.x);
-            cannon.transform.Rotate(scaledDelta.y, 0, 0);
         }
     }
     public void OnMoveCamera(InputAction.CallbackContext ctx)
@@ -45,9 +50,6 @@ public class PlayerCameraController : MonoBehaviour
     public void FreeCamera(InputAction.CallbackContext input)
     {
         LockTurret = !LockTurret;
-
-        _camera.transform.position = _CameraLockPositionTurret.transform.position;
-        _camera.transform.rotation = _CameraLockPositionTurret.transform.rotation;
     }
 
     public void Aim(InputAction.CallbackContext input)
