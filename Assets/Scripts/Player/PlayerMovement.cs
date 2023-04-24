@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -67,9 +62,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void OnMoveFB(InputValue input)
+    public void OnMoveFB(InputAction.CallbackContext input)
     {
-        var currentInput = input.Get<float>();
+        var currentInput = input.ReadValue<float>();
 
         VerticalMovement = currentInput;
     }
@@ -92,9 +87,9 @@ public class PlayerMovement : MonoBehaviour
         IsMoving = VerticalMovement != 0 ? true : false;
     }
 
-    public void OnMoveRo(InputValue input)
+    public void OnMoveRo(InputAction.CallbackContext input)
     {
-        HorizontalMovement = input.Get<float>();
+        HorizontalMovement = input.ReadValue<float>();
 
         if (HorizontalMovement != 0)
         {
