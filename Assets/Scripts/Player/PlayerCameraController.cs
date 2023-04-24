@@ -38,7 +38,12 @@ public class PlayerCameraController : MonoBehaviour
         else
         {
             _camera.transform.RotateAround(turret.position, turret.up, scaledDelta.x);
-            _camera.transform.RotateAround(turret.position, turret.up, scaledDelta.y);
+            _camera.transform.RotateAround(turret.position, turret.right, scaledDelta.y);
+        }
+
+        if (LockTurret && isAiming)
+        {
+            LockTurret = false;
         }
     }
     public void OnMoveCamera(InputAction.CallbackContext ctx)

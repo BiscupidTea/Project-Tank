@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bd680f7d45dcc47a0ff9f4ddf0c8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scroll_Track: {fileID: 277088710}
   _rigidbody: {fileID: 277088707}
   MaxMovementSpeed: 5
   movementSpeed: 0
@@ -275,6 +276,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 33c1f77b-245c-4bac-9824-fee49e207d43
     m_ActionName: Game/FreeCamera[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 277088709}
+        m_TargetAssemblyTypeName: PlayerCameraController, Assembly-CSharp
+        m_MethodName: Aim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 398339ea-59df-4b4a-befb-baa949180cf7
+    m_ActionName: Game/Aim[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -340,11 +357,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 963194227}
+  _CameraLockPositionTurret: {fileID: 2071335194}
+  _CameraLockPositionAim: {fileID: 897277527}
   turret: {fileID: 129406417}
   cannon: {fileID: 2106153061}
   rotationSpeedCamera: {x: 10, y: 10}
   rotationSpeedTurret: {x: 10, y: 10}
   LockTurret: 0
+  isAiming: 0
 --- !u!114 &277088710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,6 +577,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &897277526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 897277527}
+  m_Layer: 0
+  m_Name: CameraPositionAim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &897277527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897277526}
+  m_LocalRotation: {x: -0.010583069, y: 0.0000007980883, z: -0.0003684933, w: 0.999944}
+  m_LocalPosition: {x: 0.4740624, y: 0.08822431, z: 0.43061823}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2106153061}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +701,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3b618d9f75d057c43a79d515b7632e9f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b618d9f75d057c43a79d515b7632e9f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -904,9 +955,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2071335194}
   m_Layer: 0
-  m_Name: CameraPosition
+  m_Name: CameraPositionTurret
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -917,13 +968,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071335193}
-  m_LocalRotation: {x: 0.078441665, y: 0, z: 0, w: 0.99691874}
-  m_LocalPosition: {x: 0, y: 771941, z: -12.57421}
+  m_LocalRotation: {x: 0.06788683, y: -0.000028153143, z: -0.00036741656, w: 0.99769306}
+  m_LocalPosition: {x: 0.0032775104, y: 4.3286424, z: -13.782524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 129406417}
-  m_RootOrder: 1
+  m_Father: {fileID: 2106153061}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 8.998, y: 0, z: 0}
 --- !u!1 &2106153056 stripped
 GameObject:
