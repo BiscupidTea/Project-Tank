@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 277088705}
   - component: {fileID: 277088704}
   - component: {fileID: 277088709}
+  - component: {fileID: 277088710}
   - component: {fileID: 277088708}
   - component: {fileID: 277088707}
   m_Layer: 0
@@ -246,8 +247,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 277088709}
         m_TargetAssemblyTypeName: PlayerCameraController, Assembly-CSharp
-        m_MethodName: PublicTest
-        m_Mode: 1
+        m_MethodName: OnMoveCamera
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -258,6 +259,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6f924f22-0401-4a6c-a507-88841b89a3ef
     m_ActionName: Game/CameraRotation[/Mouse/delta,/XInputControllerWindows/rightStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 277088709}
+        m_TargetAssemblyTypeName: PlayerCameraController, Assembly-CSharp
+        m_MethodName: FreeCamera
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 33c1f77b-245c-4bac-9824-fee49e207d43
+    m_ActionName: Game/FreeCamera[/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -275,6 +292,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 963194228}
   - {fileID: 1418775042}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -322,8 +340,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 963194227}
-  target: {fileID: 129406417}
-  rotationSpeed: {x: 5, y: 5}
+  turret: {fileID: 129406417}
+  cannon: {fileID: 2106153061}
+  rotationSpeedCamera: {x: 10, y: 10}
+  rotationSpeedTurret: {x: 10, y: 10}
+  LockTurret: 0
+--- !u!114 &277088710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277088703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04898d1d34004ca40a7127852f731de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 0.05
+  right: {fileID: 476483399}
+  left: {fileID: 2034184581}
 --- !u!1 &471266988
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +458,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -8.238, y: 0, z: 0}
+--- !u!23 &476483399 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7249277283502208539, guid: 3b618d9f75d057c43a79d515b7632e9f, type: 3}
+  m_PrefabInstance: {fileID: 1279242122}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,13 +633,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.07843736, y: 0.00000004357672, z: -0.0000000034286078, w: 0.9969191}
-  m_LocalPosition: {x: 0, y: 5, z: -12.501462}
+  m_LocalRotation: {x: 0.07843738, y: -0, z: -3.2558994e-17, w: 0.9969191}
+  m_LocalPosition: {x: 0, y: 6.7719407, z: -12.574214}
   m_LocalScale: {x: 0.6, y: 1.0978329, z: 1.6340557}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 129406417}
-  m_RootOrder: 1
+  m_Father: {fileID: 277088706}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 8.998, y: 0, z: 0}
 --- !u!1001 &1279242122
 PrefabInstance:
@@ -609,7 +650,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3b618d9f75d057c43a79d515b7632e9f, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b618d9f75d057c43a79d515b7632e9f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -848,6 +889,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &2034184581 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5903557280395701838, guid: 3b618d9f75d057c43a79d515b7632e9f, type: 3}
+  m_PrefabInstance: {fileID: 1279242122}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2071335193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2071335194}
+  m_Layer: 0
+  m_Name: CameraPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2071335194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071335193}
+  m_LocalRotation: {x: 0.078441665, y: 0, z: 0, w: 0.99691874}
+  m_LocalPosition: {x: 0, y: 771941, z: -12.57421}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 129406417}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 8.998, y: 0, z: 0}
 --- !u!1 &2106153056 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5252205126504533359, guid: 3b618d9f75d057c43a79d515b7632e9f, type: 3}
@@ -867,3 +944,8 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1170341575148010544, guid: 3b618d9f75d057c43a79d515b7632e9f, type: 3}
+--- !u!4 &2106153061 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2088997097567806143, guid: 3b618d9f75d057c43a79d515b7632e9f, type: 3}
+  m_PrefabInstance: {fileID: 1279242122}
+  m_PrefabAsset: {fileID: 0}

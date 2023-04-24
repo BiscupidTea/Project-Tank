@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Scroll_Track : MonoBehaviour {
@@ -69,6 +70,12 @@ public class Scroll_Track : MonoBehaviour {
             case 8:
                 scrollSpeedRight = 1;
                 scrollSpeedLeft = -1;
+                break;
+
+            //default case
+            default:
+                scrollSpeedRight = 1;
+                scrollSpeedLeft = 1;
                 break;
         }
     }
