@@ -1,8 +1,12 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private Scroll_Track scroll_Track;
+
     [Header("Setup")]
 
     [SerializeField] private Rigidbody _rigidbody;
@@ -43,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
         ModifyMovementSpeed();
 
         _rigidbody.velocity = transform.forward * VerticalMovement * movementSpeed + Vector3.up * _rigidbody.velocity.y;
+
+        scroll_Track.AssignMoveTrack(RotateTexture());
     }
 
     private void ModifyMovementSpeed()
@@ -100,5 +106,44 @@ public class PlayerMovement : MonoBehaviour
             IsRotating = false;
         }
 
+    }
+
+    private int RotateTexture()
+    {
+
+        if (VerticalMovement == 1 && HorizontalMovement == 0)
+        {
+            return 1;
+        }
+        if (VerticalMovement == -1 && HorizontalMovement == 0)
+        {
+            return 2;
+        }
+        if (VerticalMovement == 1 && HorizontalMovement == 1)
+        {
+            return 3;
+        }
+        if (VerticalMovement == 1 && HorizontalMovement == -1)
+        {
+            return 4;
+        }
+        if (VerticalMovement == -1 && HorizontalMovement == -1)
+        {
+            return 5;
+        }
+        if (VerticalMovement == -1 && HorizontalMovement == 1)
+        {
+            return 6;
+        }
+        if (VerticalMovement == 0 && HorizontalMovement == 1)
+        {
+            return 7;
+        }
+        if (VerticalMovement == 0 && HorizontalMovement == -1)
+        {
+            return 8;
+        }
+
+        return 0;
     }
 }

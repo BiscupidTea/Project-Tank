@@ -9,12 +9,15 @@ public class Scroll_Track : MonoBehaviour {
     private float scrollSpeedRight = 1;
     private float scrollSpeedLeft = 1;
 
+    private float offsetRight;
+    private float offsetLeft;
+
     [SerializeField] private Renderer right;
     [SerializeField] private Renderer left;
     void Update()
     {
-        var offsetRight =+ (Time.deltaTime * scrollSpeed * scrollSpeedRight) % 1f;
-        var offsetLeft =+ (Time.deltaTime * scrollSpeed * scrollSpeedLeft) % 1f;
+         offsetRight =+ (offsetRight + Time.deltaTime * scrollSpeed * scrollSpeedRight) % 1f;
+         offsetLeft =+ (offsetLeft  + Time.deltaTime * scrollSpeed * scrollSpeedLeft) % 1f;
 
         right.material.SetTextureOffset("_MainTex", new Vector2(offsetRight, 0f));
         left.material.SetTextureOffset("_MainTex", new Vector2(offsetLeft, 0f));
@@ -71,11 +74,10 @@ public class Scroll_Track : MonoBehaviour {
                 scrollSpeedRight = 1;
                 scrollSpeedLeft = -1;
                 break;
-
             //default case
             default:
-                scrollSpeedRight = 1;
-                scrollSpeedLeft = 1;
+                scrollSpeedRight = 0;
+                scrollSpeedLeft = 0;
                 break;
         }
     }
