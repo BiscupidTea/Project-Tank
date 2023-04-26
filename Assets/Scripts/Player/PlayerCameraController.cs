@@ -1,3 +1,5 @@
+using System;
+using System.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,9 +27,9 @@ public class PlayerCameraController : MonoBehaviour
         if (!LockTurret)
         {
             turret.transform.RotateAround(turret.position, turret.up, scaledDelta.x);
-            //cannon.transform.Rotate(scaledDelta.y, 0, 0);
+            cannon.transform.Rotate(scaledDelta.y, 0, 0);
             LimitCannonRotation();
-            
+
 
             if (isAiming)
             {
@@ -88,18 +90,6 @@ public class PlayerCameraController : MonoBehaviour
 
     private void LimitCannonRotation()
     {
-        if(cannon.transform.eulerAngles.y > -30 && cannon.transform.eulerAngles.y < 10)
-        {
-            cannon.transform.Rotate(scaledDelta.y, 0, 0);
-
-            if (true)
-            {
-
-            }
-            else if (true)
-            {
-
-            }
-        }       
+        
     }
 }
