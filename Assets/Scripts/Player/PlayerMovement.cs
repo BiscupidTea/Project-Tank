@@ -48,6 +48,9 @@ public class PlayerMovement : MonoBehaviour
 
         _rigidbody.velocity = transform.forward * VerticalMovement * movementSpeed + Vector3.up * _rigidbody.velocity.y;
 
+        //_rigidbody.AddForce(transform.forward * (VerticalMovement * movementSpeed), ForceMode.Force);
+       //_rigidbody.useGravity = true;
+
         scroll_Track.AssignMoveTrack(RotateTexture());
     }
 

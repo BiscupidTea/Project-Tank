@@ -15,6 +15,9 @@ public class PlayerCameraController : MonoBehaviour
     [SerializeField] private bool LockTurret;
     [SerializeField] private bool isAiming;
 
+    private bool firstTimeLoad = true;
+    private int firstTimeLoadCounter = 0;
+
     private Vector2 scaledDelta;
 
     private void Update()
@@ -22,7 +25,9 @@ public class PlayerCameraController : MonoBehaviour
         if (!LockTurret)
         {
             turret.transform.RotateAround(turret.position, turret.up, scaledDelta.x);
-            cannon.transform.Rotate(scaledDelta.y, 0, 0);
+            //cannon.transform.Rotate(scaledDelta.y, 0, 0);
+            LimitCannonRotation();
+            
 
             if (isAiming)
             {
@@ -37,8 +42,7 @@ public class PlayerCameraController : MonoBehaviour
         }
         else
         {
-            _camera.transform.RotateAround(turret.position, turret.up, scaledDelta.x);
-            _camera.transform.RotateAround(turret.position, turret.right, scaledDelta.y);
+            FreeCameraRotation();
         }
 
         if (LockTurret && isAiming)
@@ -46,10 +50,30 @@ public class PlayerCameraController : MonoBehaviour
             LockTurret = false;
         }
     }
+
+    private void FreeCameraRotation()
+    {
+        _camera.transform.RotateAround(turret.position, turret.up, scaledDelta.x);
+        _camera.transform.RotateAround(turret.position, turret.right, scaledDelta.y);
+        _camera.transform.LookAt(turret);
+    }
+
     public void OnMoveCamera(InputAction.CallbackContext ctx)
     {
-        var input = ctx.ReadValue<Vector2>();
-        scaledDelta = Vector2.Scale(input, rotationSpeedCamera) * Time.deltaTime;
+        if (!firstTimeLoad)
+        {
+            var input = ctx.ReadValue<Vector2>();
+            scaledDelta = Vector2.Scale(input, rotationSpeedCamera) * Time.deltaTime;
+        }
+        else
+        {
+            firstTimeLoadCounter++;
+        }
+
+        if (firstTimeLoadCounter == 20)
+        {
+            firstTimeLoad = false;
+        }
     }
 
     public void FreeCamera(InputAction.CallbackContext input)
@@ -60,5 +84,22 @@ public class PlayerCameraController : MonoBehaviour
     public void Aim(InputAction.CallbackContext input)
     {
         isAiming = !isAiming;
+    }
+
+    private void LimitCannonRotation()
+    {
+        if(cannon.transform.eulerAngles.y > -30 && cannon.transform.eulerAngles.y < 10)
+        {
+            cannon.transform.Rotate(scaledDelta.y, 0, 0);
+
+            if (true)
+            {
+
+            }
+            else if (true)
+            {
+
+            }
+        }       
     }
 }
