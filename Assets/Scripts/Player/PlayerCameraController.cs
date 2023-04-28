@@ -1,5 +1,3 @@
-using System;
-using System.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +8,10 @@ public class PlayerCameraController : MonoBehaviour
     [SerializeField] private Transform _CameraLockPositionAim;
     [SerializeField] private Transform turret;
     [SerializeField] private Transform cannon;
+
+    private float actualcannonAngle = 0;
+    [SerializeField] float cannonAngleMax = 30;
+    [SerializeField] float cannonAngleMin = -10;
 
     [SerializeField] private Vector2 rotationSpeedCamera;
     [SerializeField] private Vector2 rotationSpeedTurret;
@@ -26,10 +28,8 @@ public class PlayerCameraController : MonoBehaviour
     {
         if (!LockTurret)
         {
-            turret.transform.RotateAround(turret.position, turret.up, scaledDelta.x);
-            cannon.transform.Rotate(scaledDelta.y, 0, 0);
-            LimitCannonRotation();
-
+            turret.transform.RotateAround(turret.position, turret.up, scaledDelta.x * rotationSpeedTurret.x);
+            cannon.transform.localRotation = Quaternion.Euler(-actualcannonAngle, 0f, 0f);
 
             if (isAiming)
             {
@@ -66,6 +66,8 @@ public class PlayerCameraController : MonoBehaviour
         {
             var input = ctx.ReadValue<Vector2>();
             scaledDelta = Vector2.Scale(input, rotationSpeedCamera) * Time.deltaTime;
+            actualcannonAngle += scaledDelta.y * rotationSpeedTurret.y;
+            LimitCannonRotation();
         }
         else
         {
@@ -90,6 +92,6 @@ public class PlayerCameraController : MonoBehaviour
 
     private void LimitCannonRotation()
     {
-        
+        actualcannonAngle = Mathf.Clamp(actualcannonAngle, cannonAngleMin, cannonAngleMax);
     }
 }

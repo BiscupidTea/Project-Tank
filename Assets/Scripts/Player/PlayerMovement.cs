@@ -13,15 +13,15 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
 
-    [SerializeField] private float MaxMovementSpeed = 10f;
+    [SerializeField] private float maxMovementSpeed = 10f;
     [SerializeField] private float movementSpeed = 0;
-    [SerializeField] private float MaxTurnSpeed = 30f;
+    [SerializeField] private float maxTurnSpeed = 30f;
     [SerializeField] private float turnSpeed = 0f;
 
-    private float HorizontalMovement;
-    private bool IsRotating;
-    private float VerticalMovement;
-    private bool IsMoving;
+    private float horizontalMovement;
+    private float verticalMovement;
+    private bool isRotating;
+    private bool isMoving;
 
     private Vector3 initialFoward;
 
@@ -33,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
         initialFoward = transform.forward;
 
-        turnSpeed = MaxTurnSpeed;
-        movementSpeed = MaxMovementSpeed;
+        turnSpeed = maxTurnSpeed;
+        movementSpeed = maxMovementSpeed;
     }
     private void FixedUpdate()
     {
@@ -42,32 +42,31 @@ public class PlayerMovement : MonoBehaviour
 
         ModifyTurnRotation();
 
-        _rigidbody.MoveRotation(_rigidbody.rotation * Quaternion.Euler(Vector3.up * HorizontalMovement * turnSpeed * Time.deltaTime));
+        _rigidbody.MoveRotation(_rigidbody.rotation * Quaternion.Euler(Vector3.up * horizontalMovement * turnSpeed * Time.deltaTime));
 
         ModifyMovementSpeed();
 
-        _rigidbody.velocity = transform.forward * VerticalMovement * movementSpeed + Vector3.up * _rigidbody.velocity.y;
+        //_rigidbody.velocity = transform.forward * verticalMovement * movementSpeed + Vector3.up * _rigidbody.velocity.y;
 
-        //_rigidbody.AddForce(transform.forward * (VerticalMovement * movementSpeed), ForceMode.Force);
-       //_rigidbody.useGravity = true;
+        _rigidbody.AddForce(transform.forward * (verticalMovement * movementSpeed), ForceMode.Force);
 
         scroll_Track.AssignMoveTrack(RotateTexture());
     }
 
     private void ModifyMovementSpeed()
     {
-        movementSpeed = IsRotating ? MaxMovementSpeed / 2 : MaxMovementSpeed;
+        movementSpeed = isRotating ? maxMovementSpeed / 2 : maxMovementSpeed;
     }
 
     private void ModifyTurnRotation()
     {
-        if (IsMoving)
+        if (isMoving)
         {
-            turnSpeed = MaxTurnSpeed;
+            turnSpeed = maxTurnSpeed;
         }
         else
         {
-            turnSpeed = MaxTurnSpeed + MaxTurnSpeed / 8;
+            turnSpeed = maxTurnSpeed + maxTurnSpeed / 8;
         }
     }
 
@@ -75,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     {
         var currentInput = input.ReadValue<float>();
 
-        VerticalMovement = currentInput;
+        verticalMovement = currentInput;
     }
 
     private void ModifyTrayectory(float currentInput)
@@ -93,20 +92,20 @@ public class PlayerMovement : MonoBehaviour
             _currentMovement = Vector3.zero;
         }
 
-        IsMoving = VerticalMovement != 0 ? true : false;
+        isMoving = verticalMovement != 0 ? true : false;
     }
 
     public void OnMoveRo(InputAction.CallbackContext input)
     {
-        HorizontalMovement = input.ReadValue<float>();
+        horizontalMovement = input.ReadValue<float>();
 
-        if (HorizontalMovement != 0)
+        if (horizontalMovement != 0)
         {
-            IsRotating = true;
+            isRotating = true;
         }
         else
         {
-            IsRotating = false;
+            isRotating = false;
         }
 
     }
@@ -114,35 +113,35 @@ public class PlayerMovement : MonoBehaviour
     private int RotateTexture()
     {
 
-        if (VerticalMovement == 1 && HorizontalMovement == 0)
+        if (verticalMovement == 1 && horizontalMovement == 0)
         {
             return 1;
         }
-        if (VerticalMovement == -1 && HorizontalMovement == 0)
+        if (verticalMovement == -1 && horizontalMovement == 0)
         {
             return 2;
         }
-        if (VerticalMovement == 1 && HorizontalMovement == 1)
+        if (verticalMovement == 1 && horizontalMovement == 1)
         {
             return 3;
         }
-        if (VerticalMovement == 1 && HorizontalMovement == -1)
+        if (verticalMovement == 1 && horizontalMovement == -1)
         {
             return 4;
         }
-        if (VerticalMovement == -1 && HorizontalMovement == -1)
+        if (verticalMovement == -1 && horizontalMovement == -1)
         {
             return 5;
         }
-        if (VerticalMovement == -1 && HorizontalMovement == 1)
+        if (verticalMovement == -1 && horizontalMovement == 1)
         {
             return 6;
         }
-        if (VerticalMovement == 0 && HorizontalMovement == 1)
+        if (verticalMovement == 0 && horizontalMovement == 1)
         {
             return 7;
         }
-        if (VerticalMovement == 0 && HorizontalMovement == -1)
+        if (verticalMovement == 0 && horizontalMovement == -1)
         {
             return 8;
         }
