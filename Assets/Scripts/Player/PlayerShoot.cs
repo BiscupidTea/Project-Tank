@@ -53,7 +53,10 @@ public class PlayerShoot : MonoBehaviour
     {
         readyToShoot = false;
 
-        Ray ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
+        GameObject NewBullet = Instantiate(bullet, shootShellPosition.transform);
+        NewBullet.GetComponent<Rigidbody>().AddForce(shootShellPosition.forward * shootForce, ForceMode.Impulse);
+        
+        //Ray ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
 
         Debug.Log("shoot");
     }
