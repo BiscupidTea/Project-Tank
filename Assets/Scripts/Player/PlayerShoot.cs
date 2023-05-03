@@ -8,7 +8,8 @@ public class PlayerShoot : MonoBehaviour
 
     [SerializeField] Camera _camera;
     [SerializeField] GameObject bullet;
-    [SerializeField] Transform shootPosition;
+    [SerializeField] Transform shootShellPosition;
+    [SerializeField] Transform shootMachineGunPosition;
 
     [SerializeField] private float shootForce;
     [SerializeField] private float reloadTime;
