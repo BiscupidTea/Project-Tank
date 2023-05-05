@@ -5,60 +5,99 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
-
+    [Header("Basic Info")]
     [SerializeField] Camera _camera;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootShellPosition;
-    [SerializeField] Transform shootMachineGunPosition;
+    [SerializeField] Transform shootSecondaryPosition;
 
-    [SerializeField] private float shootForce;
-    [SerializeField] private float reloadTime;
-    private float currentReloadTime;
 
-    private bool readyToShoot;
+    [Header("Primary Shoot")]
+    [SerializeField] private float reloadTimePrimary;
+    [SerializeField] private float shootForcePrimary;
+
+    [Header("Primary Shoot")]
+    [SerializeField] private float reloadTimeSecondary;
+    [SerializeField] private float rangeShootSecondary;
+    [SerializeField] private float shootForceSecondary;
+
+    private bool primaryShoot;
+    private float currentReloadTimePrimary;
+    private float currentReloadTimeSecondary;
+
+    private bool readyToShootPrimary;
+    private bool readyToShootSecondary;
 
     private void Awake()
     {
-        readyToShoot = true;
+        readyToShootPrimary = true;
+        readyToShootSecondary = false;
     }
 
     private void Update()
     {
-        if (!readyToShoot)
+        if (!readyToShootPrimary)
         {
-            currentReloadTime += 1 * Time.deltaTime;
+            currentReloadTimePrimary += 1 * Time.deltaTime;
         }
 
-        if (currentReloadTime >= reloadTime)
+        if (!readyToShootSecondary)
         {
-            readyToShoot = true;
-            currentReloadTime = 0;
-            Debug.Log("ready!");
+            currentReloadTimeSecondary += 1 * Time.deltaTime;
+        }
+
+        if (currentReloadTimePrimary >= reloadTimePrimary)
+        {
+            readyToShootPrimary = true;
+            currentReloadTimePrimary = 0;
+        }
+
+        if (currentReloadTimeSecondary >= reloadTimeSecondary)
+        {
+            readyToShootSecondary = true;
+            currentReloadTimeSecondary = 0;
         }
     }
 
     public void ShootInput(InputAction.CallbackContext input)
     {
-        if (readyToShoot)
+        if (primaryShoot)
         {
-            ShootLogic();
+            if (readyToShootPrimary)
+            {
+                ShootPrimaryLogic();
+            }
         }
         else
         {
-            Debug.Log("reloading!");
+            if (readyToShootSecondary)
+            {
+                ShootSecondaryLogic();
+            }
         }
     }
 
-    private void ShootLogic()
+    private void ShootPrimaryLogic()
     {
-        readyToShoot = false;
+        readyToShootPrimary = false;
 
         GameObject NewBullet = Instantiate(bullet, shootShellPosition.transform);
-        NewBullet.GetComponent<Rigidbody>().AddForce(shootShellPosition.forward * shootForce, ForceMode.Impulse);
-        
-        //Ray ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
+        NewBullet.GetComponent<Rigidbody>().AddForce(shootShellPosition.forward * shootForcePrimary, ForceMode.Impulse);
+    }
 
-        Debug.Log("shoot");
+    private void ShootSecondaryLogic()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(shootSecondaryPosition.transform.position, shootSecondaryPosition.transform.forward, out hit, rangeShootSecondary))
+        {
+            hit.transform.GetComponent<Rigidbody>();
+            hit.rigidbody.AddForce(shootSecondaryPosition.transform.forward * shootForceSecondary, ForceMode.Impulse);
+        }
+    }
+
+    public void ChangeWeapon(InputAction.CallbackContext input)
+    {
+        primaryShoot = !primaryShoot;
     }
 
 }
