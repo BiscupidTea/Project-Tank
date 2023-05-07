@@ -16,7 +16,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float reloadTimePrimary;
     [SerializeField] private float shootForcePrimary;
 
-    [Header("Primary Shoot")]
+    [Header("Secondary Shoot")]
     [SerializeField] private float reloadTimeSecondary;
     [SerializeField] private float rangeShootSecondary;
     [SerializeField] private float shootForceSecondary;
@@ -91,8 +91,10 @@ public class PlayerShoot : MonoBehaviour
         if (Physics.Raycast(shootSecondaryPosition.transform.position, shootSecondaryPosition.transform.forward, out hit, rangeShootSecondary))
         {
             hit.transform.GetComponent<Rigidbody>();
-            hit.rigidbody.AddForce(shootSecondaryPosition.transform.forward * shootForceSecondary, ForceMode.Impulse);
-            
+            if (hit.rigidbody)
+            {
+                hit.rigidbody.AddForce(shootSecondaryPosition.transform.forward * shootForceSecondary, ForceMode.Impulse);
+            }
         }
     }
 
