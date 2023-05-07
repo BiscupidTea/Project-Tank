@@ -92,6 +92,7 @@ public class PlayerShoot : MonoBehaviour
         {
             hit.transform.GetComponent<Rigidbody>();
             hit.rigidbody.AddForce(shootSecondaryPosition.transform.forward * shootForceSecondary, ForceMode.Impulse);
+            
         }
     }
 
