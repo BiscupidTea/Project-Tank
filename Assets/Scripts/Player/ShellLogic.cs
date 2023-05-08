@@ -16,6 +16,7 @@ public class ShellLogic : MonoBehaviour
 
     private void Start()
     {
+        animation = false;
         ExplotionAnimation.SetActive(false);
     }
 

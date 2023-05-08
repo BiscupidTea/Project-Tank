@@ -15,11 +15,20 @@ public class PlayerShoot : MonoBehaviour
     [Header("Primary Shoot")]
     [SerializeField] private float reloadTimePrimary;
     [SerializeField] private float shootForcePrimary;
+    [SerializeField] private GameObject AnimationPrimaryShoot;
+    [SerializeField] private float AnimationPrimaryShootTime;
+    private float animationTimePrimary;
+    private bool animationReadyPrimary = false;
 
     [Header("Secondary Shoot")]
     [SerializeField] private float reloadTimeSecondary;
     [SerializeField] private float rangeShootSecondary;
     [SerializeField] private float shootForceSecondary;
+    [SerializeField] private GameObject AnimationSecondaryShoot;
+    [SerializeField] private float AnimationSecondaryShootTime;
+    private float animationTimeSecondary;
+    private bool animationReadySecondary = false;
+
 
     private bool primaryShoot;
     private float currentReloadTimePrimary;
@@ -32,9 +41,49 @@ public class PlayerShoot : MonoBehaviour
     {
         readyToShootPrimary = true;
         readyToShootSecondary = false;
+
+        animationTimePrimary = 0;
+        animationTimeSecondary = 0;
+
+        AnimationPrimaryShoot.SetActive(false);
+        AnimationSecondaryShoot.SetActive(false);
     }
 
     private void Update()
+    {
+        Reloaders();
+
+        Animations();
+    }
+
+    private void Animations()
+    {
+        if (animationReadyPrimary)
+        {
+            animationTimePrimary += 1 * Time.deltaTime;
+        }
+
+        if (animationReadySecondary)
+        {
+            animationTimeSecondary += 1 * Time.deltaTime;
+        }
+
+        if (animationTimePrimary > AnimationPrimaryShootTime)
+        {
+            animationReadyPrimary = false;
+            AnimationPrimaryShoot.SetActive(false);
+            animationTimePrimary = 0;
+        }
+
+        if (animationTimeSecondary > AnimationSecondaryShootTime)
+        {
+            animationReadySecondary = false;
+            AnimationSecondaryShoot.SetActive(false);
+            animationTimeSecondary = 0;
+        }
+    }
+
+    private void Reloaders()
     {
         if (!readyToShootPrimary)
         {
@@ -46,13 +95,13 @@ public class PlayerShoot : MonoBehaviour
             currentReloadTimeSecondary += 1 * Time.deltaTime;
         }
 
-        if (currentReloadTimePrimary >= reloadTimePrimary)
+        if (currentReloadTimePrimary > reloadTimePrimary)
         {
             readyToShootPrimary = true;
             currentReloadTimePrimary = 0;
         }
 
-        if (currentReloadTimeSecondary >= reloadTimeSecondary)
+        if (currentReloadTimeSecondary > reloadTimeSecondary)
         {
             readyToShootSecondary = true;
             currentReloadTimeSecondary = 0;
@@ -81,12 +130,18 @@ public class PlayerShoot : MonoBehaviour
     {
         readyToShootPrimary = false;
 
+        AnimationPrimaryShoot.SetActive(true);
+        animationReadyPrimary = true;
+
         GameObject NewBullet = Instantiate(bullet, shootShellPosition.transform);
         NewBullet.GetComponent<Rigidbody>().AddForce(shootShellPosition.forward * shootForcePrimary, ForceMode.Impulse);
     }
 
     private void ShootSecondaryLogic()
     {
+        AnimationSecondaryShoot.SetActive(true);
+        animationReadySecondary = true;
+
         RaycastHit hit;
         if (Physics.Raycast(shootSecondaryPosition.transform.position, shootSecondaryPosition.transform.forward, out hit, rangeShootSecondary))
         {
