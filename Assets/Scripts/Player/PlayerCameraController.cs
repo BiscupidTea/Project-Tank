@@ -24,6 +24,12 @@ public class PlayerCameraController : MonoBehaviour
 
     private Vector2 scaledDelta;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     private void Update()
     {
         if (!LockTurret)

@@ -891,7 +891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5668808103688728705, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
       propertyPath: reloadTimePrimary
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5668808103688728705, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
       propertyPath: shootForcePrimary
