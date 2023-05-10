@@ -12,17 +12,17 @@ public class ShellLogic : MonoBehaviour
     [SerializeField] private float explotionTimerAnimation;
 
     private float explotionTime = 0;
-    private bool animation;
+    private bool animationRun;
 
     private void Start()
     {
-        animation = false;
+        animationRun = false;
         ExplotionAnimation.SetActive(false);
     }
 
     private void Update()
     {
-        if (animation)
+        if (animationRun)
         {
             explotionTime += Time.deltaTime;
         }
@@ -45,7 +45,7 @@ public class ShellLogic : MonoBehaviour
             {
                 EntRB.AddExplosionForce(explotionForce, transform.position, explotionRadius);
                 ExplotionAnimation.SetActive(true);
-                animation = true;
+                animationRun = true;
             }
         }
 

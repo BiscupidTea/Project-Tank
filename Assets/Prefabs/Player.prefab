@@ -165,7 +165,19 @@ MonoBehaviour:
     m_ActionId: ffd90c50-25d3-48e4-bd3a-6aadc3b8a881
     m_ActionName: Game/Shoot[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5668808103688728705}
+        m_TargetAssemblyTypeName: PlayerShoot, Assembly-CSharp
+        m_MethodName: ChangeWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: fbd82f99-a492-44bb-9685-2acec61ef7f0
     m_ActionName: Game/Change Shoot[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
@@ -248,12 +260,12 @@ MonoBehaviour:
   reloadTimePrimary: 1
   shootForcePrimary: 100
   AnimationPrimaryShoot: {fileID: 5069189279362178824}
-  AnimationPrimaryShootTime: 2
-  reloadTimeSecondary: 1
+  AnimationPrimaryShootTime: 1
+  reloadTimeSecondary: 0.5
   rangeShootSecondary: 100
-  shootForceSecondary: 5
+  shootForceSecondary: 10
   AnimationSecondaryShoot: {fileID: 6967261727345949021}
-  AnimationSecondaryShootTime: 0
+  AnimationSecondaryShootTime: 0.5
 --- !u!64 &5668808103688728706
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -450,6 +462,10 @@ PrefabInstance:
     - target: {fileID: 5291380928497762637, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
       propertyPath: m_Name
       value: Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 6059454504194802478, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.669
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5021420378215375390, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
