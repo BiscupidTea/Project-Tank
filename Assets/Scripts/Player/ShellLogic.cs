@@ -14,11 +14,9 @@ public class ShellLogic : MonoBehaviour
 
     private float explotionTime = 0;
     private bool animationRun;
-    private bool hitTarget;
 
     private void Start()
     {
-        hitTarget = false;
         animationRun = false;
         ExplotionAnimation.SetActive(false);
     }
@@ -53,8 +51,6 @@ public class ShellLogic : MonoBehaviour
                 if (enemy != null)
                 {
                     enemy.GetDamage(playerShotlogic.GetPrimaryDamage());
-                    Debug.Log(enemy.name, enemy);
-                    hitTarget = true;
                     Shell.GetComponent<CapsuleCollider>().enabled = false;
                 }
 
