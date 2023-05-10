@@ -208,6 +208,8 @@ GameObject:
   - component: {fileID: 434593656}
   - component: {fileID: 434593657}
   - component: {fileID: 434593658}
+  - component: {fileID: 8770391947853140472}
+  - component: {fileID: 1333540100036908734}
   m_Layer: 0
   m_Name: M5A1_Stuart
   m_TagString: Untagged
@@ -326,6 +328,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   isAlive: 1
+--- !u!114 &8770391947853140472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606005299345233778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa7d6d581025374f925e4036e4f5dee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1333540100036908734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606005299345233778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa506e7387debaa42873d8e5343a3389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ViewRagnge: 40
+  ShootRagnge: 25
 --- !u!1 &7916753064420517464
 GameObject:
   m_ObjectHideFlags: 0

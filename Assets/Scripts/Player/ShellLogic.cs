@@ -47,7 +47,7 @@ public class ShellLogic : MonoBehaviour
                 ExplotionAnimation.SetActive(true);
                 animationRun = true;
 
-                EnemyHealth enemy = EntRB.GetComponent<EnemyHealth>();
+                Enemy_Health enemy = EntRB.GetComponent<Enemy_Health>();
                 if (enemy != null)
                 {
                     enemy.GetDamage(playerShotlogic.GetPrimaryDamage());

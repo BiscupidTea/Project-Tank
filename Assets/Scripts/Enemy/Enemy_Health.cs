@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class Enemy_Health : MonoBehaviour
 {
     [SerializeField] private float health;
     [SerializeField] private bool isAlive;
