@@ -10,8 +10,8 @@ public class ShellLogic : MonoBehaviour
     [SerializeField] private float explotionForce;
     [SerializeField] private float explotionRadius;
     [SerializeField] private float explotionTimerAnimation;
+    [SerializeField] private PlayerShoot playerShotlogic;
 
-    private PlayerShoot playerShotlogic;
     private float explotionTime = 0;
     private bool animationRun;
     private bool hitTarget;
@@ -20,7 +20,6 @@ public class ShellLogic : MonoBehaviour
     {
         hitTarget = false;
         animationRun = false;
-        playerShotlogic = GetComponent<PlayerShoot>();
         ExplotionAnimation.SetActive(false);
     }
 
@@ -33,7 +32,6 @@ public class ShellLogic : MonoBehaviour
 
         if (explotionTimerAnimation < explotionTime)
         {
-            Debug.Log("destroyed");
             Destroy(gameObject);
         }
     }
@@ -51,15 +49,15 @@ public class ShellLogic : MonoBehaviour
                 ExplotionAnimation.SetActive(true);
                 animationRun = true;
 
-                if (!hitTarget)
+                EnemyHealth enemy = EntRB.GetComponent<EnemyHealth>();
+                if (enemy != null)
                 {
-                    EnemyHealth enemy = GetComponent<EnemyHealth>();
-                    if (enemy != null)
-                    {
-                        enemy.GetDamage(playerShotlogic.GetPrimaryDamage());
-                        hitTarget = true;
-                    }
+                    enemy.GetDamage(playerShotlogic.GetPrimaryDamage());
+                    Debug.Log(enemy.name, enemy);
+                    hitTarget = true;
+                    Shell.GetComponent<CapsuleCollider>().enabled = false;
                 }
+
             }
         }
 

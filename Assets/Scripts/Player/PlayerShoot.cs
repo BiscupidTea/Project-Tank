@@ -162,6 +162,7 @@ public class PlayerShoot : MonoBehaviour
 
     public float GetPrimaryDamage()
     {
+        Debug.Log("player damage " + damagePrimary);
         return damagePrimary;
     }
 

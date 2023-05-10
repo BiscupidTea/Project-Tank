@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private float helath;
+    [SerializeField] private float health;
     [SerializeField] private bool isAlive;
 
     private void Update()
     {
-        if (helath <= 0)
+        if (health <= 0)
         {
             isAlive = false;
         }
@@ -21,6 +21,6 @@ public class EnemyHealth : MonoBehaviour
     }
     public void GetDamage(float damage)
     {
-        helath -= damage;
+        health -= damage;
     }
 }

@@ -257,10 +257,12 @@ MonoBehaviour:
   bullet: {fileID: 4829409194887708885, guid: bdcabea2d42b1a3478dfe61a1c609145, type: 3}
   shootShellPosition: {fileID: 6850973463637699070}
   shootSecondaryPosition: {fileID: 302685975010246089}
+  damagePrimary: 50
   reloadTimePrimary: 1
-  shootForcePrimary: 100
+  shootForcePrimary: 75
   AnimationPrimaryShoot: {fileID: 5069189279362178824}
   AnimationPrimaryShootTime: 1
+  damageScondary: 10
   reloadTimeSecondary: 0.5
   rangeShootSecondary: 100
   shootForceSecondary: 10
