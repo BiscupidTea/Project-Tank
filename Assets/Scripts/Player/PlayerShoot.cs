@@ -13,6 +13,7 @@ public class PlayerShoot : MonoBehaviour
 
 
     [Header("Primary Shoot")]
+    [SerializeField] private float damagePrimary;
     [SerializeField] private float reloadTimePrimary;
     [SerializeField] private float shootForcePrimary;
     [SerializeField] private GameObject AnimationPrimaryShoot;
@@ -21,6 +22,7 @@ public class PlayerShoot : MonoBehaviour
     private bool animationReadyPrimary = false;
 
     [Header("Secondary Shoot")]
+    [SerializeField] private float damageScondary;
     [SerializeField] private float reloadTimeSecondary;
     [SerializeField] private float rangeShootSecondary;
     [SerializeField] private float shootForceSecondary;
@@ -158,4 +160,13 @@ public class PlayerShoot : MonoBehaviour
         primaryShoot = !primaryShoot;
     }
 
+    public float GetPrimaryDamage()
+    {
+        return damagePrimary;
+    }
+
+    private float GetSecondaryDamage()
+    {
+        return damageScondary;
+    }
 }

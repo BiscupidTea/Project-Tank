@@ -11,12 +11,16 @@ public class ShellLogic : MonoBehaviour
     [SerializeField] private float explotionRadius;
     [SerializeField] private float explotionTimerAnimation;
 
+    private PlayerShoot playerShotlogic;
     private float explotionTime = 0;
     private bool animationRun;
+    private bool hitTarget;
 
     private void Start()
     {
+        hitTarget = false;
         animationRun = false;
+        playerShotlogic = GetComponent<PlayerShoot>();
         ExplotionAnimation.SetActive(false);
     }
 
@@ -46,6 +50,16 @@ public class ShellLogic : MonoBehaviour
                 EntRB.AddExplosionForce(explotionForce, transform.position, explotionRadius);
                 ExplotionAnimation.SetActive(true);
                 animationRun = true;
+
+                if (!hitTarget)
+                {
+                    EnemyHealth enemy = GetComponent<EnemyHealth>();
+                    if (enemy != null)
+                    {
+                        enemy.GetDamage(playerShotlogic.GetPrimaryDamage());
+                        hitTarget = true;
+                    }
+                }
             }
         }
 
