@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 5210192802611845743}
   - component: {fileID: 6761399807706487044}
   - component: {fileID: 282361557159267344}
-  - component: {fileID: 3172073774485086772}
+  - component: {fileID: 3530507652380075609}
   m_Layer: 0
-  m_Name: Tank_Shell
+  m_Name: U_ShelL_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +134,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &282361557159267344
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ CapsuleCollider:
   m_Height: 2.468731
   m_Direction: 1
   m_Center: {x: 0, y: 1.1241369, z: 0}
---- !u!114 &3172073774485086772
+--- !u!114 &3530507652380075609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4829409194887708885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f060cb7f3cffd4f9ddb885d6d970e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 667bbaac356194f42974ebddd679efdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Shell: {fileID: 4829409194887708885}
@@ -167,7 +167,7 @@ MonoBehaviour:
   explotionForce: 200
   explotionRadius: 5
   explotionTimerAnimation: 2
-  playerShotlogic: {fileID: 5668808103688728705, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
+  enemyShootlogic: {fileID: 4939778704463038442, guid: ad899c9168e7f5c4db7f2447350a5249, type: 3}
 --- !u!1001 &1214021373716751449
 PrefabInstance:
   m_ObjectHideFlags: 0

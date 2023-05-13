@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class ShellLogic : MonoBehaviour
+public class EnemyShell_logic : MonoBehaviour
 {
+
     [SerializeField] private GameObject Shell;
     [SerializeField] private GameObject ExplotionAnimation;
     [SerializeField] private Rigidbody Rigidbody;
     [SerializeField] private float explotionForce;
     [SerializeField] private float explotionRadius;
     [SerializeField] private float explotionTimerAnimation;
-    [SerializeField] private PlayerShoot playerShotlogic;
+    [SerializeField] private Enemy_Shoot enemyShootlogic;
 
     private float explotionTime = 0;
     private bool animationRun;
@@ -49,15 +51,16 @@ public class ShellLogic : MonoBehaviour
 
                 Debug.Log(EntRB);
 
-                Enemy_Health enemy = EntRB.GetComponent<Enemy_Health>();
-                if (enemy != null)
+                Player_Health player = EntRB.GetComponent<Player_Health>();
+                if (player != null)
                 {
-                    enemy.GetDamage(playerShotlogic.GetPrimaryDamage());
+                    player.GetDamage(enemyShootlogic.GetDamage());
                     Shell.GetComponent<CapsuleCollider>().enabled = false;
                 }
-
             }
-        }
 
+        }
     }
+
 }
+

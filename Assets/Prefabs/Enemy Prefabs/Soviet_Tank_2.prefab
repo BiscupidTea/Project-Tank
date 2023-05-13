@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 1992850905}
   - component: {fileID: 1992850906}
   m_Layer: 0
-  m_Name: T_34_76
+  m_Name: Soviet_Tank_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
