@@ -164,7 +164,7 @@ MonoBehaviour:
   Shell: {fileID: 4829409194887708885}
   ExplotionAnimation: {fileID: 1214540017548006883}
   Rigidbody: {fileID: 6761399807706487044}
-  explotionForce: 200
+  explotionForce: 100
   explotionRadius: 5
   explotionTimerAnimation: 2
   enemyShootlogic: {fileID: 4939778704463038442, guid: ad899c9168e7f5c4db7f2447350a5249, type: 3}

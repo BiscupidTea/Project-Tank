@@ -94,7 +94,7 @@ public class Enemy_Shoot : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(gameObject.transform.position, ShootRange);
 
-        if (player)
+        if (player && AttackingPlayer)
         {
             Gizmos.DrawLine(turret.transform.position, player.transform.position);
         }

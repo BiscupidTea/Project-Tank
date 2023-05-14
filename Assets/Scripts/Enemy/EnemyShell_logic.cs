@@ -49,8 +49,6 @@ public class EnemyShell_logic : MonoBehaviour
                 ExplotionAnimation.SetActive(true);
                 animationRun = true;
 
-                Debug.Log(EntRB);
-
                 Player_Health player = EntRB.GetComponent<Player_Health>();
                 if (player != null)
                 {
