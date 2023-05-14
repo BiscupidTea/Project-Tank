@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 747311366}
   - component: {fileID: 4575492330172121062}
   - component: {fileID: 4939778704463038442}
+  - component: {fileID: 2020099365}
   m_Layer: 0
   m_Name: USA_Tank_1
   m_TagString: Untagged
@@ -327,11 +328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa7d6d581025374f925e4036e4f5dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPatrol: 0
+  Enemy: {fileID: 0}
   patrolPoints: []
   targetPoint: 0
-  moveSpeed: 25
-  rotateSpeed: 10
 --- !u!114 &4939778704463038442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +353,28 @@ MonoBehaviour:
   Damage: 50
   ReloadTime: 5
   shootForce: 75
+--- !u!195 &2020099365
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335991254495539031}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 4
+  m_Speed: 20
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 4
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4284700262975299488
 GameObject:
   m_ObjectHideFlags: 0

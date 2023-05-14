@@ -1,63 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy_Move : MonoBehaviour
 {
-    [SerializeField] private bool isPatrol;
+    [SerializeField] private bool isPatroling;
+    [SerializeField] private NavMeshAgent Enemy;
     public Transform[] patrolPoints;
     public int targetPoint;
-    public float moveSpeed;
-    public float rotateSpeed;
-    private bool isRotating;
+    private Vector3 target;
 
     void Start()
     {
-        isRotating = false;
-        targetPoint = 0;
+        Enemy = GetComponent<NavMeshAgent>();
+
+        if (isPatroling)
+        {
+            target = patrolPoints[0].position;
+            UpdateDestination();
+        }
     }
 
     void Update()
     {
-        if (isPatrol)
+        if (isPatroling)
         {
-            if (!isRotating)
+            if (Vector3.Distance(transform.position, target) < 1)
             {
-                GoToNextPoint();
-            }
-            else
-            {
-                RotateToNextPoint();
+                IncreaseTarget();
+                UpdateDestination();
             }
         }
     }
 
-    private void GoToNextPoint()
+    private void UpdateDestination()
     {
-        if (transform.position == patrolPoints[targetPoint].position)
-        {
-            IncreaseTarget();
-            isRotating = true;
-        }
-        transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, moveSpeed * Time.deltaTime);
-    }
-
-    private void RotateToNextPoint()
-    {
-        Quaternion rotTarget = Quaternion.LookRotation(patrolPoints[targetPoint].transform.position - transform.position);
-
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotTarget, rotateSpeed * Time.deltaTime);
-
-        if (transform.rotation == rotTarget) 
-        {
-            isRotating = false;
-        }
+        target = patrolPoints[targetPoint].position;
+        Enemy.destination = target;
     }
 
     private void IncreaseTarget()
     {
         targetPoint++;
-        if (targetPoint >= patrolPoints.Length)
+        if (targetPoint == patrolPoints.Length)
         {
             targetPoint = 0;
         }
