@@ -372,7 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa7d6d581025374f925e4036e4f5dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPatroling: 0
   Enemy: {fileID: 0}
   patrolPoints: []
   targetPoint: 0
@@ -392,8 +391,8 @@ MonoBehaviour:
   player: {fileID: 0}
   Shell: {fileID: 4829409194887708885, guid: 1ff9cee24b31e3d49bd54bccba05b11c, type: 3}
   shootShellPosition: {fileID: 24690584878123771}
-  ViewRagnge: 40
-  ShootRange: 30
+  ViewRagnge: 70
+  ShootRange: 40
   RotationSpeed: 10
   Damage: 50
   ReloadTime: 5
