@@ -2016,6 +2016,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: USA_Tank_2 Static
       objectReference: {fileID: 0}
+    - target: {fileID: 7676910881237769208, guid: 7aff9190f32585948a8d7838a859933a, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7923633883768481121, guid: 7aff9190f32585948a8d7838a859933a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2429,7 +2433,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!65 &2045021862
 BoxCollider:
