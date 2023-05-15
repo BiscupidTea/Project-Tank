@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class Enemy_Move : MonoBehaviour
 {
-    [SerializeField] private bool isPatroling;
     [SerializeField] private NavMeshAgent Enemy;
     public Transform[] patrolPoints;
     public int targetPoint;
@@ -14,23 +13,17 @@ public class Enemy_Move : MonoBehaviour
     void Start()
     {
         Enemy = GetComponent<NavMeshAgent>();
+        target = patrolPoints[0].position;
+        UpdateDestination();
 
-        if (isPatroling)
-        {
-            target = patrolPoints[0].position;
-            UpdateDestination();
-        }
     }
 
     void Update()
     {
-        if (isPatroling)
+        if (Vector3.Distance(transform.position, target) < 1)
         {
-            if (Vector3.Distance(transform.position, target) < 1)
-            {
-                IncreaseTarget();
-                UpdateDestination();
-            }
+            IncreaseTarget();
+            UpdateDestination();
         }
     }
 
