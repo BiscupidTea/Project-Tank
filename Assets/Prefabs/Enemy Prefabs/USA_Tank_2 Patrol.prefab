@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24690584878123771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 1.316}
+  m_LocalPosition: {x: 0, y: -0, z: 2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -373,6 +373,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 0}
+  player: {fileID: 0}
+  enemy_Shoot: {fileID: 0}
   patrolPoints: []
   targetPoint: 0
 --- !u!114 &1333540100036908734
@@ -406,7 +408,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6606005299345233778}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2.349391
+  m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -415,7 +417,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 3.3972027
+  m_Height: 0.5
   m_BaseOffset: 1.6986014
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

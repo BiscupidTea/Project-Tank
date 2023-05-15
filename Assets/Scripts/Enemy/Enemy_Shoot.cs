@@ -80,7 +80,7 @@ public class Enemy_Shoot : MonoBehaviour
         {
             if (timerReload >= ReloadTime)
             {
-                GameObject NewBullet = Instantiate(Shell, shootShellPosition.transform);
+                GameObject NewBullet = Instantiate(Shell, shootShellPosition.transform.position, shootShellPosition.transform.rotation);
                 NewBullet.GetComponent<Rigidbody>().AddForce(shootShellPosition.transform.forward * shootForce, ForceMode.Impulse);
                 timerReload = 0;
             }

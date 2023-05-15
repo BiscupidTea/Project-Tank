@@ -25,7 +25,9 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float damageScondary;
     [SerializeField] private float reloadTimeSecondary;
     [SerializeField] private float rangeShootSecondary;
+    [SerializeField] private float durationShootSecondary;
     [SerializeField] private float shootForceSecondary;
+    [SerializeField] private TrailRenderer bulletTrail;
     [SerializeField] private GameObject AnimationSecondaryShoot;
     [SerializeField] private float AnimationSecondaryShootTime;
     private float animationTimeSecondary;
