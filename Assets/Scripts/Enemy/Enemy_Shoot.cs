@@ -104,4 +104,14 @@ public class Enemy_Shoot : MonoBehaviour
     {
         return Damage;
     }
+
+    public bool IsTargetingPlayer()
+    {
+        return TargetingPlayer;
+    }
+    
+    public float GetDistanceShoot()
+    {
+        return ShootRange;
+    }
 }

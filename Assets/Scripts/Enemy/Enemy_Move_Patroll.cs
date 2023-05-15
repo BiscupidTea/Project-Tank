@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy_Move_Patroll : MonoBehaviour
+public class Enemy_Move : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent Enemy;
     public Transform[] patrolPoints;

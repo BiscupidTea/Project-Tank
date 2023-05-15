@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 747311365}
   - component: {fileID: 747311366}
   - component: {fileID: 4939778704463038442}
+  - component: {fileID: -4567832101098565986}
   m_Layer: 0
   m_Name: USA_Tank_1 Static
   m_TagString: Untagged
@@ -336,6 +337,22 @@ MonoBehaviour:
   Damage: 50
   ReloadTime: 5
   shootForce: 75
+--- !u!114 &-4567832101098565986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335991254495539031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd9a57135652ae4883579ac09ac9ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  rotateSpeed: 10
+  enemy_Shoot: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &4284700262975299488
 GameObject:
   m_ObjectHideFlags: 0
