@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditorInternal.ReorderableList;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -32,7 +33,6 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float AnimationSecondaryShootTime;
     private float animationTimeSecondary;
     private bool animationReadySecondary = false;
-
 
     private bool primaryShoot;
     private float currentReloadTimePrimary;
@@ -149,14 +149,36 @@ public class PlayerShoot : MonoBehaviour
         animationReadySecondary = true;
 
         RaycastHit hit;
+        TrailRenderer trail = Instantiate(bulletTrail, shootSecondaryPosition.transform.position, Quaternion.identity);
         if (Physics.Raycast(shootSecondaryPosition.transform.position, shootSecondaryPosition.transform.forward, out hit, rangeShootSecondary))
         {
-            hit.transform.GetComponent<Rigidbody>();
+            StartCoroutine(SpawnTrail(trail, hit.point));
             if (hit.rigidbody)
             {
+                hit.collider.GetComponent<Enemy_Health>().GetDamage(damageScondary);
                 hit.rigidbody.AddForce(shootSecondaryPosition.transform.forward * shootForceSecondary, ForceMode.Impulse);
             }
         }
+        else
+        {
+            Vector3 defaultPos = shootSecondaryPosition.transform.forward * rangeShootSecondary;
+            StartCoroutine(SpawnTrail(trail, defaultPos));
+        }
+    }
+
+    IEnumerator SpawnTrail(TrailRenderer trail, Vector3 EndPosition)
+    {
+        float time = 0;
+        Vector3 startPosition = trail.transform.position;
+        while (time < 1)
+        {
+            trail.transform.position = Vector3.Lerp(startPosition, EndPosition, time);
+            time += Time.deltaTime / trail.time;
+            yield return null;
+        }
+        trail.transform.position = EndPosition;
+
+        Destroy(trail.gameObject, trail.time);
     }
 
     public void ChangeWeapon(InputAction.CallbackContext input)

@@ -8,6 +8,7 @@ public class ShellLogic : MonoBehaviour
     [SerializeField] private MeshRenderer ShellRender;
     [SerializeField] private GameObject ExplotionAnimation;
     [SerializeField] private Rigidbody Rigidbody;
+    [SerializeField] private float LifeTime;
     [SerializeField] private float explotionForce;
     [SerializeField] private float explotionRadius;
     [SerializeField] private float explotionTimerAnimation;

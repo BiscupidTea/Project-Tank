@@ -266,7 +266,9 @@ MonoBehaviour:
   damageScondary: 10
   reloadTimeSecondary: 0.5
   rangeShootSecondary: 100
+  durationShootSecondary: 0
   shootForceSecondary: 10
+  bulletTrail: {fileID: 3841707417342795937, guid: 99d2229e8216b6e41aaf103d1c9cc73d, type: 3}
   AnimationSecondaryShoot: {fileID: 6967261727345949021}
   AnimationSecondaryShootTime: 0.5
 --- !u!54 &5668808103688728709
