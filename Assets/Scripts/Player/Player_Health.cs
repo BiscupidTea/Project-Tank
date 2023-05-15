@@ -23,4 +23,9 @@ public class Player_Health : MonoBehaviour
     {
         health -= damage;
     }
+
+    public float GetHealth()
+    {
+        return health;
+    }
 }
