@@ -165,8 +165,23 @@ public class PlayerShoot : MonoBehaviour
         return damagePrimary;
     }
 
-    private float GetSecondaryDamage()
+    public float GetSecondaryDamage()
     {
         return damageScondary;
+    }
+
+    public bool WeapondUsing()
+    {
+        return primaryShoot;
+    }
+
+    public bool GetPrimaryReadyToShoot()
+    {
+        return readyToShootPrimary;
+    }
+
+    public bool GetSecondaryReadyToShoot()
+    {
+        return readyToShootSecondary;
     }
 }
