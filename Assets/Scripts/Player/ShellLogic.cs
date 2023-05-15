@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShellLogic : MonoBehaviour
 {
     [SerializeField] private GameObject Shell;
+    [SerializeField] private MeshRenderer ShellRender;
     [SerializeField] private GameObject ExplotionAnimation;
     [SerializeField] private Rigidbody Rigidbody;
     [SerializeField] private float explotionForce;
@@ -19,6 +20,7 @@ public class ShellLogic : MonoBehaviour
     {
         animationRun = false;
         ExplotionAnimation.SetActive(false);
+        ShellRender = GetComponentInChildren<MeshRenderer>();
     }
 
     private void Update()
@@ -55,6 +57,8 @@ public class ShellLogic : MonoBehaviour
                     enemy.GetDamage(playerShotlogic.GetPrimaryDamage());
                     Shell.GetComponent<CapsuleCollider>().enabled = false;
                 }
+
+                ShellRender.enabled = false;
 
             }
         }

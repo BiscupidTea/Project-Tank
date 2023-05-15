@@ -373,7 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turret: {fileID: 7959255750150524292}
   player: {fileID: 0}
-  Shell: {fileID: 4829409194887708885, guid: 1ff9cee24b31e3d49bd54bccba05b11c, type: 3}
+  Shell: {fileID: 4829409194887708885, guid: 2347af85f78a44649a3ea46c5faf8789, type: 3}
   shootShellPosition: {fileID: 24690584878123771}
   ViewRagnge: 40
   ShootRange: 30

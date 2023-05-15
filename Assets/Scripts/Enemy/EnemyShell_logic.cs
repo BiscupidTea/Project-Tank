@@ -7,6 +7,7 @@ public class EnemyShell_logic : MonoBehaviour
 {
 
     [SerializeField] private GameObject Shell;
+    [SerializeField] private MeshRenderer ShellRender;
     [SerializeField] private GameObject ExplotionAnimation;
     [SerializeField] private Rigidbody Rigidbody;
     [SerializeField] private float explotionForce;
@@ -21,6 +22,7 @@ public class EnemyShell_logic : MonoBehaviour
     {
         animationRun = false;
         ExplotionAnimation.SetActive(false);
+        ShellRender = GetComponentInChildren<MeshRenderer>();
     }
 
     private void Update()
@@ -43,9 +45,11 @@ public class EnemyShell_logic : MonoBehaviour
         foreach (Collider collider in entitys)
         {
             Rigidbody EntRB = collider.GetComponent<Rigidbody>();
+
             if (EntRB != null)
             {
                 EntRB.AddExplosionForce(explotionForce, transform.position, explotionRadius);
+
                 ExplotionAnimation.SetActive(true);
                 animationRun = true;
 
@@ -55,6 +59,9 @@ public class EnemyShell_logic : MonoBehaviour
                     player.GetDamage(enemyShootlogic.GetDamage());
                     Shell.GetComponent<CapsuleCollider>().enabled = false;
                 }
+
+                ShellRender.enabled = false;
+
             }
 
         }
