@@ -100,4 +100,9 @@ public class PlayerCameraController : MonoBehaviour
     {
         actualcannonAngle = Mathf.Clamp(actualcannonAngle, cannonAngleMin, cannonAngleMax);
     }
+
+    public bool IsAiming()
+    {
+        return isAiming;
+    }
 }
