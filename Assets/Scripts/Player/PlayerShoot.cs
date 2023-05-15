@@ -43,6 +43,8 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
+        primaryShoot = true;
+
         readyToShootPrimary = true;
         readyToShootSecondary = false;
 
@@ -172,7 +174,7 @@ public class PlayerShoot : MonoBehaviour
         return damageScondary;
     }
 
-    public bool WeapondUsing()
+    public bool WeaponUsing()
     {
         return primaryShoot;
     }
