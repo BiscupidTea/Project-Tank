@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 2937105}
   - component: {fileID: 2937106}
   m_Layer: 0
-  m_Name: patrol point (8)
+  m_Name: patrol point (5)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 319062814}
   - component: {fileID: 319062815}
   m_Layer: 0
-  m_Name: patrol point (5)
+  m_Name: patrol point (2)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1196,7 +1196,7 @@ GameObject:
   - component: {fileID: 539812409}
   - component: {fileID: 539812410}
   m_Layer: 0
-  m_Name: patrol point (3)
+  m_Name: patrol point (0)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1750,7 +1750,7 @@ GameObject:
   - component: {fileID: 975192811}
   - component: {fileID: 975192812}
   m_Layer: 0
-  m_Name: patrol point (6)
+  m_Name: patrol point (3)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1806,7 +1806,7 @@ GameObject:
   - component: {fileID: 1037208569}
   - component: {fileID: 1037208570}
   m_Layer: 0
-  m_Name: patrol point (9)
+  m_Name: patrol point (1)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2049,7 +2049,7 @@ GameObject:
   - component: {fileID: 1311044338}
   - component: {fileID: 1311044339}
   m_Layer: 0
-  m_Name: patrol point (9)
+  m_Name: patrol point (0)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3235,7 +3235,7 @@ GameObject:
   - component: {fileID: 1858567964}
   - component: {fileID: 1858567965}
   m_Layer: 0
-  m_Name: patrol point (7)
+  m_Name: patrol point (4)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3281,7 +3281,7 @@ GameObject:
   - component: {fileID: 1877531153}
   - component: {fileID: 1877531154}
   m_Layer: 0
-  m_Name: patrol point (10)
+  m_Name: patrol point (2)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3431,7 +3431,7 @@ GameObject:
   - component: {fileID: 1975936061}
   - component: {fileID: 1975936062}
   m_Layer: 0
-  m_Name: patrol point (4)
+  m_Name: patrol point (1)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
