@@ -375,8 +375,8 @@ MonoBehaviour:
   player: {fileID: 0}
   Shell: {fileID: 4829409194887708885, guid: 2347af85f78a44649a3ea46c5faf8789, type: 3}
   shootShellPosition: {fileID: 24690584878123771}
-  ViewRagnge: 40
-  ShootRange: 30
+  ViewRagnge: 60
+  ShootRange: 40
   RotationSpeed: 10
   Damage: 50
   ReloadTime: 5
