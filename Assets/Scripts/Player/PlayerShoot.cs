@@ -154,8 +154,10 @@ public class PlayerShoot : MonoBehaviour
         if (Physics.Raycast(shootSecondaryPosition.transform.position, shootSecondaryPosition.transform.forward, out hit, rangeShootSecondary))
         {
             StartCoroutine(SpawnTrail(trail, hit.point));
+
             if (hit.rigidbody)
             {
+                Debug.Log(hit);
                 if (hit.collider.GetComponent<Enemy_Health>())
                 {
                     hit.collider.GetComponent<Enemy_Health>().GetDamage(damageScondary);
