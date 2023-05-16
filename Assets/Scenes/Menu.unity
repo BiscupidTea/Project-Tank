@@ -292,7 +292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.10960513, y: 0.7675317}
   m_AnchorMax: {x: 0.3374986, y: 0.8374895}
-  m_AnchoredPosition: {x: -38.00006, y: -1.5}
+  m_AnchoredPosition: {x: -38, y: -1.5}
   m_SizeDelta: {x: -72, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &311410751
@@ -974,8 +974,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 838526985}
-        m_TargetAssemblyTypeName: SceneSelector, Assembly-CSharp
-        m_MethodName: GoToShootField
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: Level1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1497,7 +1497,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 838526985}
-        m_TargetAssemblyTypeName: SceneSelector, Assembly-CSharp
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: GoToTutorial
         m_Mode: 1
         m_Arguments:

@@ -7,16 +7,15 @@ public class Player_Health : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private bool isAlive;
 
+    private void Start()
+    {
+        isAlive = true;
+    }
     private void Update()
     {
         if (health <= 0)
         {
             isAlive = false;
-        }
-
-        if (!isAlive)
-        {
-            Destroy(gameObject);
         }
     }
     public void GetDamage(float damage)
@@ -27,5 +26,10 @@ public class Player_Health : MonoBehaviour
     public float GetHealth()
     {
         return health;
+    }
+
+    public bool IsAlive()
+    {
+        return isAlive;
     }
 }

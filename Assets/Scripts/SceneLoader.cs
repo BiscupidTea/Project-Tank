@@ -26,6 +26,11 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
+    public void LevelFinalBoss() 
+    {
+        SceneManager.LoadScene(4);
+    }
+
     public void GoToOptions()
     {
 
@@ -39,5 +44,7 @@ public class SceneLoader : MonoBehaviour
     {
         Application.Quit();
     }
+
+    
 
 }
