@@ -14,6 +14,7 @@ public class Enemy_Shoot : MonoBehaviour
     [SerializeField] private float ViewRagnge;
     [SerializeField] private float ShootRange;
     [SerializeField] private float RotationSpeed;
+    [SerializeField] private bool shootTurret;
 
     [Header("Shoot Info")]
     [SerializeField] private float Damage;
@@ -26,7 +27,10 @@ public class Enemy_Shoot : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Turret");
+        if (shootTurret)
+        {
+            player = GameObject.FindGameObjectWithTag("Turret");
+        }
     }
     private void Update()
     {
@@ -68,9 +72,16 @@ public class Enemy_Shoot : MonoBehaviour
     {
         if (TargetingPlayer)
         {
-            Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - turret.transform.position);
-
-            turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, RotationSpeed * Time.deltaTime);
+            if (shootTurret)
+            {
+                Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - turret.transform.position);
+                turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, RotationSpeed * Time.deltaTime);
+            }
+            else
+            {
+                Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - new Vector3(0, 3, 0) - turret.transform.position);
+                turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, RotationSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -109,7 +120,7 @@ public class Enemy_Shoot : MonoBehaviour
     {
         return TargetingPlayer;
     }
-    
+
     public float GetDistanceShoot()
     {
         return ShootRange;

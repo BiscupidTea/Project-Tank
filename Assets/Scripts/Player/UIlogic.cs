@@ -15,7 +15,11 @@ public class UIlogic : MonoBehaviour
 
     [Header("HealthBar Info")]
     [SerializeField] private Player_Health healthPlayer;
-    [SerializeField] private Slider healthSlider;
+    [SerializeField] private Enemy_Health healthBoss;
+    [SerializeField] private TextMeshProUGUI healthBossNumber;
+    [SerializeField] private bool isBoss;
+    [SerializeField] private Slider healthSliderPlayer;
+    [SerializeField] private Slider healthSliderBoss;
 
     [Header("Weapons Info")]
     [SerializeField] private PlayerShoot playerShoot;
@@ -34,8 +38,14 @@ public class UIlogic : MonoBehaviour
         playerShoot = player.GetComponent<PlayerShoot>();
         healthPlayer = player.GetComponent<Player_Health>();
 
-        healthSlider.maxValue = healthPlayer.GetHealth();
-        healthSlider.value = healthPlayer.GetHealth();
+        healthSliderPlayer.maxValue = healthPlayer.GetHealth();
+        healthSliderPlayer.value = healthPlayer.GetHealth();
+
+        if (isBoss)
+        {
+            healthSliderBoss.maxValue = healthBoss.GetHealth();
+            healthSliderBoss.value = healthBoss.GetHealth();
+        }
 
         for (int i = 0; i < tanks.Length; i++)
         {
@@ -66,7 +76,13 @@ public class UIlogic : MonoBehaviour
     }
     private void SetHealthBar()
     {
-        healthSlider.value = healthPlayer.GetHealth();
+        healthSliderPlayer.value = healthPlayer.GetHealth();
+
+        if (isBoss)
+        {
+            healthSliderBoss.value = healthBoss.GetHealth();
+            healthBossNumber.text = healthBoss.GetHealth() + " / " + healthBoss.GetMaxHealth();
+        }
     }
     private void SetWeaponSelect()
     {
@@ -84,14 +100,17 @@ public class UIlogic : MonoBehaviour
 
     private void SetTankShow()
     {
-        totTanks = 0;
-        for (int i = 0; i < tanks.Length; i++)
+        if (!isBoss)
         {
-            if (tanks[i] != null)
+            totTanks = 0;
+            for (int i = 0; i < tanks.Length; i++)
             {
-                totTanks++;
+                if (tanks[i] != null)
+                {
+                    totTanks++;
+                }
             }
+            tankInfo.text = totTanks.ToString();
         }
-        tankInfo.text = totTanks.ToString();
     }
 }

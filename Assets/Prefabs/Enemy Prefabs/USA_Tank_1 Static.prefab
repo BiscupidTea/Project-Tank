@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  Maxhealth: 100
   isAlive: 1
 --- !u!114 &4939778704463038442
 MonoBehaviour:
@@ -334,6 +335,7 @@ MonoBehaviour:
   ViewRagnge: 60
   ShootRange: 40
   RotationSpeed: 10
+  shootTurret: 1
   Damage: 50
   ReloadTime: 5
   shootForce: 75

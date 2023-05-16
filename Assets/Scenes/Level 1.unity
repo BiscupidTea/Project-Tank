@@ -448,9 +448,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1526724140}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: Level2
+        m_MethodName: Level1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3033,9 +3033,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1526724140}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LevelFinalBoss
+        m_MethodName: Level2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3292,7 +3292,11 @@ MonoBehaviour:
   playerCameraControler: {fileID: 1797749010}
   cross: {fileID: 148787777}
   healthPlayer: {fileID: 127559221}
-  healthSlider: {fileID: 787794347}
+  healthBoss: {fileID: 0}
+  healthBossNumber: {fileID: 0}
+  isBoss: 0
+  healthSliderPlayer: {fileID: 787794347}
+  healthSliderBoss: {fileID: 0}
   playerShoot: {fileID: 1797749008}
   Weapon1: {fileID: 1796317127}
   Weapon2: {fileID: 1672371111}
@@ -4718,7 +4722,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1526724140}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: GoToMenu
         m_Mode: 1
