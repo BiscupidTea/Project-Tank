@@ -259,7 +259,7 @@ MonoBehaviour:
   shootShellPosition: {fileID: 6850973463637699070}
   shootSecondaryPosition: {fileID: 302685975010246089}
   damagePrimary: 50
-  reloadTimePrimary: 1
+  reloadTimePrimary: 2.5
   shootForcePrimary: 75
   AnimationPrimaryShoot: {fileID: 5069189279362178824}
   AnimationPrimaryShootTime: 1

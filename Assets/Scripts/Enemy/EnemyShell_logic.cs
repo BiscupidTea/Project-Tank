@@ -59,6 +59,13 @@ public class EnemyShell_logic : MonoBehaviour
                     Shell.GetComponent<CapsuleCollider>().enabled = false;
                 }
 
+                Health_Rocks rock = EntRB.GetComponent<Health_Rocks>();
+                if (rock != null)
+                {
+                    rock.GetDamage(enemyShootlogic.GetDamage());
+                    Shell.GetComponent<CapsuleCollider>().enabled = false;
+                }
+
                 ShellRender.enabled = false;
 
             }
