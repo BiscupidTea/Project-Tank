@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditorInternal.ReorderableList;
@@ -26,7 +27,6 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float damageScondary;
     [SerializeField] private float reloadTimeSecondary;
     [SerializeField] private float rangeShootSecondary;
-    [SerializeField] private float durationShootSecondary;
     [SerializeField] private float shootForceSecondary;
     [SerializeField] private TrailRenderer bulletTrail;
     [SerializeField] private GameObject AnimationSecondaryShoot;
@@ -150,18 +150,22 @@ public class PlayerShoot : MonoBehaviour
 
         RaycastHit hit;
         TrailRenderer trail = Instantiate(bulletTrail, shootSecondaryPosition.transform.position, Quaternion.identity);
+
         if (Physics.Raycast(shootSecondaryPosition.transform.position, shootSecondaryPosition.transform.forward, out hit, rangeShootSecondary))
         {
             StartCoroutine(SpawnTrail(trail, hit.point));
             if (hit.rigidbody)
             {
-                hit.collider.GetComponent<Enemy_Health>().GetDamage(damageScondary);
+                if (hit.collider.GetComponent<Enemy_Health>())
+                {
+                    hit.collider.GetComponent<Enemy_Health>().GetDamage(damageScondary);
+                }
                 hit.rigidbody.AddForce(shootSecondaryPosition.transform.forward * shootForceSecondary, ForceMode.Impulse);
             }
         }
         else
         {
-            Vector3 defaultPos = shootSecondaryPosition.transform.forward * rangeShootSecondary;
+            Vector3 defaultPos = shootSecondaryPosition.transform.position + shootSecondaryPosition.transform.forward * rangeShootSecondary;
             StartCoroutine(SpawnTrail(trail, defaultPos));
         }
     }
