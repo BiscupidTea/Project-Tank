@@ -741,6 +741,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 785634258}
     m_Modifications:
+    - target: {fileID: 2020099365, guid: 918e8e3885e152644a9956ad89dc6180, type: 3}
+      propertyPath: m_BaseOffset
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1335991254495539031, guid: 918e8e3885e152644a9956ad89dc6180, type: 3}
       propertyPath: m_Name
       value: USA_Tank_1 Patrol
@@ -2546,7 +2550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &925217922
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4297,6 +4301,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 785634258}
     m_Modifications:
+    - target: {fileID: 747311364, guid: 918e8e3885e152644a9956ad89dc6180, type: 3}
+      propertyPath: m_Drag
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1335991254495539031, guid: 918e8e3885e152644a9956ad89dc6180, type: 3}
       propertyPath: m_Name
       value: USA_Tank_1 Patrol (2)
@@ -5245,7 +5253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2000145041
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5571,7 +5579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5668808103688728708, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 576.8
+      value: 570.8
       objectReference: {fileID: 0}
     - target: {fileID: 5668808103688728708, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5579,7 +5587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5668808103688728708, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 83.3
+      value: 103.7
       objectReference: {fileID: 0}
     - target: {fileID: 5668808103688728708, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
       propertyPath: m_LocalRotation.w
