@@ -10,24 +10,30 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void GoToShootField()
-    {
-        SceneManager.LoadScene(2);
-    }
 
     public void GoToTutorial()
     {
         SceneManager.LoadScene(1);
     }
 
-    public void GoToOprions()
+    public void Level1()
     {
-        
+        SceneManager.LoadScene(2);
+    }
+
+    public void Level2()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void GoToOptions()
+    {
+
     }
 
     public void GoToCredits()
     {
-        
+
     }
     public void GoToExit()
     {
