@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -51,6 +50,19 @@ public class WinCondition : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             UI.enabled = false;
             LoseScreen.enabled = true;
+        }
+
+        if (WinScreen.enabled == true)
+        {
+            UI.enabled = false;
+        }
+        else if (LoseScreen.enabled == true)
+        {
+            UI.enabled = false;
+        }
+        else
+        {
+            UI.enabled = true;
         }
 
     }

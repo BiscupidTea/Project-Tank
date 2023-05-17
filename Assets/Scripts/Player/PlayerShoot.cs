@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditorInternal.ReorderableList;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -151,7 +150,7 @@ public class PlayerShoot : MonoBehaviour
         AnimationPrimaryShoot.SetActive(true);
         animationReadyPrimary = true;
 
-        GameObject NewBullet = Instantiate(bullet, shootShellPosition.transform);
+        GameObject NewBullet = Instantiate(bullet, shootShellPosition.transform.position, shootShellPosition.transform.rotation);
         NewBullet.GetComponent<Rigidbody>().AddForce(shootShellPosition.forward * shootForcePrimary, ForceMode.Impulse);
 
         SoundManager.Instance.PlaySound(shootanimation1);
