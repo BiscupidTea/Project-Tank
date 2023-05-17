@@ -12,6 +12,7 @@ public class PauseSyestem : MonoBehaviour
     private void Start()
     {
         isPause = false;
+        Time.timeScale = 1;
 
         canvasPause.alpha = isPause ? 1 : 0;
         canvasPause.blocksRaycasts = isPause;

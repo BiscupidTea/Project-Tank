@@ -31,6 +31,13 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private TrailRenderer bulletTrail;
     [SerializeField] private GameObject AnimationSecondaryShoot;
     [SerializeField] private float AnimationSecondaryShootTime;
+
+    [Header("Sounds Shoot")]
+    [SerializeField] private AudioClip shootanimation1;
+    [SerializeField] private AudioClip shootanimation2;
+    private float timeAudio;
+    private float currentTimeAudio;
+
     private float animationTimeSecondary;
     private bool animationReadySecondary = false;
 
@@ -43,6 +50,9 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
+        timeAudio = shootanimation2.length;
+        currentTimeAudio = timeAudio;
+
         primaryShoot = true;
 
         readyToShootPrimary = true;
@@ -60,6 +70,8 @@ public class PlayerShoot : MonoBehaviour
         Reloaders();
 
         Animations();
+
+        currentTimeAudio += Time.deltaTime;
     }
 
     private void Animations()
@@ -141,6 +153,8 @@ public class PlayerShoot : MonoBehaviour
 
         GameObject NewBullet = Instantiate(bullet, shootShellPosition.transform);
         NewBullet.GetComponent<Rigidbody>().AddForce(shootShellPosition.forward * shootForcePrimary, ForceMode.Impulse);
+
+        SoundManager.Instance.PlaySound(shootanimation1);
     }
 
     private void ShootSecondaryLogic()
@@ -169,6 +183,12 @@ public class PlayerShoot : MonoBehaviour
         {
             Vector3 defaultPos = shootSecondaryPosition.transform.position + shootSecondaryPosition.transform.forward * rangeShootSecondary;
             StartCoroutine(SpawnTrail(trail, defaultPos));
+        }
+
+        if (currentTimeAudio >= timeAudio)
+        {
+            SoundManager.Instance.PlaySound(shootanimation2, 0.4f);
+            currentTimeAudio = 0;
         }
     }
 
