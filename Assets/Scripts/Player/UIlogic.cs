@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UIlogic : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private Canvas canvasUI;
 
     [Header("Aim Info")]
     [SerializeField] private PlayerCameraController playerCameraControler;
@@ -30,6 +31,9 @@ public class UIlogic : MonoBehaviour
     [SerializeField] private GameObject[] tanks;
     [SerializeField] private TextMeshProUGUI tankInfo;
     private int totTanks;
+
+    [Header("Pause Info")]
+    [SerializeField] private PauseSyestem pause;
 
     private void Start()
     {
@@ -61,6 +65,15 @@ public class UIlogic : MonoBehaviour
         SetWeaponSelect();
 
         SetTankShow();
+
+        if (pause.returnIsPaused())
+        {
+            canvasUI.enabled = false;
+        }
+        else
+        {
+            canvasUI.enabled = true;
+        }
     }
 
     private void SetAim()

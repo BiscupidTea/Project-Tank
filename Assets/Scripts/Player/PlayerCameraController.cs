@@ -93,7 +93,10 @@ public class PlayerCameraController : MonoBehaviour
 
     public void Aim(InputAction.CallbackContext input)
     {
-        isAiming = !isAiming;
+        if (input.performed)
+        {
+            isAiming = !isAiming;
+        }
     }
 
     private void LimitCannonRotation()

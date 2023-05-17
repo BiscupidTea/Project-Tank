@@ -30,16 +30,6 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
-
-    public void GoToOptions()
-    {
-
-    }
-
-    public void GoToCredits()
-    {
-
-    }
     public void GoToExit()
     {
         Application.Quit();
