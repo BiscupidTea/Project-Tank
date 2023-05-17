@@ -2711,7 +2711,7 @@ Transform:
   - {fileID: 925217922}
   - {fileID: 1215020069}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &820894068 stripped
 GameObject:
@@ -6008,7 +6008,7 @@ Transform:
   m_Children:
   - {fileID: 1940589832}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1940589827
 GameObject:
