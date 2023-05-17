@@ -10,7 +10,6 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-
     public void GoToTutorial()
     {
         SceneManager.LoadScene(1);
