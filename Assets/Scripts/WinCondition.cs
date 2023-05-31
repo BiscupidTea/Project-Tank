@@ -60,10 +60,5 @@ public class WinCondition : MonoBehaviour
         {
             UI.enabled = false;
         }
-        else
-        {
-            UI.enabled = true;
-        }
-
     }
 }
