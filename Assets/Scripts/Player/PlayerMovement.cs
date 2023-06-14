@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Setup")]
 
-    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Rigidbody playerRigidbody;
+    [SerializeField] private WheelCollider[] wheelsR;
+    [SerializeField] private WheelCollider[] wheelsL;
 
     [Header("Movement")]
 
@@ -23,90 +25,60 @@ public class PlayerMovement : MonoBehaviour
     private bool isRotating;
     private bool isMoving;
 
-    private Vector3 initialFoward;
-
     private Vector3 _currentMovement;
 
     private void Start()
     {
-        _rigidbody ??= GetComponent<Rigidbody>();
-
-        initialFoward = transform.forward;
+        playerRigidbody ??= GetComponent<Rigidbody>();
 
         turnSpeed = maxTurnSpeed;
         movementSpeed = maxMovementSpeed;
     }
     private void FixedUpdate()
     {
-        ModifyTrayectory(movementSpeed);
-
         ModifyTurnRotation();
-
-        _rigidbody.MoveRotation(_rigidbody.rotation * Quaternion.Euler(Vector3.up * horizontalMovement * turnSpeed * Time.deltaTime));
-
-        ModifyMovementSpeed();
-
-        //_rigidbody.velocity = transform.forward * verticalMovement * movementSpeed + Vector3.up * _rigidbody.velocity.y;
-
-        _rigidbody.AddForce(transform.forward * (verticalMovement * movementSpeed), ForceMode.Force);
 
         scroll_Track.AssignMoveTrack(RotateTexture());
     }
 
-    private void ModifyMovementSpeed()
-    {
-        movementSpeed = isRotating ? maxMovementSpeed / 2 : maxMovementSpeed;
-    }
-
     private void ModifyTurnRotation()
     {
-        if (isMoving)
-        {
-            turnSpeed = maxTurnSpeed;
-        }
-        else
-        {
-            turnSpeed = maxTurnSpeed + maxTurnSpeed / 8;
-        }
+        //if (isMoving)
+        //{
+        //    turnSpeed = maxTurnSpeed;
+        //}
+        //else
+        //{
+        //    turnSpeed = maxTurnSpeed + maxTurnSpeed / 8;
+        //}
     }
 
     public void OnMoveFB(InputAction.CallbackContext input)
     {
-        var currentInput = input.ReadValue<float>();
-
-        verticalMovement = currentInput;
-    }
-
-    private void ModifyTrayectory(float currentInput)
-    {
-        if (currentInput > 0)
+        for (int i = 0; i < wheelsR.Length; i++)
         {
-            _currentMovement = transform.forward;
-        }
-        else if (currentInput < 0)
-        {
-            _currentMovement = -transform.forward;
-        }
-        else
-        {
-            _currentMovement = Vector3.zero;
+            wheelsR[i].motorTorque = movementSpeed * input.ReadValue<float>();
+            Debug.Log(movementSpeed);
         }
 
-        isMoving = verticalMovement != 0 ? true : false;
+        for (int i = 0; i < wheelsL.Length; i++)
+        {
+            wheelsL[i].motorTorque = movementSpeed * input.ReadValue<float>();
+        }
     }
 
     public void OnMoveRo(InputAction.CallbackContext input)
     {
-        horizontalMovement = input.ReadValue<float>();
+        //horizontalMovement = input.ReadValue<float>();
 
-        if (horizontalMovement != 0)
-        {
-            isRotating = true;
-        }
-        else
-        {
-            isRotating = false;
-        }
+        //if (horizontalMovement != 0)
+        //{
+        //    isRotating = true;
+        //}
+        //else
+        //{
+        //    isRotating = false;
+        //}
 
     }
 
