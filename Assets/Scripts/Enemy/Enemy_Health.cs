@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Enemy_Health : MonoBehaviour
 {
-    [SerializeField] private float health;
     [SerializeField] private float Maxhealth;
+    [SerializeField] private float health;
     [SerializeField] private bool isAlive;
+    [SerializeField] private bool DestroyWhenDie;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class Enemy_Health : MonoBehaviour
             isAlive = false;
         }
 
-        if (!isAlive)
+        if (!isAlive && DestroyWhenDie)
         {
             Destroy(gameObject);
         }

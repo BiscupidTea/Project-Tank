@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,47 +14,44 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
 
-    [SerializeField] private float maxMovementSpeed = 10f;
-    [SerializeField] private float movementSpeed = 0;
-    [SerializeField] private float maxTurnSpeed = 30f;
-    [SerializeField] private float turnSpeed = 0f;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float movementForce;
+    [SerializeField] private float maxTurnSpeed;
+    [SerializeField] private float turnSpeed;
 
     private float horizontalMovement;
     private float verticalMovement;
     private bool isRotating;
     private bool isMoving;
 
-    private Vector3 initialFoward;
-
-    private Vector3 _currentMovement;
-
     private void Start()
     {
         _rigidbody ??= GetComponent<Rigidbody>();
 
-        initialFoward = transform.forward;
-
         turnSpeed = maxTurnSpeed;
-        movementSpeed = maxMovementSpeed;
     }
     private void FixedUpdate()
     {
-        ModifyTrayectory(movementSpeed);
+        ModifyTrayectory(movementForce);
 
         ModifyTurnRotation();
 
-        _rigidbody.MoveRotation(_rigidbody.rotation * Quaternion.Euler(Vector3.up * horizontalMovement * turnSpeed * Time.deltaTime));
+        float force = GetModifiedForceBasedOnRotation(movementForce, isRotating);
 
-        ModifyMovementSpeed();
+        _rigidbody.MoveRotation(_rigidbody.rotation * Quaternion.Euler(Vector3.up * horizontalMovement * turnSpeed * Time.fixedDeltaTime));
 
-        _rigidbody.AddForce(transform.forward * (verticalMovement * movementSpeed), ForceMode.Force);
+        _rigidbody.AddForce(transform.forward * ((verticalMovement * force)) * Time.fixedDeltaTime, ForceMode.Force);
+
+        _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, maxSpeed);
 
         scroll_Track.AssignMoveTrack(RotateTexture());
     }
 
-    private void ModifyMovementSpeed()
+    private float GetModifiedForceBasedOnRotation(float force, bool IsRotating)
     {
-        movementSpeed = isRotating ? maxMovementSpeed / 2 : maxMovementSpeed;
+        force = isRotating ? force / 2 : force;
+
+        return force;
     }
 
     private void ModifyTurnRotation()
@@ -68,29 +66,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void ModifyTrayectory(float currentInput)
+    {
+        isMoving = verticalMovement != 0 ? true : false;
+    }
+
     public void OnMoveFB(InputAction.CallbackContext input)
     {
         var currentInput = input.ReadValue<float>();
 
-        verticalMovement = currentInput;
-    }
+        float verticalRotation = transform.eulerAngles.x;
 
-    private void ModifyTrayectory(float currentInput)
-    {
-        if (currentInput > 0)
+        if (verticalRotation < 80f || verticalRotation > 280f)
         {
-            _currentMovement = transform.forward;
+            verticalMovement = currentInput;
         }
-        else if (currentInput < 0)
-        {
-            _currentMovement = -transform.forward;
-        }
-        else
-        {
-            _currentMovement = Vector3.zero;
-        }
-
-        isMoving = verticalMovement != 0 ? true : false;
     }
 
     public void OnMoveRo(InputAction.CallbackContext input)
@@ -146,4 +136,16 @@ public class PlayerMovement : MonoBehaviour
 
         return 0;
     }
+
+#if UNITY_EDITOR
+    private void OnGUI()
+    {
+        Rect rect = new Rect(10, 400, 250, 550);
+        GUILayout.BeginArea(rect);
+        GUI.skin.label.fontSize = 35;
+        GUI.skin.label.normal.textColor = Color.white;
+        GUILayout.Label($"velocity: {_rigidbody.velocity.magnitude:F3}");
+        GUILayout.EndArea();
+    }
+#endif
 }
