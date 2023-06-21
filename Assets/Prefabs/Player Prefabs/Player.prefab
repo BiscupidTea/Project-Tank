@@ -204,8 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scroll_Track: {fileID: 5668808103688728704}
   _rigidbody: {fileID: 5668808103688728709}
-  maxMovementSpeed: 500
-  movementSpeed: 0
+  maxSpeed: 20
+  movementForce: 30000
   maxTurnSpeed: 30
   turnSpeed: 0
 --- !u!114 &5668808103688728707
