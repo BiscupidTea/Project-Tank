@@ -1,5 +1,7 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
@@ -10,7 +12,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Setup")]
 
-    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Rigidbody playerRigidbody;
+    [SerializeField] private Transform rayWallLineFoward;
+    [SerializeField] private Transform rayWallLineSide1;
+    [SerializeField] private Transform rayWallLineSide2;
 
     [Header("Movement")]
 
@@ -19,14 +24,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxTurnSpeed;
     [SerializeField] private float turnSpeed;
 
+    [Header("WallInteraction")]
+    [SerializeField] private float wallDistanceFoward;
+    [SerializeField] private float wallDistanceSides;
+
     private float horizontalMovement;
     private float verticalMovement;
     private bool isRotating;
     private bool isMoving;
 
+    private bool RayColitioningWallFoward;
+    private bool RayColitioningWallSide1;
+    private bool RayColitioningWallSide2;
+
     private void Start()
     {
-        _rigidbody ??= GetComponent<Rigidbody>();
+        playerRigidbody ??= GetComponent<Rigidbody>();
 
         turnSpeed = maxTurnSpeed;
     }
@@ -38,11 +51,16 @@ public class PlayerMovement : MonoBehaviour
 
         float force = GetModifiedForceBasedOnRotation(movementForce, isRotating);
 
-        _rigidbody.MoveRotation(_rigidbody.rotation * Quaternion.Euler(Vector3.up * horizontalMovement * turnSpeed * Time.fixedDeltaTime));
+        WallLimiter();
 
-        _rigidbody.AddForce(transform.forward * ((verticalMovement * force)) * Time.fixedDeltaTime, ForceMode.Force);
+        playerRigidbody.MoveRotation(playerRigidbody.rotation * Quaternion.Euler(Vector3.up * horizontalMovement * turnSpeed * Time.fixedDeltaTime));
 
-        _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, maxSpeed);
+        if (RayColitioningWallFoward && RayColitioningWallSide1 && RayColitioningWallSide2)
+        {
+            playerRigidbody.AddForce(transform.forward * ((verticalMovement * force)) * Time.fixedDeltaTime, ForceMode.Force);
+        }
+
+        playerRigidbody.velocity = Vector3.ClampMagnitude(playerRigidbody.velocity, maxSpeed);
 
         scroll_Track.AssignMoveTrack(RotateTexture());
     }
@@ -95,7 +113,69 @@ public class PlayerMovement : MonoBehaviour
         {
             isRotating = false;
         }
+    }
 
+    private void WallLimiter()
+    {
+        if (Physics.Raycast(rayWallLineFoward.transform.position, rayWallLineFoward.transform.forward*verticalMovement, wallDistanceFoward))
+        {
+            RayColitioningWallFoward = false;
+        }
+        else
+        {
+            RayColitioningWallFoward = true;
+        }
+
+        if (Physics.Raycast(rayWallLineSide1.transform.position, rayWallLineSide1.transform.forward * verticalMovement, wallDistanceSides))
+        {
+            RayColitioningWallSide1 = false;
+        }
+        else
+        {
+            RayColitioningWallSide1 = true;
+        }
+
+        if (Physics.Raycast(rayWallLineSide2.transform.position, rayWallLineSide2.transform.forward * verticalMovement, wallDistanceSides))
+        {
+            RayColitioningWallSide2 = false;
+        }
+        else
+        {
+            RayColitioningWallSide2 = true;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (RayColitioningWallFoward)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+        Gizmos.DrawRay(rayWallLineFoward.transform.position, rayWallLineFoward.transform.forward * wallDistanceFoward * verticalMovement);
+        
+        if (RayColitioningWallSide1)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+        Gizmos.DrawRay(rayWallLineSide1.transform.position, rayWallLineSide1.transform.forward * wallDistanceSides * verticalMovement);
+
+        if (RayColitioningWallSide2)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+        Gizmos.DrawRay(rayWallLineSide2.transform.position, rayWallLineSide2.transform.forward * wallDistanceSides * verticalMovement);
     }
 
     private int RotateTexture()
@@ -144,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
         GUILayout.BeginArea(rect);
         GUI.skin.label.fontSize = 35;
         GUI.skin.label.normal.textColor = Color.white;
-        GUILayout.Label($"velocity: {_rigidbody.velocity.magnitude:F3}");
+        GUILayout.Label($"velocity: {playerRigidbody.velocity.magnitude:F3}");
         GUILayout.EndArea();
     }
 #endif

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Turret
   - Enemy
+  - Terrain
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Terrain
   - Water
   - UI
   - Enemy
