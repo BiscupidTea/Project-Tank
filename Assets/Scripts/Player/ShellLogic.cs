@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShellLogic : MonoBehaviour
@@ -15,6 +13,7 @@ public class ShellLogic : MonoBehaviour
     [SerializeField] private PlayerShoot playerShotlogic;
 
     private float explotionTime = 0;
+    private float lifeTimer = 0;
     private bool animationRun;
 
     private void Start()
@@ -26,6 +25,8 @@ public class ShellLogic : MonoBehaviour
 
     private void Update()
     {
+        lifeTimer += Time.deltaTime;
+
         if (animationRun)
         {
             explotionTime += Time.deltaTime;
@@ -34,6 +35,11 @@ public class ShellLogic : MonoBehaviour
         if (explotionTimerAnimation < explotionTime)
         {
             Destroy(gameObject);
+        }
+
+        if (lifeTimer >= LifeTime)
+        {
+            RunExplotionAnimation();
         }
     }
 
@@ -47,22 +53,32 @@ public class ShellLogic : MonoBehaviour
             if (EntRB != null)
             {
                 EntRB.AddExplosionForce(explotionForce, transform.position, explotionRadius);
-                ExplotionAnimation.SetActive(true);
-                animationRun = true;
-
-                Debug.Log(EntRB);
-
-                Enemy_Health enemy = EntRB.GetComponent<Enemy_Health>();
-                if (enemy != null)
-                {
-                    enemy.GetDamage(playerShotlogic.GetPrimaryDamage());
-                    Shell.GetComponent<CapsuleCollider>().enabled = false;
-                }
-
-                ShellRender.enabled = false;
-
+                RunExplotionAnimation();
             }
+
         }
 
+        ObjectHealth EntityHeal = collision.gameObject.GetComponent<ObjectHealth>();
+        if (EntityHeal != null)
+        {
+            EntityHeal.ReciveDamage(playerShotlogic.GetPrimaryDamage());
+            RunExplotionAnimation();
+        }
+
+    }
+
+    private void RunExplotionAnimation()
+    {
+        Shell.GetComponent<CapsuleCollider>().enabled = false;
+        ExplotionAnimation.SetActive(true);
+        animationRun = true;
+        ShellRender.enabled = false;
+        Rigidbody.isKinematic = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, explotionRadius);
     }
 }

@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -171,9 +169,9 @@ public class PlayerShoot : MonoBehaviour
             if (hit.rigidbody)
             {
                 Debug.Log(hit);
-                if (hit.collider.GetComponent<Enemy_Health>())
+                if (hit.collider.GetComponent<ObjectHealth>())
                 {
-                    hit.collider.GetComponent<Enemy_Health>().GetDamage(damageScondary);
+                    hit.collider.GetComponent<ObjectHealth>().ReciveDamage(damageScondary);
                 }
                 hit.rigidbody.AddForce(shootSecondaryPosition.transform.forward * shootForceSecondary, ForceMode.Impulse);
             }

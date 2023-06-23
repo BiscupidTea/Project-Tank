@@ -277,7 +277,7 @@ MonoBehaviour:
   maxTurnSpeed: 30
   turnSpeed: 0
   wallDistanceFoward: 10
-  wallDistanceSides: 6
+  wallDistanceSides: 8
 --- !u!114 &5668808103688728707
 MonoBehaviour:
   m_ObjectHideFlags: 0

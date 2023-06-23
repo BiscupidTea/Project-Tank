@@ -1,10 +1,5 @@
-using System;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,9 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Setup")]
 
     [SerializeField] private Rigidbody playerRigidbody;
-    [SerializeField] private Transform rayWallLineFoward;
-    [SerializeField] private Transform rayWallLineSide1;
-    [SerializeField] private Transform rayWallLineSide2;
+    [SerializeField] private Transform[] rayWallLine;
+    private bool[] rayWallIsColliding;
 
     [Header("Movement")]
 
@@ -42,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody ??= GetComponent<Rigidbody>();
 
         turnSpeed = maxTurnSpeed;
+
+        for (int i = 0; i < rayWallLine.Length; i++)
+        {
+            rayWallIsColliding[i] = false;
+        }
     }
     private void FixedUpdate()
     {
@@ -117,65 +116,47 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallLimiter()
     {
-        if (Physics.Raycast(rayWallLineFoward.transform.position, rayWallLineFoward.transform.forward*verticalMovement, wallDistanceFoward))
+        for (int i = 0; i < rayWallLine.Length; i++)
         {
-            RayColitioningWallFoward = false;
-        }
-        else
-        {
-            RayColitioningWallFoward = true;
-        }
-
-        if (Physics.Raycast(rayWallLineSide1.transform.position, rayWallLineSide1.transform.forward * verticalMovement, wallDistanceSides))
-        {
-            RayColitioningWallSide1 = false;
-        }
-        else
-        {
-            RayColitioningWallSide1 = true;
-        }
-
-        if (Physics.Raycast(rayWallLineSide2.transform.position, rayWallLineSide2.transform.forward * verticalMovement, wallDistanceSides))
-        {
-            RayColitioningWallSide2 = false;
-        }
-        else
-        {
-            RayColitioningWallSide2 = true;
+            if (rayWallLine[i].rotation.y == 0)
+            {
+                if (Physics.Raycast(rayWallLine[i].transform.position, rayWallLine[i].transform.forward * verticalMovement, wallDistanceFoward))
+                {
+                    rayWallIsColliding[i] = false;
+                }
+                else
+                {
+                    rayWallIsColliding[i] = true;
+                }
+            }
+            else
+            {
+                if (Physics.Raycast(rayWallLine[i].transform.position, rayWallLine[i].transform.forward * verticalMovement, wallDistanceSides))
+                {
+                    rayWallIsColliding[i] = false;
+                }
+                else
+                {
+                    rayWallIsColliding[i] = true;
+                }
+            }
         }
     }
 
     private void OnDrawGizmos()
     {
-        if (RayColitioningWallFoward)
+        for (int i = 0; i < rayWallLine.Length; i++)
         {
-            Gizmos.color = Color.green;
+            if (rayWallIsColliding[i])
+            {
+                Gizmos.color = Color.green;
+            }
+            else
+            {
+                Gizmos.color = Color.red;
+            }
+            Gizmos.DrawRay(rayWallLine[i].transform.position, rayWallLine[i].transform.forward * wallDistanceFoward * verticalMovement);
         }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawRay(rayWallLineFoward.transform.position, rayWallLineFoward.transform.forward * wallDistanceFoward * verticalMovement);
-        
-        if (RayColitioningWallSide1)
-        {
-            Gizmos.color = Color.green;
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawRay(rayWallLineSide1.transform.position, rayWallLineSide1.transform.forward * wallDistanceSides * verticalMovement);
-
-        if (RayColitioningWallSide2)
-        {
-            Gizmos.color = Color.green;
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawRay(rayWallLineSide2.transform.position, rayWallLineSide2.transform.forward * wallDistanceSides * verticalMovement);
     }
 
     private int RotateTexture()

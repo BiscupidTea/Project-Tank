@@ -16,7 +16,7 @@ public class UIlogic : MonoBehaviour
 
     [Header("HealthBar Info")]
     [SerializeField] private Player_Health healthPlayer;
-    [SerializeField] private Enemy_Health healthBoss;
+    [SerializeField] private ObjectHealth healthBoss;
     [SerializeField] private TextMeshProUGUI healthBossNumber;
     [SerializeField] private bool isBoss;
     [SerializeField] private Slider healthSliderPlayer;

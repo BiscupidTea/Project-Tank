@@ -165,7 +165,7 @@ MonoBehaviour:
   ShellRender: {fileID: 0}
   ExplotionAnimation: {fileID: 1214540017548006883}
   Rigidbody: {fileID: 6761399807706487044}
-  LifeTime: 0
+  LifeTime: 5
   explotionForce: 200
   explotionRadius: 5
   explotionTimerAnimation: 2

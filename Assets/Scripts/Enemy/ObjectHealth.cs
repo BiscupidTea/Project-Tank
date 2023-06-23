@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Health : MonoBehaviour
+public class ObjectHealth : MonoBehaviour
 {
     [SerializeField] private float Maxhealth;
-    [SerializeField] private float health;
     [SerializeField] private bool isAlive;
-    [SerializeField] private bool DestroyWhenDie;
+
+    private float health;
 
     private void Start()
     {
@@ -20,13 +20,8 @@ public class Enemy_Health : MonoBehaviour
         {
             isAlive = false;
         }
-
-        if (!isAlive && DestroyWhenDie)
-        {
-            Destroy(gameObject);
-        }
     }
-    public void GetDamage(float damage)
+    public void ReciveDamage(float damage)
     {
         health -= damage;
     }
