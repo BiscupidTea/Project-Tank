@@ -1,15 +1,30 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Serializable]
+    private struct WallDetectionOrigin
+    {
+        [SerializeField] private Transform origin;
+        [SerializeField] private float distance;
+
+        public Transform Origin { get => origin; set => origin = value; }
+        public float Distance { get => distance; set => distance = value; }
+
+        public bool IsColliding(float directionMultiplier)
+        {
+            return origin != null && Physics.Raycast(Origin.position, Origin.forward * directionMultiplier, Distance);
+        }
+    }
+
     [SerializeField] private Scroll_Track scroll_Track;
 
     [Header("Setup")]
 
     [SerializeField] private Rigidbody playerRigidbody;
-    [SerializeField] private Transform[] rayWallLine;
-    private bool[] rayWallIsColliding;
+    [SerializeField] private WallDetectionOrigin[] collisionCheckers;
 
     [Header("Movement")]
 
@@ -18,29 +33,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxTurnSpeed;
     [SerializeField] private float turnSpeed;
 
-    [Header("WallInteraction")]
-    [SerializeField] private float wallDistanceFoward;
-    [SerializeField] private float wallDistanceSides;
-
     private float horizontalMovement;
     private float verticalMovement;
     private bool isRotating;
     private bool isMoving;
-
-    private bool RayColitioningWallFoward;
-    private bool RayColitioningWallSide1;
-    private bool RayColitioningWallSide2;
 
     private void Start()
     {
         playerRigidbody ??= GetComponent<Rigidbody>();
 
         turnSpeed = maxTurnSpeed;
-
-        for (int i = 0; i < rayWallLine.Length; i++)
-        {
-            rayWallIsColliding[i] = false;
-        }
     }
     private void FixedUpdate()
     {
@@ -50,11 +52,19 @@ public class PlayerMovement : MonoBehaviour
 
         float force = GetModifiedForceBasedOnRotation(movementForce, isRotating);
 
-        WallLimiter();
-
         playerRigidbody.MoveRotation(playerRigidbody.rotation * Quaternion.Euler(Vector3.up * horizontalMovement * turnSpeed * Time.fixedDeltaTime));
 
-        if (RayColitioningWallFoward && RayColitioningWallSide1 && RayColitioningWallSide2)
+        bool isColidingToWalls = false;
+
+        foreach (var ray in collisionCheckers)
+        {
+            if (ray.IsColliding(verticalMovement))
+            {
+                isColidingToWalls = true;
+            }
+        }
+
+        if (!isColidingToWalls)
         {
             playerRigidbody.AddForce(transform.forward * ((verticalMovement * force)) * Time.fixedDeltaTime, ForceMode.Force);
         }
@@ -114,48 +124,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void WallLimiter()
-    {
-        for (int i = 0; i < rayWallLine.Length; i++)
-        {
-            if (rayWallLine[i].rotation.y == 0)
-            {
-                if (Physics.Raycast(rayWallLine[i].transform.position, rayWallLine[i].transform.forward * verticalMovement, wallDistanceFoward))
-                {
-                    rayWallIsColliding[i] = false;
-                }
-                else
-                {
-                    rayWallIsColliding[i] = true;
-                }
-            }
-            else
-            {
-                if (Physics.Raycast(rayWallLine[i].transform.position, rayWallLine[i].transform.forward * verticalMovement, wallDistanceSides))
-                {
-                    rayWallIsColliding[i] = false;
-                }
-                else
-                {
-                    rayWallIsColliding[i] = true;
-                }
-            }
-        }
-    }
-
     private void OnDrawGizmos()
     {
-        for (int i = 0; i < rayWallLine.Length; i++)
+        for (int i = 0; i < collisionCheckers.Length; i++)
         {
-            if (rayWallIsColliding[i])
+            if (collisionCheckers[i].Origin == null)
             {
-                Gizmos.color = Color.green;
+                continue;
             }
-            else
+
+            if (collisionCheckers[i].IsColliding(verticalMovement))
             {
                 Gizmos.color = Color.red;
             }
-            Gizmos.DrawRay(rayWallLine[i].transform.position, rayWallLine[i].transform.forward * wallDistanceFoward * verticalMovement);
+            else
+            {
+                Gizmos.color = Color.green;
+            }
+            Gizmos.DrawRay(collisionCheckers[i].Origin.position, collisionCheckers[i].Origin.forward * collisionCheckers[i].Distance * verticalMovement);
         }
     }
 

@@ -269,15 +269,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scroll_Track: {fileID: 5668808103688728704}
   playerRigidbody: {fileID: 5668808103688728709}
-  rayWallLineFoward: {fileID: 6272379561622113561}
-  rayWallLineSide1: {fileID: 3139885457979897501}
-  rayWallLineSide2: {fileID: 4333516665152472712}
+  collisionCheckers:
+  - origin: {fileID: 6272379561622113561}
+    distance: 10
+  - origin: {fileID: 3139885457979897501}
+    distance: 8
+  - origin: {fileID: 4333516665152472712}
+    distance: 8
   maxSpeed: 20
   movementForce: 30000
   maxTurnSpeed: 30
   turnSpeed: 0
-  wallDistanceFoward: 10
-  wallDistanceSides: 8
 --- !u!114 &5668808103688728707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,9 +292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38aeb6c65bf01584182591401519c153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 5668808104118441013}
-  _CameraLockPositionTurret: {fileID: 5668808105225021532}
-  _CameraLockPositionAim: {fileID: 5668808104318838545}
+  playerCamera: {fileID: 5668808104118441013}
+  cameraLockPositionTurret: {fileID: 5668808105225021532}
+  cameraLockPositionAim: {fileID: 5668808104318838545}
   turret: {fileID: 5370433558306613076}
   cannon: {fileID: 5932996788328510579}
   cannonAngleMax: 25

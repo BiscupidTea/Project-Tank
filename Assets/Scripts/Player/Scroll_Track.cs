@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Scroll_Track : MonoBehaviour {
+public class Scroll_Track : MonoBehaviour
+{
 
     [SerializeField] private float scrollSpeed = 0.05f;
     private float scrollSpeedRight = 1;
@@ -16,8 +14,8 @@ public class Scroll_Track : MonoBehaviour {
     [SerializeField] private Renderer left;
     void Update()
     {
-         offsetRight =+ (offsetRight + Time.deltaTime * scrollSpeed * scrollSpeedRight) % 1f;
-         offsetLeft =+ (offsetLeft  + Time.deltaTime * scrollSpeed * scrollSpeedLeft) % 1f;
+        offsetRight = +(offsetRight + Time.deltaTime * scrollSpeed * scrollSpeedRight) % 1f;
+        offsetLeft = +(offsetLeft + Time.deltaTime * scrollSpeed * scrollSpeedLeft) % 1f;
 
         right.material.SetTextureOffset("_MainTex", new Vector2(offsetRight, 0f));
         left.material.SetTextureOffset("_MainTex", new Vector2(offsetLeft, 0f));
@@ -25,7 +23,7 @@ public class Scroll_Track : MonoBehaviour {
 
     public void AssignMoveTrack(int trackPosition)
     {
-        switch (trackPosition) 
+        switch (trackPosition)
         {
             //foward
             case 1:
@@ -81,5 +79,5 @@ public class Scroll_Track : MonoBehaviour {
                 break;
         }
     }
-    
+
 }

@@ -3,9 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerCameraController : MonoBehaviour
 {
-    [SerializeField] private Camera _camera;
-    [SerializeField] private Transform _CameraLockPositionTurret;
-    [SerializeField] private Transform _CameraLockPositionAim;
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Transform cameraLockPositionTurret;
+    [SerializeField] private Transform cameraLockPositionAim;
     [SerializeField] private Transform turret;
     [SerializeField] private Transform cannon;
 
@@ -39,13 +39,13 @@ public class PlayerCameraController : MonoBehaviour
 
             if (isAiming)
             {
-                _camera.transform.position = _CameraLockPositionAim.transform.position;
-                _camera.transform.rotation = _CameraLockPositionAim.transform.rotation;
+                playerCamera.transform.position = cameraLockPositionAim.transform.position;
+                playerCamera.transform.rotation = cameraLockPositionAim.transform.rotation;
             }
             else
             {
-                _camera.transform.position = _CameraLockPositionTurret.transform.position;
-                _camera.transform.rotation = _CameraLockPositionTurret.transform.rotation;
+                playerCamera.transform.position = cameraLockPositionTurret.transform.position;
+                playerCamera.transform.rotation = cameraLockPositionTurret.transform.rotation;
             }
         }
         else
@@ -61,9 +61,9 @@ public class PlayerCameraController : MonoBehaviour
 
     private void FreeCameraRotation()
     {
-        _camera.transform.RotateAround(turret.position, turret.up, scaledDelta.x);
-        _camera.transform.RotateAround(turret.position, turret.right, scaledDelta.y);
-        _camera.transform.LookAt(turret);
+        playerCamera.transform.RotateAround(turret.position, turret.up, scaledDelta.x);
+        playerCamera.transform.RotateAround(turret.position, turret.right, scaledDelta.y);
+        playerCamera.transform.LookAt(turret);
     }
 
     public void OnMoveCamera(InputAction.CallbackContext ctx)
