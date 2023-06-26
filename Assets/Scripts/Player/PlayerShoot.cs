@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,19 +11,16 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] Transform shootShellPosition;
     [SerializeField] Transform shootSecondaryPosition;
 
-
     [Header("Primary Shoot")]
-    [SerializeField] private float damagePrimary;
-    [SerializeField] private float reloadTimePrimary;
-    [SerializeField] private float shootForcePrimary;
-    [SerializeField] private GameObject AnimationPrimaryShoot;
-    [SerializeField] private float AnimationPrimaryShootTime;
-    private float animationTimePrimary;
-    private bool animationReadyPrimary = false;
+    [SerializeField] private Weapon primaryWeapon;
+    //TODO create weaponVFX and listen to onShoot event
+    [Obsolete][SerializeField] private GameObject AnimationPrimaryShoot;
+    [Obsolete][SerializeField] private float AnimationPrimaryShootTime;
+    [Obsolete]private float animationTimePrimary;
+    [Obsolete]private bool animationReadyPrimary = false;
 
     [Header("Secondary Shoot")]
-    [SerializeField] private float damageScondary;
-    [SerializeField] private float reloadTimeSecondary;
+    [SerializeField] private Weapon secondaryWeapon;
     [SerializeField] private float rangeShootSecondary;
     [SerializeField] private float shootForceSecondary;
     [SerializeField] private TrailRenderer bulletTrail;
@@ -171,7 +169,7 @@ public class PlayerShoot : MonoBehaviour
                 Debug.Log(hit);
                 if (hit.collider.GetComponent<ObjectHealth>())
                 {
-                    hit.collider.GetComponent<ObjectHealth>().ReciveDamage(damageScondary);
+                    hit.collider.GetComponent<ObjectHealth>().ReceiveDamage(damageScondary);
                 }
                 hit.rigidbody.AddForce(shootSecondaryPosition.transform.forward * shootForceSecondary, ForceMode.Impulse);
             }
@@ -189,7 +187,7 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnTrail(TrailRenderer trail, Vector3 EndPosition)
+    private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 EndPosition)
     {
         float time = 0;
         Vector3 startPosition = trail.transform.position;

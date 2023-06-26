@@ -55,16 +55,14 @@ public class ShellLogic : MonoBehaviour
                 EntRB.AddExplosionForce(explotionForce, transform.position, explotionRadius);
                 RunExplotionAnimation();
             }
-
         }
 
-        ObjectHealth EntityHeal = collision.gameObject.GetComponent<ObjectHealth>();
-        if (EntityHeal != null)
+        ObjectHealth EntityHealth = collision.gameObject.GetComponent<ObjectHealth>();
+        if (EntityHealth != null)
         {
-            EntityHeal.ReciveDamage(playerShotlogic.GetPrimaryDamage());
+            EntityHealth.ReceiveDamage(playerShotlogic.GetPrimaryDamage());
             RunExplotionAnimation();
         }
-
     }
 
     private void RunExplotionAnimation()

@@ -1,43 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class ObjectHealth : MonoBehaviour
 {
-    [SerializeField] private float Maxhealth;
+    [SerializeField] private float maxHealth;
     [SerializeField] private bool isAlive;
 
     private float health;
 
+    public event Action OnDeath;
+
+    public float MaxHealth { get => maxHealth; set => maxHealth = value; }
+    public bool IsAlive { get => isAlive; set => isAlive = value; }
+    public float Health { get => health; set => health = value; }
+
     private void Start()
     {
-        health = Maxhealth;
-        isAlive = true;
+        Health = maxHealth;
+        IsAlive = true;
     }
-    private void Update()
+    public void ReceiveDamage(float damage)
     {
-        if (health <= 0)
+        Health -= damage;
+
+        if (Health <= 0)
         {
-            isAlive = false;
+            IsAlive = false;
+            OnDeath();
         }
     }
-    public void ReciveDamage(float damage)
-    {
-        health -= damage;
-    }
 
-    public float GetHealth()
+    [ContextMenu("Test Death")]
+    private void TestDeath()
     {
-        return health;
-    }
-
-    public bool IsAlive()
-    {
-        return isAlive;
-    }
-
-    public float GetMaxHealth()
-    {
-        return Maxhealth;
+        ReceiveDamage(Health);
     }
 }

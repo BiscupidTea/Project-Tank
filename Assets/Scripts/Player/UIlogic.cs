@@ -47,8 +47,8 @@ public class UIlogic : MonoBehaviour
 
         if (isBoss)
         {
-            healthSliderBoss.maxValue = healthBoss.GetHealth();
-            healthSliderBoss.value = healthBoss.GetHealth();
+            healthSliderBoss.maxValue = healthBoss.Health;
+            healthSliderBoss.value = healthBoss.Health;
         }
 
         for (int i = 0; i < tanks.Length; i++)
@@ -93,8 +93,8 @@ public class UIlogic : MonoBehaviour
 
         if (isBoss)
         {
-            healthSliderBoss.value = healthBoss.GetHealth();
-            healthBossNumber.text = healthBoss.GetHealth() + " / " + healthBoss.GetMaxHealth();
+            healthSliderBoss.value = healthBoss.Health;
+            healthBossNumber.text = healthBoss.Health + " / " + healthBoss.MaxHealth;
         }
     }
     private void SetWeaponSelect()

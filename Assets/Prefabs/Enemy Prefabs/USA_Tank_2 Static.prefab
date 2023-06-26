@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 434593658}
   - component: {fileID: 1333540100036908734}
   - component: {fileID: 7676910881237769208}
+  - component: {fileID: 234281060}
   m_Layer: 0
   m_Name: USA_Tank_2 Static
   m_TagString: Untagged
@@ -357,8 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcb53ea386526b48a96f7aa38a9d7b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  Maxhealth: 100
+  maxHealth: 100
   isAlive: 1
 --- !u!114 &1333540100036908734
 MonoBehaviour:
@@ -400,6 +400,19 @@ MonoBehaviour:
   enemy_Shoot: {fileID: 0}
   player: {fileID: 0}
   isRotating: 0
+--- !u!114 &234281060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606005299345233778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c17fa3d058a9018418284dba2e7294bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 434593658}
 --- !u!1 &7916753064420517464
 GameObject:
   m_ObjectHideFlags: 0
