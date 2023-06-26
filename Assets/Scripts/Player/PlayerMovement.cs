@@ -19,6 +19,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public struct WheelConfig
+    {
+        public bool foward;
+        public bool back;
+
+        public WheelConfig(bool foward, bool back)
+        {
+            this.foward = foward;
+            this.back = back;
+        }
+    }
+
     [SerializeField] private Scroll_Track scroll_Track;
 
     [Header("Setup")]
@@ -71,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
         playerRigidbody.velocity = Vector3.ClampMagnitude(playerRigidbody.velocity, maxSpeed);
 
-        scroll_Track.AssignMoveTrack(RotateTexture());
+        RotateTexture();
     }
 
     private float GetModifiedForceBasedOnRotation(float force, bool IsRotating)
@@ -98,9 +110,9 @@ public class PlayerMovement : MonoBehaviour
         isMoving = verticalMovement != 0 ? true : false;
     }
 
-    public void OnMoveFB(InputAction.CallbackContext input)
+    public void MovePlayerFB(float input)
     {
-        var currentInput = input.ReadValue<float>();
+        var currentInput = input;
 
         float verticalRotation = transform.eulerAngles.x;
 
@@ -110,9 +122,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void OnMoveRo(InputAction.CallbackContext input)
+    public void MovePlayerRL(float input)
     {
-        horizontalMovement = input.ReadValue<float>();
+        horizontalMovement = input;
 
         if (horizontalMovement != 0)
         {
@@ -145,44 +157,39 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private int RotateTexture()
+    private void RotateTexture()
     {
+        WheelConfig newWheelMovemntRight = new WheelConfig(false, false);
+        WheelConfig newWheelMovemntLeft = new WheelConfig(false, false);
 
-        if (verticalMovement == 1 && horizontalMovement == 0)
+        Debug.Log(verticalMovement);
+
+        if (verticalMovement == 1)
         {
-            return 1;
+            newWheelMovemntRight.foward = true;
+            newWheelMovemntLeft.foward = true;
         }
-        if (verticalMovement == -1 && horizontalMovement == 0)
+        else if (verticalMovement == -1)
         {
-            return 2;
-        }
-        if (verticalMovement == 1 && horizontalMovement == 1)
-        {
-            return 3;
-        }
-        if (verticalMovement == 1 && horizontalMovement == -1)
-        {
-            return 4;
-        }
-        if (verticalMovement == -1 && horizontalMovement == -1)
-        {
-            return 5;
-        }
-        if (verticalMovement == -1 && horizontalMovement == 1)
-        {
-            return 6;
-        }
-        if (verticalMovement == 0 && horizontalMovement == 1)
-        {
-            return 7;
-        }
-        if (verticalMovement == 0 && horizontalMovement == -1)
-        {
-            return 8;
+            newWheelMovemntRight.back = true;
+            newWheelMovemntLeft.back = true;
         }
 
-        return 0;
+
+        if (horizontalMovement == 1)
+        {
+            newWheelMovemntRight.back = true;
+            newWheelMovemntLeft.foward = true;
+        }
+        else if(horizontalMovement == -1)
+        {
+            newWheelMovemntRight.foward = true;
+            newWheelMovemntLeft.back = true;
+        }
+
+        scroll_Track.AssignMoveTrack(newWheelMovemntRight, newWheelMovemntLeft);
     }
+
 
 #if UNITY_EDITOR
     private void OnGUI()

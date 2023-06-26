@@ -72,13 +72,14 @@ GameObject:
   m_Component:
   - component: {fileID: 5668808103688728708}
   - component: {fileID: 5668808103688728711}
+  - component: {fileID: 6543535436523177110}
+  - component: {fileID: 6016909988756290251}
   - component: {fileID: 5668808103688728710}
   - component: {fileID: 5668808103688728707}
   - component: {fileID: 5668808103688728704}
   - component: {fileID: 5668808103688728705}
   - component: {fileID: 5668808103688728709}
   - component: {fileID: 8286027313028850325}
-  - component: {fileID: 1376157651}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -255,6 +256,34 @@ MonoBehaviour:
   m_DefaultActionMap: Game
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6543535436523177110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668808103688728825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bcb53ea386526b48a96f7aa38a9d7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
+  isAlive: 0
+--- !u!114 &6016909988756290251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668808103688728825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67426cd0e3e29e34b8b4a47977da875c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerShoot: {fileID: 5668808103688728705}
+  PlayerMovemnt: {fileID: 5668808103688728710}
 --- !u!114 &5668808103688728710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,20 +359,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08919278a47250c4b968e1ec42f967ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 5668808104118441013}
-  bullet: {fileID: 4829409194887708885, guid: bdcabea2d42b1a3478dfe61a1c609145, type: 3}
-  shootShellPosition: {fileID: 6850973463637699070}
-  shootSecondaryPosition: {fileID: 302685975010246089}
-  damagePrimary: 50
-  reloadTimePrimary: 2.5
-  shootForcePrimary: 75
+  primaryWeapon: {fileID: 0}
   AnimationPrimaryShoot: {fileID: 5069189279362178824}
   AnimationPrimaryShootTime: 1
-  damageScondary: 1
-  reloadTimeSecondary: 0.5
-  rangeShootSecondary: 100
-  shootForceSecondary: 10
-  bulletTrail: {fileID: 3841707417342795937, guid: 99d2229e8216b6e41aaf103d1c9cc73d, type: 3}
+  secondaryWeapon: {fileID: 0}
   AnimationSecondaryShoot: {fileID: 6967261727345949021}
   AnimationSecondaryShootTime: 0.5
   shootanimation1: {fileID: 8300000, guid: cb773ea400eabda4aa19600ca75315d9, type: 3}
@@ -377,20 +396,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.7513633, y: 1.4277959, z: 6.3558555}
   m_Center: {x: 0.0000009536743, y: 1.2899792, z: -0.18787003}
---- !u!114 &1376157651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5668808103688728825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6af36f0346e5d05478d25ba510780430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1000
-  isAlive: 1
 --- !u!1 &5668808104118441015
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,11 +606,6 @@ PrefabInstance:
     - {fileID: 5021420378215375390, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
     - {fileID: 5021420378629737008, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
---- !u!4 &302685975010246089 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1096440276061706009, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
-  m_PrefabInstance: {fileID: 793774644261595856}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2360523613025899600 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3154294821103353472, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
@@ -652,11 +652,6 @@ Transform:
 --- !u!23 &6183093021002276649 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6830499944477308409, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
-  m_PrefabInstance: {fileID: 793774644261595856}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6850973463637699070 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6059454504194802478, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
   m_PrefabInstance: {fileID: 793774644261595856}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &6969882279608092542 stripped

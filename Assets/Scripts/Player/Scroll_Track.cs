@@ -21,63 +21,32 @@ public class Scroll_Track : MonoBehaviour
         left.material.SetTextureOffset("_MainTex", new Vector2(offsetLeft, 0f));
     }
 
-    public void AssignMoveTrack(int trackPosition)
+    public void AssignMoveTrack(PlayerMovement.WheelConfig wheelConfigRight, PlayerMovement.WheelConfig wheelConfigLeft)
     {
-        switch (trackPosition)
+        if (!wheelConfigRight.foward && !wheelConfigRight.back || wheelConfigRight.foward && wheelConfigRight.back)
         {
-            //foward
-            case 1:
-                scrollSpeedRight = 1;
-                scrollSpeedLeft = 1;
-                break;
+            scrollSpeedRight = 0;
+        }
+        else if(wheelConfigRight.foward)
+        {
+            scrollSpeedRight = 1;
+        }
+        else
+        {
+            scrollSpeedRight = -1;
+        }
 
-            //backward
-            case 2:
-                scrollSpeedRight = -1;
-                scrollSpeedLeft = -1;
-                break;
-
-            //foward right
-            case 3:
-                scrollSpeedRight = 0;
-                scrollSpeedLeft = 1;
-                break;
-
-            //foward left
-            case 4:
-                scrollSpeedRight = 1;
-                scrollSpeedLeft = 0;
-                break;
-
-            //backward right
-            case 5:
-                scrollSpeedRight = 0;
-                scrollSpeedLeft = -1;
-                break;
-
-            //backward left
-            case 6:
-                scrollSpeedRight = -1;
-                scrollSpeedLeft = 0;
-                break;
-
-            //rotate right
-            case 7:
-                scrollSpeedRight = -1;
-                scrollSpeedLeft = 1;
-                break;
-
-            //rotate left
-            case 8:
-                scrollSpeedRight = 1;
-                scrollSpeedLeft = -1;
-                break;
-            //default case
-            default:
-                scrollSpeedRight = 0;
-                scrollSpeedLeft = 0;
-                break;
+        if (!wheelConfigLeft.foward && !wheelConfigLeft.back || wheelConfigLeft.foward && wheelConfigLeft.back)
+        {
+            scrollSpeedLeft = 0;
+        }
+        else if (wheelConfigLeft.foward)
+        {
+            scrollSpeedLeft = 1;
+        }
+        else
+        {
+            scrollSpeedLeft = -1;
         }
     }
-
 }

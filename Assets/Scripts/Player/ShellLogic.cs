@@ -60,7 +60,7 @@ public class ShellLogic : MonoBehaviour
         ObjectHealth EntityHealth = collision.gameObject.GetComponent<ObjectHealth>();
         if (EntityHealth != null)
         {
-            EntityHealth.ReceiveDamage(playerShotlogic.GetPrimaryDamage());
+            //EntityHealth.ReceiveDamage(playerShotlogic.GetPrimaryDamage());
             RunExplotionAnimation();
         }
     }
