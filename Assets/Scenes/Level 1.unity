@@ -3752,7 +3752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1797749005}
   canvasUI: {fileID: 1215020073}
-  playerCameraControler: {fileID: 1797749010}
+  playerCameraController: {fileID: 0}
   cross: {fileID: 148787777}
   healthPlayer: {fileID: 0}
   healthBoss: {fileID: 0}
@@ -5675,17 +5675,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08919278a47250c4b968e1ec42f967ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1797749010 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5668808103688728707, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-  m_PrefabInstance: {fileID: 2054906552}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797749005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38aeb6c65bf01584182591401519c153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1797749016 stripped
