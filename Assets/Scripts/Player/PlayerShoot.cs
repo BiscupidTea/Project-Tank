@@ -7,15 +7,9 @@ public class PlayerShoot : MonoBehaviour
 {
     [Header("Primary Shoot")]
     [SerializeField] private Weapon primaryWeapon;
-    //TODO create weaponVFX and listen to onShoot event
-    [Obsolete][SerializeField] private GameObject AnimationPrimaryShoot;
-    [Obsolete][SerializeField] private float AnimationPrimaryShootTime;
 
     [Header("Secondary Shoot")]
     [SerializeField] private Weapon secondaryWeapon;
-    //TODO create weaponVFX and listen to onShoot event
-    [SerializeField] private GameObject AnimationSecondaryShoot;
-    [SerializeField] private float AnimationSecondaryShootTime;
 
     [Header("Sounds Shoot")]
     [SerializeField] private AudioClip shootanimation1;
