@@ -11,7 +11,7 @@ public class CannonWeapon : Weapon
     public override void Shoot()
     {
         ShellLogic NewBullet = Instantiate(PrefabShell, initialShootPosition.position, initialShootPosition.rotation);
-        //NewBullet.Damage = damage;
+        NewBullet.Damage = damage;
         NewBullet.GetComponent<Rigidbody>().AddForce(initialShootPosition.forward * force, ForceMode.Impulse);
     }
 }

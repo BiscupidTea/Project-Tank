@@ -23,12 +23,12 @@ public class Scroll_Track : MonoBehaviour
 
     public void AssignMoveTrack(PlayerMovement.WheelConfig wheelConfigRight, PlayerMovement.WheelConfig wheelConfigLeft)
     {
-        if (!wheelConfigRight.foward && !wheelConfigRight.back
-            || wheelConfigRight.foward && wheelConfigRight.back)
+        if (!wheelConfigRight.forward && !wheelConfigRight.back
+            || wheelConfigRight.forward && wheelConfigRight.back)
         {
             scrollSpeedRight = 0;
         }
-        else if(wheelConfigRight.foward)
+        else if(wheelConfigRight.forward)
         {
             scrollSpeedRight = 1;
         }
@@ -37,12 +37,12 @@ public class Scroll_Track : MonoBehaviour
             scrollSpeedRight = -1;
         }
 
-        if (!wheelConfigLeft.foward && !wheelConfigLeft.back
-            || wheelConfigLeft.foward && wheelConfigLeft.back)
+        if (!wheelConfigLeft.forward && !wheelConfigLeft.back
+            || wheelConfigLeft.forward && wheelConfigLeft.back)
         {
             scrollSpeedLeft = 0;
         }
-        else if (wheelConfigLeft.foward)
+        else if (wheelConfigLeft.forward)
         {
             scrollSpeedLeft = 1;
         }
