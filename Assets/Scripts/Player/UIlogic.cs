@@ -12,7 +12,7 @@ public class UIlogic : MonoBehaviour
     [SerializeField] private Canvas canvasUI;
 
     [Header("Aim Info")]
-    [SerializeField] private PlayerCameraController playerCameraControler;
+    [SerializeField] private PlayerCameraController playerCameraController;
     [SerializeField] private GameObject cross;
 
     [Header("HealthBar Info")]
@@ -31,7 +31,7 @@ public class UIlogic : MonoBehaviour
     [Header("TankRemaing Info")]
     [SerializeField] private GameObject[] tanks;
     [SerializeField] private TextMeshProUGUI tankInfo;
-    private int totTanks;
+    private int totalTanks;
 
     [Header("Pause Info")]
     [SerializeField] private PauseSyestem pause;
@@ -39,7 +39,7 @@ public class UIlogic : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerCameraControler = player.GetComponent<PlayerCameraController>();
+        playerCameraController = player.GetComponent<PlayerCameraController>();
         playerShoot = player.GetComponent<PlayerShoot>();
         healthPlayer = player.GetComponent<Player_Health>();
 
@@ -54,7 +54,7 @@ public class UIlogic : MonoBehaviour
 
         for (int i = 0; i < tanks.Length; i++)
         {
-            totTanks++;
+            totalTanks++;
         }
     }
     void Update()
@@ -79,7 +79,7 @@ public class UIlogic : MonoBehaviour
 
     private void SetAim()
     {
-        if (playerCameraControler.IsAiming())
+        if (playerCameraController.IsAiming())
         {
             cross.SetActive(true);
         }
@@ -116,15 +116,15 @@ public class UIlogic : MonoBehaviour
     {
         if (!isBoss)
         {
-            totTanks = 0;
+            totalTanks = 0;
             for (int i = 0; i < tanks.Length; i++)
             {
                 if (tanks[i] != null)
                 {
-                    totTanks++;
+                    totalTanks++;
                 }
             }
-            tankInfo.text = totTanks.ToString();
+            tankInfo.text = totalTanks.ToString();
         }
     }
 }

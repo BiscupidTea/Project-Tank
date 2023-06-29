@@ -25,12 +25,12 @@ public class Scroll_Track : MonoBehaviour
 
     public void AssignMoveTrack(PlayerMovement.WheelConfig wheelConfigRight, PlayerMovement.WheelConfig wheelConfigLeft)
     {
-        if (!wheelConfigRight.foward && !wheelConfigRight.back
-            || wheelConfigRight.foward && wheelConfigRight.back)
+        if (!wheelConfigRight.forward && !wheelConfigRight.back
+            || wheelConfigRight.forward && wheelConfigRight.back)
         {
             scrollSpeedRight = 0;
         }
-        else if(wheelConfigRight.foward)
+        else if(wheelConfigRight.forward)
         {
             scrollSpeedRight = 1;
         }
@@ -40,12 +40,10 @@ public class Scroll_Track : MonoBehaviour
         }
 
         //TODO: OOP - This could be a method in the wheelConfig that returns the integer
-        if (!wheelConfigLeft.foward && !wheelConfigLeft.back
-            || wheelConfigLeft.foward && wheelConfigLeft.back)
         {
             scrollSpeedLeft = 0;
         }
-        else if (wheelConfigLeft.foward)
+        else if (wheelConfigLeft.forward)
         {
             scrollSpeedLeft = 1;
         }

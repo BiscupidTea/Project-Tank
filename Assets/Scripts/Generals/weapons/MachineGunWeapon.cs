@@ -7,14 +7,13 @@ public class MachineGunWeapon : Weapon
     [SerializeField] private float damage;
     [SerializeField] private float force;
     [SerializeField] private float range;
-    [SerializeField] private Transform initialShootPosition;
     [SerializeField] private TrailRenderer PrefabBulletTrail;
     public override void Shoot()
     {
         RaycastHit hit;
-        TrailRenderer trail = Instantiate(PrefabBulletTrail, initialShootPosition.position, Quaternion.identity);
+        TrailRenderer trail = Instantiate(PrefabBulletTrail, InitialShootPosition.position, Quaternion.identity);
 
-        if (Physics.Raycast(initialShootPosition.position, initialShootPosition.forward, out hit, range))
+        if (Physics.Raycast(InitialShootPosition.position, InitialShootPosition.forward, out hit, range))
         {
             StartCoroutine(SpawnTrail(trail, hit.point));
 
@@ -27,14 +26,15 @@ public class MachineGunWeapon : Weapon
                 {
                     hit.collider.GetComponent<ObjectHealth>().ReceiveDamage(damage);
                 }
-                hit.rigidbody.AddForce(initialShootPosition.forward * force, ForceMode.Impulse);
+                hit.rigidbody.AddForce(InitialShootPosition.forward * force, ForceMode.Impulse);
             }
         }
         else
         {
-            Vector3 defaultPos = initialShootPosition.position + initialShootPosition.forward * range;
+            Vector3 defaultPos = InitialShootPosition.position + InitialShootPosition.forward * range;
             StartCoroutine(SpawnTrail(trail, defaultPos));
         }
+        ConsumeAmmo(1);
     }
 
     private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 EndPosition)

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShellLogic : MonoBehaviour
@@ -11,6 +12,8 @@ public class ShellLogic : MonoBehaviour
     [SerializeField] private float explotionRadius;
     [SerializeField] private float explotionTimerAnimation;
     [SerializeField] private PlayerShoot playerShotlogic;
+    [SerializeField] private float damage;
+    public float Damage { get => damage; set => damage = value; }
 
     private float explotionTime = 0;
     private float lifeTimer = 0;
@@ -60,9 +63,7 @@ public class ShellLogic : MonoBehaviour
         ObjectHealth EntityHealth = collision.gameObject.GetComponent<ObjectHealth>();
         if (EntityHealth != null)
         {
-            //TODO: TP2 - Remove unused methods/variables/classes
-            //BUG: Is the collision gonna do damage now?
-            //EntityHealth.ReceiveDamage(playerShotlogic.GetPrimaryDamage());
+            EntityHealth.ReceiveDamage(damage);
             RunExplotionAnimation();
         }
     }

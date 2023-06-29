@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class WeaponVFX : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Weapon weapon;
+    [SerializeField] private ParticleSystem effectParticle;
+    private void Awake()
     {
-        
+        weapon.OnShoot += OnAction;
+        weapon.GetComponent<TrailRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnAction(Transform shootOrigin)
     {
-        
+        PlayVFX();
+    }
+
+    private void PlayVFX()
+    {
+        effectParticle.Play();
     }
 }

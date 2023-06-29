@@ -21,12 +21,12 @@ public class PlayerMovement : MonoBehaviour
 
     public struct WheelConfig
     {
-        public bool foward;
+        public bool forward;
         public bool back;
 
-        public WheelConfig(bool foward, bool back)
+        public WheelConfig(bool forward, bool back)
         {
-            this.foward = foward;
+            this.forward = forward;
             this.back = back;
         }
     }
@@ -170,8 +170,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (verticalMovement == 1)
         {
-            newWheelMovemntRight.foward = true;
-            newWheelMovemntLeft.foward = true;
+            newWheelMovemntRight.forward = true;
+            newWheelMovemntLeft.forward = true;
         }
         else if (verticalMovement == -1)
         {
@@ -183,11 +183,11 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalMovement == 1)
         {
             newWheelMovemntRight.back = true;
-            newWheelMovemntLeft.foward = true;
+            newWheelMovemntLeft.forward = true;
         }
         else if(horizontalMovement == -1)
         {
-            newWheelMovemntRight.foward = true;
+            newWheelMovemntRight.forward = true;
             newWheelMovemntLeft.back = true;
         }
 

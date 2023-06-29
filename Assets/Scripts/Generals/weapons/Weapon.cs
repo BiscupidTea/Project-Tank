@@ -5,13 +5,18 @@ using UnityEngine;
 //TODO: Documentation - Add summary
 public abstract class Weapon : MonoBehaviour
 {
+    [SerializeField] private Transform initialShootPosition;
     [SerializeField] private float reloadTime;
     [SerializeField] private int maxAmmo;
     private int currentAmmo;
+
+    public Transform InitialShootPosition { get => initialShootPosition; set => initialShootPosition = value; }
+
     /// <summary>
     /// Event raised when ConsumeAmmo is called
     /// </summary>
     public event Action<int> OnConsumedAmmo;
+    public event Action<Transform> OnShoot;
 
     private void Awake()
     {
@@ -21,7 +26,10 @@ public abstract class Weapon : MonoBehaviour
     /// <summary>
     /// Shoot logic
     /// </summary>
-    public abstract void Shoot();
+    public virtual void Shoot()
+    {
+        OnShoot?.Invoke(initialShootPosition);
+    }
 
     /// <summary>
     /// Set currentAmmo to maxAmmo value after a reload time 
