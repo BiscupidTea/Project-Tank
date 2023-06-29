@@ -21,6 +21,7 @@ public class PauseSyestem : MonoBehaviour
 
     public void ChangePause(InputAction.CallbackContext input)
     {
+        //TODO: Fix - I believe you can set an Interaction for press only in the input settings window 
         if (input.performed)
         {
             isPause = !isPause;
@@ -43,6 +44,7 @@ public class PauseSyestem : MonoBehaviour
         }
     }
 
+    //TODO: Fix - Repeated code - I'm not sure if you're still working on these
     public void ChangePause()
     {
         isPause = !isPause;
@@ -64,6 +66,7 @@ public class PauseSyestem : MonoBehaviour
         }
     }
 
+    //TODO: Fix - Should be native Setter/Getter
     public bool returnIsPaused()
     {
         return isPause;

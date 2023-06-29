@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Enemy_Move_Static : MonoBehaviour
 {
+    //TODO: TP2 - Syntax - Fix declaration order
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotateSpeed;
+    //TODO: TP2 - Syntax - Consistency in naming convention
     public Enemy_Shoot enemy_Shoot;
     public GameObject player;
 
@@ -39,6 +41,7 @@ public class Enemy_Move_Static : MonoBehaviour
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotTarget, rotateSpeed * Time.deltaTime);
 
+        //TODO: Fix - isRotating = (transform.rotation == rotTarget)
         if (transform.rotation == rotTarget)
         {
             isRotating = false;
@@ -46,6 +49,7 @@ public class Enemy_Move_Static : MonoBehaviour
     }
     private void MoveEnemy()
     {
+        //TODO: Fix - Repeated code
         Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - transform.position);
 
         if (Vector3.Distance(transform.position, player.transform.position) > enemy_Shoot.GetDistanceShoot() - 1)

@@ -60,6 +60,8 @@ public class ShellLogic : MonoBehaviour
         ObjectHealth EntityHealth = collision.gameObject.GetComponent<ObjectHealth>();
         if (EntityHealth != null)
         {
+            //TODO: TP2 - Remove unused methods/variables/classes
+            //BUG: Is the collision gonna do damage now?
             //EntityHealth.ReceiveDamage(playerShotlogic.GetPrimaryDamage());
             RunExplotionAnimation();
         }

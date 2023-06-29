@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CannonWeapon : Weapon
 {
+    //TODO: TP2 - Remove unused methods/variables/classes
     [SerializeField] private float damage;
     [SerializeField] private float force;
     [SerializeField] private Transform initialShootPosition;

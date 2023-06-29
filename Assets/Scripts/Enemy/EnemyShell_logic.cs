@@ -8,6 +8,7 @@ public class EnemyShell_logic : MonoBehaviour
     [SerializeField] private GameObject Shell;
     [SerializeField] private MeshRenderer ShellRender;
     [SerializeField] private GameObject ExplotionAnimation;
+    //TODO: TP2 - Remove unused methods/variables/classes
     [SerializeField] private Rigidbody Rigidbody;
     [SerializeField] private float explotionForce;
     [SerializeField] private float explotionRadius;
@@ -15,6 +16,7 @@ public class EnemyShell_logic : MonoBehaviour
     [SerializeField] private Enemy_Shoot enemyShootlogic;
 
     private float explotionTime = 0;
+    //TODO: Fix - Unclear name
     private bool animationRun;
 
     private void Start()
@@ -33,6 +35,7 @@ public class EnemyShell_logic : MonoBehaviour
 
         if (explotionTimerAnimation < explotionTime)
         {
+            //TODO: Fix - Destroy(gameObject, explosionTime);
             Destroy(gameObject);
         }
     }
@@ -49,6 +52,7 @@ public class EnemyShell_logic : MonoBehaviour
             {
                 EntRB.AddExplosionForce(explotionForce, transform.position, explotionRadius);
 
+                //TODO: Fix - If this is a particleEffect, it should be particleEffect.Play
                 ExplotionAnimation.SetActive(true);
                 animationRun = true;
 

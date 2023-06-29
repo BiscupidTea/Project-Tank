@@ -7,6 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     public void GoToMenu()
     {
+        //TODO: Fix - Hardcoded value - Receive index as parameter and set it in the button call
         SceneManager.LoadScene(0);
     }
 

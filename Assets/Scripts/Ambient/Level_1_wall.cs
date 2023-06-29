@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//TODO: Documentation - Add summary
 public class Level_1_wall : MonoBehaviour
 {
     [SerializeField] private GameObject[] tanks;
@@ -10,6 +11,7 @@ public class Level_1_wall : MonoBehaviour
 
     private void Start()
     {
+        //TODO: Fix - tanksDestroyed = tanks.Length - Why is this necessary?
         for (int i = 0; i < tanks.Length; i++)
         {
             tanksDestroyed++;
@@ -17,6 +19,7 @@ public class Level_1_wall : MonoBehaviour
     }
     private void Update()
     {
+        //TODO: Fix - Should be event based
         tanksDestroyed = 0;
         for (int i = 0; i < tanks.Length; i++)
         {

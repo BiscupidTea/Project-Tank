@@ -20,7 +20,9 @@ public class MachineGunWeapon : Weapon
 
             if (hit.rigidbody)
             {
+                //TODO: Fix - Bad log/Log out of context
                 Debug.Log(hit);
+                //TODO: Fix - TryGetComponent
                 if (hit.collider.GetComponent<ObjectHealth>())
                 {
                     hit.collider.GetComponent<ObjectHealth>().ReceiveDamage(damage);

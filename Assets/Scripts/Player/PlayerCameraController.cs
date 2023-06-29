@@ -32,6 +32,7 @@ public class PlayerCameraController : MonoBehaviour
 
     private void Update()
     {
+        //TODO: TP2 - FSM or Strategy
         if (!LockTurret)
         {
             turret.transform.RotateAround(turret.position, turret.up, scaledDelta.x * rotationSpeedTurret.x);

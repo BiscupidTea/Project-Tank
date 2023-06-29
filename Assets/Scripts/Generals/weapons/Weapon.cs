@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+//TODO: Documentation - Add summary
 public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] private float reloadTime;

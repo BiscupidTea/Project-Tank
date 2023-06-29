@@ -45,6 +45,7 @@ public class Enemy_Shoot : MonoBehaviour
     private void DetectViewPlayer()
     {
         var distancePlayerEnemy = Vector3.Distance(transform.position, player.transform.position);
+        //TODO: Fix - targetingPlayer = (distancePlayerEnemy <= ViewRagnge)
         if (distancePlayerEnemy <= ViewRagnge)
         {
             TargetingPlayer = true;
@@ -57,6 +58,7 @@ public class Enemy_Shoot : MonoBehaviour
 
     private void DetectAttackPlayer()
     {
+        //TODO: Fix - Repeated code
         var distancePlayerEnemy = Vector3.Distance(transform.position, player.transform.position);
         if (distancePlayerEnemy <= ShootRange)
         {
@@ -75,6 +77,7 @@ public class Enemy_Shoot : MonoBehaviour
             if (shootTurret)
             {
                 Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - turret.transform.position);
+                //TODO: Fix - Repeated code
                 turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, RotationSpeed * Time.deltaTime);
             }
             else
@@ -87,6 +90,7 @@ public class Enemy_Shoot : MonoBehaviour
 
     private void AttackPlayer()
     {
+        //TODO: TP2 - FSM
         if (AttackingPlayer)
         {
             if (timerReload >= ReloadTime)
@@ -111,16 +115,19 @@ public class Enemy_Shoot : MonoBehaviour
         }
     }
 
+    //TODO: Fix - Should be native Setter/Getter
     public float GetDamage()
     {
         return Damage;
     }
 
+    //TODO: Fix - Should be native Setter/Getter
     public bool IsTargetingPlayer()
     {
         return TargetingPlayer;
     }
 
+    //TODO: Fix - Should be native Setter/Getter
     public float GetDistanceShoot()
     {
         return ShootRange;
