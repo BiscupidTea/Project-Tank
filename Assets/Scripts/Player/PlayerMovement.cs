@@ -83,9 +83,11 @@ public class PlayerMovement : MonoBehaviour
 
         playerRigidbody.velocity = Vector3.ClampMagnitude(playerRigidbody.velocity, maxSpeed);
 
+        //TODO: TP2 - SOLID
         RotateTexture();
     }
 
+    //TODO: TP2 - Remove unused parameters
     private float GetModifiedForceBasedOnRotation(float force, bool IsRotating)
     {
         force = isRotating ? force / 2 : force;
@@ -105,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //TODO: TP2 - Remove unused parameters
     private void ModifyTrayectory(float currentInput)
     {
         isMoving = verticalMovement != 0 ? true : false;
@@ -122,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //TODO: Fix - Unclear name
     public void MovePlayerRL(float input)
     {
         horizontalMovement = input;

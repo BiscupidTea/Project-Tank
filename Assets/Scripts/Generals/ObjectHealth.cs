@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+//TODO: Documentation - Add summary
+//TODO: Fix - You can even call this just "Health" and it will be a reusable script for your future projects :)
 public class ObjectHealth : MonoBehaviour
 {
     [SerializeField] private float maxHealth;

@@ -12,6 +12,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private Weapon secondaryWeapon;
 
     [Header("Sounds Shoot")]
+    //TODO: Fix - Unclear name
     [SerializeField] private AudioClip shootanimation1;
     [SerializeField] private AudioClip shootanimation2;
 
@@ -21,6 +22,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
+        //TODO: TP2 - SOLID
         timeAudio = shootanimation2.length;
         currentTimeAudio = timeAudio;
 
@@ -34,6 +36,7 @@ public class PlayerShoot : MonoBehaviour
 
     public void ShootWeapon()
     {
+        //TODO: TP2 - Strategy
         if (primaryShootSelected) 
         { 
             ShootPrimaryWeapon();
@@ -47,6 +50,7 @@ public class PlayerShoot : MonoBehaviour
     private void ShootPrimaryWeapon()
     {
         primaryWeapon.Shoot();
+        //TODO: TP2 - SOLID
         SoundManager.Instance.PlaySound(shootanimation1);
     }
 
@@ -55,11 +59,14 @@ public class PlayerShoot : MonoBehaviour
         secondaryWeapon.Shoot();
         if (currentTimeAudio >= timeAudio)
         {
+            //TODO: TP2 - SOLID
             SoundManager.Instance.PlaySound(shootanimation2, 0.4f);
             currentTimeAudio = 0;
         }
     }
 
+    //TODO: Fix - Unclear name
+    //TODO: Fix - Should be native Setter/Getter
     public bool WeaponUsing()
     {
         return primaryShootSelected;

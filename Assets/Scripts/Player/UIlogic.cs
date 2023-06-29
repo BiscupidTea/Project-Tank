@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TODO: Fix - Unclear name - Don't name a script "logic"
 public class UIlogic : MonoBehaviour
 {
     [SerializeField] private GameObject player;

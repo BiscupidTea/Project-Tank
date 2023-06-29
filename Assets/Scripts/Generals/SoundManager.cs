@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+//TODO: Documentation - Add summary
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
