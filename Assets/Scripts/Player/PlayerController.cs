@@ -15,18 +15,21 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeWeapon(InputAction.CallbackContext input)
     {
-        playerShoot.SwitchWeapon();
+        if (input.performed)
+        {
+            playerShoot.SwitchToNextWeapon();
+        }
     }
 
     public void OnMoveFB(InputAction.CallbackContext input)
     {
         float ActualInput = input.ReadValue<float>();
-        PlayerMovemnt.MovePlayerFB(ActualInput);
+        PlayerMovemnt.MovePlayerForwardBack(ActualInput);
     }
 
     public void OnMoveRo(InputAction.CallbackContext input)
     {
         float ActualInput = input.ReadValue<float>();
-        PlayerMovemnt.MovePlayerRL(ActualInput);
+        PlayerMovemnt.MovePlayerRightLeft(ActualInput);
     }
 }

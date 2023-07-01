@@ -60,7 +60,7 @@ public class ShellLogic : MonoBehaviour
             }
         }
 
-        ObjectHealth EntityHealth = collision.gameObject.GetComponent<ObjectHealth>();
+        Health EntityHealth = collision.gameObject.GetComponent<Health>();
         if (EntityHealth != null)
         {
             EntityHealth.ReceiveDamage(damage);

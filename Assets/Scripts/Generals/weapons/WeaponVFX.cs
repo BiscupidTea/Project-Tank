@@ -9,7 +9,6 @@ public class WeaponVFX : MonoBehaviour
     private void Awake()
     {
         weapon.OnShoot += OnAction;
-        weapon.GetComponent<TrailRenderer>();
     }
 
     private void OnAction(Transform shootOrigin)

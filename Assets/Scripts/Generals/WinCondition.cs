@@ -10,7 +10,7 @@ public class WinCondition : MonoBehaviour
     [SerializeField] private Canvas LoseScreen;
     [SerializeField] private Canvas UI;
     [SerializeField] private GameObject[] tanks;
-    [SerializeField] private Player_Health player;
+    [SerializeField] private Health player;
     private int tanksDestroyed;
 
     private void Start()
@@ -34,7 +34,7 @@ public class WinCondition : MonoBehaviour
             }
         }
 
-        if (player.IsAlive())
+        if (player.IsAlive)
         {
             if (tanksDestroyed == 0)
             {

@@ -5,70 +5,38 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
-    [Header("Primary Shoot")]
-    [SerializeField] private Weapon primaryWeapon;
+    [Header("Weapons")]
+    [SerializeField] private Weapon[] weapons;
 
-    [Header("Secondary Shoot")]
-    [SerializeField] private Weapon secondaryWeapon;
+    private int weaponInUse;
+    private int totalWeapons;
 
-    [Header("Sounds Shoot")]
-    //TODO: Fix - Unclear name
-    [SerializeField] private AudioClip shootanimation1;
-    [SerializeField] private AudioClip shootanimation2;
-
-    private float timeAudio;
-    private float currentTimeAudio;
-    private bool primaryShootSelected;
+    public int WeaponInUse { get => weaponInUse; set => weaponInUse = value; }
+    public int TotalWeapons { get => totalWeapons; set => totalWeapons = value; }
 
     private void Awake()
     {
-        //TODO: TP2 - SOLID
-        timeAudio = shootanimation2.length;
-        currentTimeAudio = timeAudio;
-
-        primaryShootSelected = true;
+        TotalWeapons = weapons.Length;
+        weaponInUse = 0;
     }
 
-    public void SwitchWeapon()
-    {
-        primaryShootSelected = !primaryShootSelected;
-    }
-
+    /// <summary>
+    /// shoot the weapon selected
+    /// </summary>
     public void ShootWeapon()
     {
-        //TODO: TP2 - Strategy
-        if (primaryShootSelected) 
-        { 
-            ShootPrimaryWeapon();
-        }
-        else
+        weapons[WeaponInUse].Shoot();
+    }
+
+    /// <summary>
+    /// switch to the next weapon in the arsenal, if pass this limit returns to the first weapon
+    /// </summary>
+    public void SwitchToNextWeapon()
+    {
+        WeaponInUse++;
+        if (WeaponInUse > totalWeapons-1) 
         {
-            ShootSecondaryLogic();
+            WeaponInUse = 0;
         }
-    }
-
-    private void ShootPrimaryWeapon()
-    {
-        primaryWeapon.Shoot();
-        //TODO: TP2 - SOLID
-        SoundManager.Instance.PlaySound(shootanimation1);
-    }
-
-    private void ShootSecondaryLogic()
-    {
-        secondaryWeapon.Shoot();
-        if (currentTimeAudio >= timeAudio)
-        {
-            //TODO: TP2 - SOLID
-            SoundManager.Instance.PlaySound(shootanimation2, 0.4f);
-            currentTimeAudio = 0;
-        }
-    }
-
-    //TODO: Fix - Unclear name
-    //TODO: Fix - Should be native Setter/Getter
-    public bool WeaponUsing()
-    {
-        return primaryShootSelected;
     }
 }

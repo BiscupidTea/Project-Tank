@@ -58,10 +58,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        ModifyTrayectory(movementForce);
-
-        ModifyTurnRotation();
-
         float force = GetModifiedForceBasedOnRotation(movementForce, isRotating);
 
         playerRigidbody.MoveRotation(playerRigidbody.rotation * Quaternion.Euler(Vector3.up * horizontalMovement * turnSpeed * Time.fixedDeltaTime));
@@ -87,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
         RotateTexture();
     }
 
-    //TODO: TP2 - Remove unused parameters
     private float GetModifiedForceBasedOnRotation(float force, bool IsRotating)
     {
         force = isRotating ? force / 2 : force;
@@ -95,25 +90,7 @@ public class PlayerMovement : MonoBehaviour
         return force;
     }
 
-    private void ModifyTurnRotation()
-    {
-        if (isMoving)
-        {
-            turnSpeed = maxTurnSpeed;
-        }
-        else
-        {
-            turnSpeed = maxTurnSpeed + maxTurnSpeed / 8;
-        }
-    }
-
-    //TODO: TP2 - Remove unused parameters
-    private void ModifyTrayectory(float currentInput)
-    {
-        isMoving = verticalMovement != 0 ? true : false;
-    }
-
-    public void MovePlayerFB(float input)
+    public void MovePlayerForwardBack(float input)
     {
         var currentInput = input;
 
@@ -125,8 +102,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //TODO: Fix - Unclear name
-    public void MovePlayerRL(float input)
+    public void MovePlayerRightLeft(float input)
     {
         horizontalMovement = input;
 
@@ -165,8 +141,6 @@ public class PlayerMovement : MonoBehaviour
     {
         WheelConfig newWheelMovemntRight = new WheelConfig(false, false);
         WheelConfig newWheelMovemntLeft = new WheelConfig(false, false);
-
-        Debug.Log(verticalMovement);
 
         if (verticalMovement == 1)
         {

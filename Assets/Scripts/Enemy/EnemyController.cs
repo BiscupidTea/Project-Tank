@@ -1,13 +1,13 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ObjectHealth))]
+[RequireComponent(typeof(Health))]
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private ObjectHealth health;
+    [SerializeField] private Health health;
 
     private void Awake()
     {
-        health = GetComponent<ObjectHealth>();
+        health = GetComponent<Health>();
     }
     private void OnEnable()
     {

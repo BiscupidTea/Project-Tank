@@ -2,17 +2,15 @@
 
 public class Scroll_Track : MonoBehaviour
 {
-
-    //TODO: TP2 - Syntax - Fix declaration order
+    [SerializeField] private Renderer right;
+    [SerializeField] private Renderer left;
     [SerializeField] private float scrollSpeed = 0.05f;
+
     private float scrollSpeedRight = 1;
     private float scrollSpeedLeft = 1;
-
     private float offsetRight;
     private float offsetLeft;
 
-    [SerializeField] private Renderer right;
-    [SerializeField] private Renderer left;
     //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
     void Update()
     {
@@ -30,7 +28,7 @@ public class Scroll_Track : MonoBehaviour
         {
             scrollSpeedRight = 0;
         }
-        else if(wheelConfigRight.forward)
+        else if (wheelConfigRight.forward)
         {
             scrollSpeedRight = 1;
         }
@@ -40,6 +38,8 @@ public class Scroll_Track : MonoBehaviour
         }
 
         //TODO: OOP - This could be a method in the wheelConfig that returns the integer
+        if (!wheelConfigLeft.forward && !wheelConfigLeft.back
+             || wheelConfigLeft.forward && wheelConfigLeft.back)
         {
             scrollSpeedLeft = 0;
         }

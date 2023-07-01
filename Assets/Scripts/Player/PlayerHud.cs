@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-//TODO: Fix - Unclear name - Don't name a script "logic"
-public class UIlogic : MonoBehaviour
+public class PlayerHud : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private Canvas canvasUI;
@@ -16,8 +12,8 @@ public class UIlogic : MonoBehaviour
     [SerializeField] private GameObject cross;
 
     [Header("HealthBar Info")]
-    [SerializeField] private Player_Health healthPlayer;
-    [SerializeField] private ObjectHealth healthBoss;
+    [SerializeField] private Health healthPlayer;
+    [SerializeField] private Health healthBoss;
     [SerializeField] private TextMeshProUGUI healthBossNumber;
     [SerializeField] private bool isBoss;
     [SerializeField] private Slider healthSliderPlayer;
@@ -25,8 +21,7 @@ public class UIlogic : MonoBehaviour
 
     [Header("Weapons Info")]
     [SerializeField] private PlayerShoot playerShoot;
-    [SerializeField] private Image Weapon1;
-    [SerializeField] private Image Weapon2;
+    [SerializeField] private Image[] weaponImage;
 
     [Header("TankRemaing Info")]
     [SerializeField] private GameObject[] tanks;
@@ -41,15 +36,15 @@ public class UIlogic : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerCameraController = player.GetComponent<PlayerCameraController>();
         playerShoot = player.GetComponent<PlayerShoot>();
-        healthPlayer = player.GetComponent<Player_Health>();
+        healthPlayer = player.GetComponent<Health>();
 
-        healthSliderPlayer.maxValue = healthPlayer.GetHealth();
-        healthSliderPlayer.value = healthPlayer.GetHealth();
+        healthSliderPlayer.maxValue = healthPlayer.CurrentHealth;
+        healthSliderPlayer.value = healthPlayer.CurrentHealth;
 
         if (isBoss)
         {
-            healthSliderBoss.maxValue = healthBoss.Health;
-            healthSliderBoss.value = healthBoss.Health;
+            healthSliderBoss.maxValue = healthBoss.CurrentHealth;
+            healthSliderBoss.value = healthBoss.CurrentHealth;
         }
 
         for (int i = 0; i < tanks.Length; i++)
@@ -90,25 +85,26 @@ public class UIlogic : MonoBehaviour
     }
     private void SetHealthBar()
     {
-        healthSliderPlayer.value = healthPlayer.GetHealth();
+        healthSliderPlayer.value = healthPlayer.CurrentHealth;
 
         if (isBoss)
         {
-            healthSliderBoss.value = healthBoss.Health;
-            healthBossNumber.text = healthBoss.Health + " / " + healthBoss.MaxHealth;
+            healthSliderBoss.value = healthBoss.CurrentHealth;
+            healthBossNumber.text = healthBoss.CurrentHealth + " / " + healthBoss.MaxHealth;
         }
     }
     private void SetWeaponSelect()
-    {
-        if (playerShoot.WeaponUsing())
+    {   
+        for (int i = 0; i < playerShoot.TotalWeapons; i++)
         {
-            Weapon1.color = Color.yellow;
-            Weapon2.color = Color.white;
-        }
-        else
-        {
-            Weapon1.color = Color.white;
-            Weapon2.color = Color.yellow;
+            if (i == playerShoot.WeaponInUse)
+            {
+                weaponImage[i].color = Color.yellow;
+            }
+            else
+            {
+                weaponImage[i].color = Color.white;
+            }
         }
     }
 
