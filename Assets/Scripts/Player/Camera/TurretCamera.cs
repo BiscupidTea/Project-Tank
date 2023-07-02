@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretCamera : CameraBehavior
@@ -17,7 +15,6 @@ public class TurretCamera : CameraBehavior
 
         CameraUsed.transform.position = CameraPosition.transform.position;
         CameraUsed.transform.rotation = CameraPosition.rotation;
-
 
         LimitCannonRotation();
     }

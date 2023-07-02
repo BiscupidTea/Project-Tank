@@ -1565,11 +1565,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6606005299345233778, guid: e2b87405ebd57b84b9d52c48833640c7, type: 3}
   m_PrefabInstance: {fileID: 134936966}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &876775690 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5370433558306613076, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-  m_PrefabInstance: {fileID: 2054906552}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &975192810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,6 +1820,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2652968929125391684, guid: 918e8e3885e152644a9956ad89dc6180, type: 3}
   m_PrefabInstance: {fileID: 148630492}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1190660286 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2671054410216580345, guid: a67b0cd936de06c4ea411b697efd48a4, type: 3}
+  m_PrefabInstance: {fileID: 1176725867}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da164dd49dafad245a0493be26f88951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &1239216029 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 2671054410648104456, guid: a67b0cd936de06c4ea411b697efd48a4, type: 3}
@@ -2453,39 +2459,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcb53ea386526b48a96f7aa38a9d7b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1809205338 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1400165534440660370, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-  m_PrefabInstance: {fileID: 2054906552}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 242ae1ac46cb8f845bb47d2a7f17d7b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1809205339 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6039541292775004849, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-  m_PrefabInstance: {fileID: 2054906552}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 569d0e141b24a1d4fab28ee1a983d496, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1809205340 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1228129192074332990, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-  m_PrefabInstance: {fileID: 2054906552}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0f37002790c384db8a1751671bb765, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1820419267
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,26 +2867,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1400165534440660370, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 876775690}
-    - target: {fileID: 5668808103688728707, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-      propertyPath: aimCamera
-      value: 
-      objectReference: {fileID: 1809205339}
-    - target: {fileID: 5668808103688728707, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-      propertyPath: LockTurret
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5668808103688728707, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-      propertyPath: freeCamera
-      value: 
-      objectReference: {fileID: 1809205338}
-    - target: {fileID: 5668808103688728707, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-      propertyPath: turretCamera
-      value: 
-      objectReference: {fileID: 1809205340}
     - target: {fileID: 5668808103688728708, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2965,7 +2918,7 @@ PrefabInstance:
     - target: {fileID: 6016909988756290251, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
       propertyPath: pauseSystem
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1190660286}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
 --- !u!4 &2114148763 stripped
