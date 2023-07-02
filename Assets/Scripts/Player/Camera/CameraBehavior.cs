@@ -4,13 +4,12 @@ public abstract class CameraBehavior : MonoBehaviour
 {
     [SerializeField] private Camera cameraUsed;
     [SerializeField] private Transform cameraPosition;
-    [SerializeField] private Transform cameraBasePosition;
     [SerializeField] private Vector2 rotationSpeedCamera;
 
     private Vector2 scaledDelta;
 
+    public Camera CameraUsed { get => cameraUsed; set => cameraUsed = value; }
     public Transform CameraPosition { get => cameraPosition; set => cameraPosition = value; }
-    public Transform CameraBasePosition { get => cameraBasePosition; set => cameraBasePosition = value; }
     public Vector2 ScaledDelta { get => scaledDelta; set => scaledDelta = value; }
     public Vector2 RotationSpeedCamera { get => rotationSpeedCamera; set => rotationSpeedCamera = value; }
 
