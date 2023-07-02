@@ -1,7 +1,9 @@
 using System;
 using UnityEngine;
 
-//TODO: Documentation - Add summary
+/// <summary>
+/// Base Health that can be decreased but has no action when is dead only a bool
+/// </summary>
 public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth;

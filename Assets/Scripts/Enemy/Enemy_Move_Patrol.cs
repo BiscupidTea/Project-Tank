@@ -23,9 +23,9 @@ public class Enemy_Move_Patrol : MonoBehaviour
 
     void Update()
     {
-        if (enemy_Shoot.IsTargetingPlayer())
+        if (enemy_Shoot.TargetingPlayer)
         {
-            if (Vector3.Distance(transform.position, player.transform.position) > enemy_Shoot.GetDistanceShoot() - 1)
+            if (Vector3.Distance(transform.position, player.transform.position) > enemy_Shoot.ShootRange - 1)
             {
                 Enemy.isStopped = false;
                 Enemy.destination = player.transform.position;

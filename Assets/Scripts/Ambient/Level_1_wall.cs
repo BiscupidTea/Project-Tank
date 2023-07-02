@@ -1,38 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-//TODO: Documentation - Add summary
+
+/// <summary>
+/// 
+/// </summary>
 public class Level_1_wall : MonoBehaviour
 {
-    [SerializeField] private GameObject[] tanks;
-    private int tanksDestroyed;
+    [SerializeField] private Health[] tanks;
+    private int tanksQuantity;
+
+    private void OnEnable()
+    {
+        foreach (var tank in tanks) 
+        {
+            tank.OnDeath += HandleTankDeath;
+        }
+    }
 
     private void Start()
     {
-        //TODO: Fix - tanksDestroyed = tanks.Length - Why is this necessary?
-        for (int i = 0; i < tanks.Length; i++)
-        {
-            tanksDestroyed++;
-        }
+        tanksQuantity = tanks.Length;
     }
-    private void Update()
+    private void HandleTankDeath()
     {
-        //TODO: Fix - Should be event based
-        tanksDestroyed = 0;
-        for (int i = 0; i < tanks.Length; i++)
-        {
-            if (tanks[i] != null)
-            {
-                tanksDestroyed++;
-            }
-        }
+        tanksQuantity--;
 
-        if (tanksDestroyed == 0)
+        if (tanksQuantity == 0)
         {
             Destroy(gameObject);
         }
-
     }
 }

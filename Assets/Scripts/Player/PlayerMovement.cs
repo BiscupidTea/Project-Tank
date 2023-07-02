@@ -1,6 +1,6 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -29,6 +29,22 @@ public class PlayerMovement : MonoBehaviour
             this.forward = forward;
             this.back = back;
         }
+
+        public int ReturnIntWheelMove()
+        {
+            if (!forward && !back || forward && back)
+            {
+                return 0;
+            }
+            else if (forward)
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
     }
 
     [SerializeField] private Scroll_Track scroll_Track;
@@ -48,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalMovement;
     private float verticalMovement;
     private bool isRotating;
-    private bool isMoving;
 
     private void Start()
     {
@@ -79,8 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
         playerRigidbody.velocity = Vector3.ClampMagnitude(playerRigidbody.velocity, maxSpeed);
 
-        //TODO: TP2 - SOLID
-        RotateTexture();
+        AssingWheelRotation();
     }
 
     private float GetModifiedForceBasedOnRotation(float force, bool IsRotating)
@@ -116,28 +130,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        for (int i = 0; i < collisionCheckers.Length; i++)
-        {
-            if (collisionCheckers[i].Origin == null)
-            {
-                continue;
-            }
-
-            if (collisionCheckers[i].IsColliding(verticalMovement))
-            {
-                Gizmos.color = Color.red;
-            }
-            else
-            {
-                Gizmos.color = Color.green;
-            }
-            Gizmos.DrawRay(collisionCheckers[i].Origin.position, collisionCheckers[i].Origin.forward * collisionCheckers[i].Distance * verticalMovement);
-        }
-    }
-
-    private void RotateTexture()
+    private void AssingWheelRotation()
     {
         WheelConfig newWheelMovemntRight = new WheelConfig(false, false);
         WheelConfig newWheelMovemntLeft = new WheelConfig(false, false);
@@ -159,15 +152,35 @@ public class PlayerMovement : MonoBehaviour
             newWheelMovemntRight.back = true;
             newWheelMovemntLeft.forward = true;
         }
-        else if(horizontalMovement == -1)
+        else if (horizontalMovement == -1)
         {
             newWheelMovemntRight.forward = true;
             newWheelMovemntLeft.back = true;
         }
 
-        scroll_Track.AssignMoveTrack(newWheelMovemntRight, newWheelMovemntLeft);
+        scroll_Track.AssignTrackMove(newWheelMovemntRight, newWheelMovemntLeft);
     }
 
+    private void OnDrawGizmos()
+    {
+        for (int i = 0; i < collisionCheckers.Length; i++)
+        {
+            if (collisionCheckers[i].Origin == null)
+            {
+                continue;
+            }
+
+            if (collisionCheckers[i].IsColliding(verticalMovement))
+            {
+                Gizmos.color = Color.red;
+            }
+            else
+            {
+                Gizmos.color = Color.green;
+            }
+            Gizmos.DrawRay(collisionCheckers[i].Origin.position, collisionCheckers[i].Origin.forward * collisionCheckers[i].Distance * verticalMovement);
+        }
+    }
 
 #if UNITY_EDITOR
     private void OnGUI()

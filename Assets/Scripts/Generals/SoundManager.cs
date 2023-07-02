@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
-//TODO: Documentation - Add summary
+/// <summary>
+/// Sound Manage, you can give it a sound or a song and it will play it
+/// </summary>
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource effectSource;
-    [SerializeField] public AudioClip button;
 
+    public AudioSource MusicSource { get => musicSource; set => musicSource = value; }
 
     private void Awake()
     {
@@ -23,39 +22,40 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
     }
 
+    /// <summary>
+    /// Play the audio clip inserted
+    /// </summary>
+    /// <param name="clip"></param>
     public void PlaySound(AudioClip clip)
     {
         effectSource.PlayOneShot(clip);
     }
-
-    public AudioSource GetMusicSource()
+    /// <summary>
+    /// Play the music inserted
+    /// </summary>
+    /// <param name="clip"></param>
+    public void PlayMusic(AudioClip clip)
     {
-        return musicSource;
+        MusicSource.clip = clip;
+        MusicSource.Play();
     }
+
+    /// <summary>
+    /// Stop music that is playing
+    /// </summary>
+    public void StopMusic()
+    {
+        MusicSource.Stop();
+    }
+
+    /// <summary>
+    /// change audio state off/on
+    /// </summary>
     public void ToggleAudio()
     {
         effectSource.mute = !effectSource.mute;
-        musicSource.mute = !musicSource.mute;
-        PlaySound(button);
+        MusicSource.mute = !MusicSource.mute;
     }
-
-    public void PlaySound(AudioClip clip, float volume)
-    {
-        effectSource.PlayOneShot(clip, volume);
-    }
-
-    public void PlayMusic(AudioClip clip)
-    {
-        musicSource.clip = clip;
-        musicSource.Play();
-    }
-
-    public void StopMusic()
-    {
-        musicSource.Stop();
-    }
-
 }

@@ -7,23 +7,27 @@ public class Enemy_Shoot : MonoBehaviour
     [Header("GameObjects Info")]
     [SerializeField] private GameObject turret;
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject Shell;
+    [SerializeField] private GameObject shell;
     [SerializeField] private GameObject shootShellPosition;
 
     [Header("Basic Info")]
-    [SerializeField] private float ViewRagnge;
-    [SerializeField] private float ShootRange;
-    [SerializeField] private float RotationSpeed;
+    [SerializeField] private float viewRagnge;
+    [SerializeField] private float shootRange;
+    [SerializeField] private float rotationSpeed;
     [SerializeField] private bool shootTurret;
 
     [Header("Shoot Info")]
-    [SerializeField] private float Damage;
-    [SerializeField] private float ReloadTime;
+    [SerializeField] private float damage;
+    [SerializeField] private float reloadTime;
     [SerializeField] private float shootForce;
 
     private float timerReload;
-    private bool TargetingPlayer;
-    private bool AttackingPlayer;
+    private bool targetingPlayer;
+    private bool attackingPlayer;
+
+    public float Damage { get => damage; set => damage = value; }
+    public bool TargetingPlayer { get => targetingPlayer; set => targetingPlayer = value; }
+    public float ShootRange { get => shootRange; set => shootRange = value; }
 
     private void Start()
     {
@@ -34,56 +38,34 @@ public class Enemy_Shoot : MonoBehaviour
     }
     private void Update()
     {
-        DetectViewPlayer();
-        DetectAttackPlayer();
+        DetectAndAttackPlayer();
 
         RotateTurret();
         AttackPlayer();
 
         timerReload += Time.deltaTime;
     }
-    private void DetectViewPlayer()
+    private void DetectAndAttackPlayer()
     {
         var distancePlayerEnemy = Vector3.Distance(transform.position, player.transform.position);
-        //TODO: Fix - targetingPlayer = (distancePlayerEnemy <= ViewRagnge)
-        if (distancePlayerEnemy <= ViewRagnge)
-        {
-            TargetingPlayer = true;
-        }
-        else
-        {
-            TargetingPlayer = false;
-        }
-    }
-
-    private void DetectAttackPlayer()
-    {
-        //TODO: Fix - Repeated code
-        var distancePlayerEnemy = Vector3.Distance(transform.position, player.transform.position);
-        if (distancePlayerEnemy <= ShootRange)
-        {
-            AttackingPlayer = true;
-        }
-        else
-        {
-            AttackingPlayer = false;
-        }
+        targetingPlayer = (distancePlayerEnemy <= viewRagnge);
+        attackingPlayer = (distancePlayerEnemy <= ShootRange);
     }
 
     private void RotateTurret()
     {
-        if (TargetingPlayer)
+        if (targetingPlayer)
         {
             if (shootTurret)
             {
                 Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - turret.transform.position);
                 //TODO: Fix - Repeated code
-                turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, RotationSpeed * Time.deltaTime);
+                turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, rotationSpeed * Time.deltaTime);
             }
             else
             {
                 Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - new Vector3(0, 3, 0) - turret.transform.position);
-                turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, RotationSpeed * Time.deltaTime);
+                turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, rotationSpeed * Time.deltaTime);
             }
         }
     }
@@ -91,11 +73,11 @@ public class Enemy_Shoot : MonoBehaviour
     private void AttackPlayer()
     {
         //TODO: TP2 - FSM
-        if (AttackingPlayer)
+        if (attackingPlayer)
         {
-            if (timerReload >= ReloadTime)
+            if (timerReload >= reloadTime)
             {
-                GameObject NewBullet = Instantiate(Shell, shootShellPosition.transform.position, shootShellPosition.transform.rotation);
+                GameObject NewBullet = Instantiate(shell, shootShellPosition.transform.position, shootShellPosition.transform.rotation);
                 NewBullet.GetComponent<Rigidbody>().AddForce(shootShellPosition.transform.forward * shootForce, ForceMode.Impulse);
                 timerReload = 0;
             }
@@ -104,32 +86,14 @@ public class Enemy_Shoot : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(gameObject.transform.position, ViewRagnge);
+        Gizmos.DrawWireSphere(gameObject.transform.position, viewRagnge);
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(gameObject.transform.position, ShootRange);
 
-        if (player && AttackingPlayer)
+        if (player && attackingPlayer)
         {
             Gizmos.DrawLine(turret.transform.position, player.transform.position);
         }
-    }
-
-    //TODO: Fix - Should be native Setter/Getter
-    public float GetDamage()
-    {
-        return Damage;
-    }
-
-    //TODO: Fix - Should be native Setter/Getter
-    public bool IsTargetingPlayer()
-    {
-        return TargetingPlayer;
-    }
-
-    //TODO: Fix - Should be native Setter/Getter
-    public float GetDistanceShoot()
-    {
-        return ShootRange;
     }
 }

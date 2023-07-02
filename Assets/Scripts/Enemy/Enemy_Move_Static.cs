@@ -22,7 +22,7 @@ public class Enemy_Move_Static : MonoBehaviour
     }
     void Update()
     {
-        if (enemy_Shoot.IsTargetingPlayer())
+        if (enemy_Shoot.TargetingPlayer)
         {
             if (isRotating)
             {
@@ -41,18 +41,14 @@ public class Enemy_Move_Static : MonoBehaviour
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotTarget, rotateSpeed * Time.deltaTime);
 
-        //TODO: Fix - isRotating = (transform.rotation == rotTarget)
-        if (transform.rotation == rotTarget)
-        {
-            isRotating = false;
-        }
+        isRotating = (transform.rotation == rotTarget);
     }
     private void MoveEnemy()
     {
         //TODO: Fix - Repeated code
         Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - transform.position);
 
-        if (Vector3.Distance(transform.position, player.transform.position) > enemy_Shoot.GetDistanceShoot() - 1)
+        if (Vector3.Distance(transform.position, player.transform.position) > enemy_Shoot.ShootRange - 1)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
         }

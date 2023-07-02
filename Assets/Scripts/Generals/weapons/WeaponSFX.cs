@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponSFX : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Weapon weapon;
+    [SerializeField] private AudioClip weaponSound;
+
+    private void Awake()
     {
-        
+        weapon.OnShoot += OnAction;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnAction()
     {
-        
+        SoundManager.Instance.PlaySound(weaponSound);
     }
 }

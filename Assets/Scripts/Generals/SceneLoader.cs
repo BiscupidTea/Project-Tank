@@ -1,40 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public void GoToMenu()
+    public void LoadLevel(string levelName)
     {
-        //TODO: Fix - Hardcoded value - Receive index as parameter and set it in the button call
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(levelName);
     }
-
-    public void GoToTutorial()
-    {
-        SceneManager.LoadScene(1);
-    }
-
-    public void Level1()
-    {
-        SceneManager.LoadScene(2);
-    }
-
-    public void Level2()
-    {
-        SceneManager.LoadScene(3);
-    }
-
-    public void LevelFinalBoss() 
-    {
-        SceneManager.LoadScene(4);
-    }
-    public void GoToExit()
+    public void ExitGame()
     {
         Application.Quit();
-    }
-
-    
-
+    } 
 }

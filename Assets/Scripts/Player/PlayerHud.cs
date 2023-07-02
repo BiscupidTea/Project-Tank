@@ -8,7 +8,7 @@ public class PlayerHud : MonoBehaviour
     [SerializeField] private Canvas canvasUI;
 
     [Header("Aim Info")]
-    [SerializeField] private PlayerCameraController playerCameraController;
+    [SerializeField] private PlayerCamera playerCamera;
     [SerializeField] private GameObject cross;
 
     [Header("HealthBar Info")]
@@ -29,12 +29,12 @@ public class PlayerHud : MonoBehaviour
     private int totalTanks;
 
     [Header("Pause Info")]
-    [SerializeField] private PauseSyestem pause;
+    [SerializeField] private PauseSystem pause;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerCameraController = player.GetComponent<PlayerCameraController>();
+        playerCamera = player.GetComponent<PlayerCamera>();
         playerShoot = player.GetComponent<PlayerShoot>();
         healthPlayer = player.GetComponent<Health>();
 
@@ -62,7 +62,7 @@ public class PlayerHud : MonoBehaviour
 
         SetTankShow();
 
-        if (pause.returnIsPaused())
+        if (pause.IsPause)
         {
             canvasUI.enabled = false;
         }
@@ -74,7 +74,7 @@ public class PlayerHud : MonoBehaviour
 
     private void SetAim()
     {
-        if (playerCameraController.IsAiming())
+        if (playerCamera.IsAiming)
         {
             cross.SetActive(true);
         }

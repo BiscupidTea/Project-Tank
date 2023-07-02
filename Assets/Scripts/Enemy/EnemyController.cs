@@ -13,7 +13,6 @@ public class EnemyController : MonoBehaviour
     {
         health.OnDeath += HandleDeath;
     }
-
     private void HandleDeath()
     {
         Destroy(gameObject);

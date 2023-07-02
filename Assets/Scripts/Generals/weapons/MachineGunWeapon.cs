@@ -1,51 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class MachineGunWeapon : Weapon
 {
+    [SerializeField] private int bulletsCosume;
     [SerializeField] private float damage;
     [SerializeField] private float force;
     [SerializeField] private float range;
-    [SerializeField] private TrailRenderer PrefabBulletTrail;
+    public event Action<Vector3> OnShootMachineGun;
+
     public override void Shoot()
     {
-        RaycastHit hit;
-        TrailRenderer trail = Instantiate(PrefabBulletTrail, InitialShootPosition.position, Quaternion.identity);
-
-        if (Physics.Raycast(InitialShootPosition.position, InitialShootPosition.forward, out hit, range))
+        if (TryConsumeAmmo(1))
         {
-            StartCoroutine(SpawnTrail(trail, hit.point));
-
-            if (hit.rigidbody)
+            RaycastHit hit;
+            if (Physics.Raycast(InitialShootPosition.position, InitialShootPosition.forward, out hit, range))
             {
-                if (hit.collider.TryGetComponent<Health>(out var health))
+                OnShootMachineGun?.Invoke(hit.point);
+
+                if (hit.rigidbody)
                 {
-                    health.ReceiveDamage(damage);
+                    if (hit.collider.TryGetComponent<Health>(out var health))
+                    {
+                        health.ReceiveDamage(damage);
+                    }
+                    hit.rigidbody.AddForce(InitialShootPosition.forward * force, ForceMode.Impulse);
                 }
-                hit.rigidbody.AddForce(InitialShootPosition.forward * force, ForceMode.Impulse);
+            }
+            else
+            {
+                Vector3 defaultPos = InitialShootPosition.position + InitialShootPosition.forward * range;
+                OnShootMachineGun?.Invoke(defaultPos);
             }
         }
-        else
-        {
-            Vector3 defaultPos = InitialShootPosition.position + InitialShootPosition.forward * range;
-            StartCoroutine(SpawnTrail(trail, defaultPos));
-        }
-        ConsumeAmmo(1);
-    }
-
-    private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 EndPosition)
-    {
-        float time = 0;
-        Vector3 startPosition = trail.transform.position;
-        while (time < 1)
-        {
-            trail.transform.position = Vector3.Lerp(startPosition, EndPosition, time);
-            time += Time.deltaTime / trail.time;
-            yield return null;
-        }
-        trail.transform.position = EndPosition;
-
-        Destroy(trail.gameObject, trail.time);
     }
 }
