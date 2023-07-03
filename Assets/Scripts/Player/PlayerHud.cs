@@ -7,6 +7,7 @@ public class PlayerHud : MonoBehaviour
 {
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GameObject player;
+    [SerializeField] private WinCondition winCondition;
 
     [Header("Canvas Info")]
     [SerializeField] private CanvasGroup winCanvas;
@@ -111,6 +112,16 @@ public class PlayerHud : MonoBehaviour
                 SwitchCanvas(UICanvas, CurrentCanvas);
             }
         }
+
+        if (winCondition.playerWin)
+        {
+            SwitchCanvas(winCanvas, UICanvas);
+        }
+        
+        if(winCondition.playerLose)
+        {
+            SwitchCanvas(loseCanvas, UICanvas);
+        }
     }
 
     private void SetAim()
@@ -167,14 +178,8 @@ public class PlayerHud : MonoBehaviour
 
     public void SwitchCanvas(CanvasGroup canvasEnable, CanvasGroup canvasDisable)
     {
-        canvasEnable.alpha = 1;
-        canvasEnable.interactable = true;
-        canvasEnable.blocksRaycasts = true;
-
-        canvasDisable.alpha = 0;
-        canvasDisable.interactable = false;
-        canvasDisable.blocksRaycasts = false;
-
+        EnableCanvas(canvasEnable);
+        DisableCanvas(canvasDisable);
         CurrentCanvas = canvasEnable;
     }
 

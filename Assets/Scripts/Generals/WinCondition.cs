@@ -1,12 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class WinCondition : MonoBehaviour
 {
-    [SerializeField] private SceneLoader _sceneLoader;
-    [SerializeField] private PlayerHud playerHud;
+    [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private GameObject[] tanks;
     [SerializeField] private Health player;
     private int tanksDestroyed;
+    public bool playerWin;
+    public bool playerLose;
 
     private void Start()
     {
@@ -32,14 +34,16 @@ public class WinCondition : MonoBehaviour
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
-                playerHud.SwitchCanvas(playerHud.WinCanvas, playerHud.CurrentCanvas);
+                playerWin = true;
+                playerLose = false;
             }
         }
         else
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            playerHud.SwitchCanvas(playerHud.LoseCanvas, playerHud.CurrentCanvas);
+            playerLose = true;
+            playerWin = false;
         }
     }
 }

@@ -7,6 +7,10 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(levelName);
     }
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(gameObject.scene.name);
+    }
     public void ExitGame()
     {
         Application.Quit();
