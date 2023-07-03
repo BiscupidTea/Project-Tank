@@ -1,23 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class WinCondition : MonoBehaviour
 {
     [SerializeField] private SceneLoader _sceneLoader;
-    [SerializeField] private Canvas WinScreen;
-    [SerializeField] private Canvas LoseScreen;
-    [SerializeField] private Canvas UI;
+    [SerializeField] private PlayerHud playerHud;
     [SerializeField] private GameObject[] tanks;
     [SerializeField] private Health player;
     private int tanksDestroyed;
 
     private void Start()
     {
-        UI.enabled = true;
-        LoseScreen.enabled = false;
-        WinScreen.enabled = false;
         for (int i = 0; i < tanks.Length; i++)
         {
             tanksDestroyed++;
@@ -40,25 +32,14 @@ public class WinCondition : MonoBehaviour
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
-                UI.enabled = false;
-                WinScreen.enabled = true;
+                playerHud.SwitchCanvas(playerHud.WinCanvas, playerHud.CurrentCanvas);
             }
         }
         else
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            UI.enabled = false;
-            LoseScreen.enabled = true;
-        }
-
-        if (WinScreen.enabled == true)
-        {
-            UI.enabled = false;
-        }
-        else if (LoseScreen.enabled == true)
-        {
-            UI.enabled = false;
+            playerHud.SwitchCanvas(playerHud.LoseCanvas, playerHud.CurrentCanvas);
         }
     }
 }

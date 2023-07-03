@@ -11,19 +11,10 @@ public class PauseSystem : MonoBehaviour
     {
         IsPause = false;
         Time.timeScale = 1;
-
-        canvasPause.alpha = IsPause ? 1 : 0;
-        canvasPause.blocksRaycasts = IsPause;
-        canvasPause.interactable = IsPause;
     }
 
     public void SwitchPause()
     {
-        IsPause = !IsPause;
-        canvasPause.alpha = IsPause ? 1 : 0;
-        canvasPause.blocksRaycasts = IsPause;
-        canvasPause.interactable = IsPause;
-
         if (IsPause)
         {
             Cursor.visible = true;

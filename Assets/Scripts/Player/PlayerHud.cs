@@ -1,12 +1,19 @@
 using TMPro;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PlayerHud : MonoBehaviour
 {
+    [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GameObject player;
-    [SerializeField] private Canvas canvasUI;
+
+    [Header("Canvas Info")]
+    [SerializeField] private CanvasGroup winCanvas;
+    [SerializeField] private CanvasGroup loseCanvas;
+    [SerializeField] private CanvasGroup UiCanvas;
+    [SerializeField] private CanvasGroup pauseCanvas;
+    [SerializeField] private CanvasGroup currentCanvas;
 
     [Header("Aim Info")]
     [SerializeField] private PlayerCamera playerCamera;
@@ -33,6 +40,12 @@ public class PlayerHud : MonoBehaviour
     [Header("Pause Info")]
     [SerializeField] private PauseSystem pause;
 
+    public CanvasGroup WinCanvas { get => winCanvas; set => winCanvas = value; }
+    public CanvasGroup LoseCanvas { get => loseCanvas; set => loseCanvas = value; }
+    public CanvasGroup UICanvas { get => UiCanvas; set => UiCanvas = value; }
+    public CanvasGroup PauseCanvas { get => pauseCanvas; set => pauseCanvas = value; }
+    public CanvasGroup CurrentCanvas { get => currentCanvas; set => currentCanvas = value; }
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -40,13 +53,21 @@ public class PlayerHud : MonoBehaviour
         playerShoot = player.GetComponent<PlayerShoot>();
         healthPlayer = player.GetComponent<Health>();
 
+        CurrentCanvas = UICanvas;
+
         healthSliderPlayer.maxValue = healthPlayer.CurrentHealth;
         healthSliderPlayer.value = healthPlayer.CurrentHealth;
+
+        DisableCanvas(loseCanvas);
+        DisableCanvas(winCanvas);
+        DisableCanvas(pauseCanvas);
+        EnableCanvas(UICanvas);
 
         if (isBoss)
         {
             tankSprite.enabled = false;
             tankInfo.enabled = false;
+
             healthSliderBoss.enabled = true;
             healthSliderBoss.maxValue = healthBoss.CurrentHealth;
             healthSliderBoss.value = healthBoss.CurrentHealth;
@@ -55,6 +76,7 @@ public class PlayerHud : MonoBehaviour
         {
             tankSprite.enabled = true;
             tankInfo.enabled = true;
+
             healthSliderBoss.enabled = false;
         }
 
@@ -75,11 +97,14 @@ public class PlayerHud : MonoBehaviour
 
         if (pause.IsPause)
         {
-            canvasUI.enabled = false;
+            SwitchCanvas(PauseCanvas, CurrentCanvas);
         }
         else
         {
-            canvasUI.enabled = true;
+            if (currentCanvas != UICanvas)
+            {
+                SwitchCanvas(UICanvas, CurrentCanvas);
+            }
         }
     }
 
@@ -105,7 +130,7 @@ public class PlayerHud : MonoBehaviour
         }
     }
     private void SetWeaponSelect()
-    {   
+    {
         for (int i = 0; i < playerShoot.TotalWeapons; i++)
         {
             if (i == playerShoot.WeaponInUse)
@@ -133,5 +158,38 @@ public class PlayerHud : MonoBehaviour
             }
             tankInfo.text = totalTanks.ToString();
         }
+    }
+
+    public void SwitchCanvas(CanvasGroup canvasEnable, CanvasGroup canvasDisable)
+    {
+        canvasEnable.alpha = 1;
+        canvasEnable.interactable = true;
+        canvasEnable.blocksRaycasts = true;
+
+        canvasDisable.alpha = 0;
+        canvasDisable.interactable = false;
+        canvasDisable.blocksRaycasts = false;
+
+        CurrentCanvas = canvasEnable;
+    }
+
+    public void SetFirstButton(GameObject firstButton)
+    {
+        eventSystem.SetSelectedGameObject(firstButton);
+        Debug.Log(eventSystem.currentSelectedGameObject);
+    }
+
+    public void DisableCanvas(CanvasGroup canvas)
+    {
+        canvas.alpha = 0;
+        canvas.interactable = false;
+        canvas.blocksRaycasts = false;
+    }
+
+    public void EnableCanvas(CanvasGroup canvas)
+    {
+        canvas.alpha = 1;
+        canvas.interactable = true;
+        canvas.blocksRaycasts = true;
     }
 }

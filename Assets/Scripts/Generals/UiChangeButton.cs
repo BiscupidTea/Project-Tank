@@ -33,7 +33,6 @@ public class UiChangeButton : MonoBehaviour
     public void SetFirstButton(GameObject firstButton)
     {
         eventSystem.SetSelectedGameObject(firstButton);
-        Debug.Log(eventSystem.currentSelectedGameObject); 
     }
 
     public void GoToMenu()
