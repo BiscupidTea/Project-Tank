@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcb53ea386526b48a96f7aa38a9d7b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 1000
   isAlive: 1
 --- !u!114 &4973301059510607481
 MonoBehaviour:
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17fa3d058a9018418284dba2e7294bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
+  health: {fileID: 1426569372}
 --- !u!114 &1651835337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,8 +572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turret: {fileID: 6240271692117909160}
   cannon: {fileID: 2093735754294893977}
-  viewRange: 180
-  shootRange: 180
+  viewRange: 250
+  shootRange: 200
   rotationSpeed: 50
 --- !u!114 &6154830286252981548
 MonoBehaviour:
@@ -710,6 +710,18 @@ PrefabInstance:
     - target: {fileID: 4441266138185142, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4441266138185142, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 9.887299
+      objectReference: {fileID: 0}
+    - target: {fileID: 4441266138185142, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9.887299
+      objectReference: {fileID: 0}
+    - target: {fileID: 4441266138185142, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 9.887299
       objectReference: {fileID: 0}
     - target: {fileID: 4441266138185142, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4, type: 3}
       propertyPath: m_LocalPosition.x

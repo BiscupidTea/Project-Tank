@@ -2827,6 +2827,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d14c9acd0c80e43b190a7d28f657fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5546349196839647491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4275915493742629512, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+  m_PrefabInstance: {fileID: 8624267160203045771}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8624267160203045771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2986,6 +2991,10 @@ PrefabInstance:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 1579207831}
+    - target: {fileID: 6899756920408652194, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: healthGameObjectBoss
+      value: 
+      objectReference: {fileID: 5546349196839647491}
     - target: {fileID: 7110660277506427466, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: m_Name
       value: Canvas

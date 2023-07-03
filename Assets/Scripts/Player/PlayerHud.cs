@@ -19,12 +19,15 @@ public class PlayerHud : MonoBehaviour
     [SerializeField] private PlayerCamera playerCamera;
     [SerializeField] private GameObject cross;
 
-    [Header("HealthBar Info")]
+    [Header("HealthBar Player Info")]
     [SerializeField] private Health healthPlayer;
     [SerializeField] private Health healthBoss;
+    [SerializeField] private Slider healthSliderPlayer;
+
+    [Header("HealthBar Boss Info")]
     [SerializeField] private TextMeshProUGUI healthBossNumber;
     [SerializeField] private bool isBoss;
-    [SerializeField] private Slider healthSliderPlayer;
+    [SerializeField] private GameObject healthGameObjectBoss;
     [SerializeField] private Slider healthSliderBoss;
 
     [Header("Weapons Info")]
@@ -69,6 +72,7 @@ public class PlayerHud : MonoBehaviour
             tankInfo.enabled = false;
 
             healthSliderBoss.enabled = true;
+            healthGameObjectBoss.SetActive(true);
             healthSliderBoss.maxValue = healthBoss.CurrentHealth;
             healthSliderBoss.value = healthBoss.CurrentHealth;
         }
@@ -78,6 +82,7 @@ public class PlayerHud : MonoBehaviour
             tankInfo.enabled = true;
 
             healthSliderBoss.enabled = false;
+            healthGameObjectBoss.SetActive(false);
         }
 
         for (int i = 0; i < tanks.Length; i++)
