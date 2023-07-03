@@ -33,6 +33,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "SetCameraConstantRotation",
+                    "type": "Value",
+                    "id": "4ef01bd3-754c-490c-bf44-e53e3e499799",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "FreeCamera",
                     "type": "Button",
                     "id": "33c1f77b-245c-4bac-9824-fee49e207d43",
@@ -224,17 +233,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f39c7777-6b03-41ad-8d2b-fc25358cf479",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "ScaleVector2(x=3,y=3)",
-                    "groups": "",
-                    "action": "MoveCamera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b45249c9-ba4a-4020-bef2-fee2d6cbc095",
                     "path": "<Keyboard>/c",
                     "interactions": "",
@@ -340,6 +338,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f18467aa-ba0c-4ba5-82ba-89b2b883a5b3",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=5,y=5)",
+                    "groups": "",
+                    "action": "SetCameraConstantRotation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -11,7 +11,6 @@ public class ShellLogic : MonoBehaviour
     [SerializeField] private float explotionForce;
     [SerializeField] private float explotionRadius;
     [SerializeField] private float explotionTimerAnimation;
-    [SerializeField] private PlayerShoot playerShotlogic;
     [SerializeField] private float damage;
     public float Damage { get => damage; set => damage = value; }
 

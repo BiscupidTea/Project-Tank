@@ -103,7 +103,7 @@ public class PlayerHud : MonoBehaviour
             }
             else
             {
-                weaponImage[i].color = Color.white;
+                weaponImage[i].color = Color.black;
             }
         }
     }

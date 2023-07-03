@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 5668808103688728711}
   - component: {fileID: 6543535436523177110}
   - component: {fileID: 6016909988756290251}
+  - component: {fileID: 7370717202650630128}
   - component: {fileID: 5668808103688728710}
   - component: {fileID: 5668808103688728707}
   - component: {fileID: 5668808103688728704}
@@ -380,6 +381,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1f5c7cdd-32fb-49d7-a69b-6263f573935e
     m_ActionName: Game/Pause[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4ef01bd3-754c-490c-bf44-e53e3e499799
+    m_ActionName: Game/SetCameraConstantRotation[/XInputControllerWindows/rightStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -414,6 +419,19 @@ MonoBehaviour:
   playerShoot: {fileID: 5668808103688728705}
   playerMovemnt: {fileID: 5668808103688728710}
   pauseSystem: {fileID: 0}
+  playerCamera: {fileID: 5668808103688728707}
+--- !u!114 &7370717202650630128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668808103688728825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775cb6f575967a744ab83bc31db01092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerCamera: {fileID: 5668808103688728707}
 --- !u!114 &5668808103688728710
 MonoBehaviour:
