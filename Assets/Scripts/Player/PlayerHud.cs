@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +26,7 @@ public class PlayerHud : MonoBehaviour
 
     [Header("TankRemaing Info")]
     [SerializeField] private GameObject[] tanks;
+    [SerializeField] private Image tankSprite;
     [SerializeField] private TextMeshProUGUI tankInfo;
     private int totalTanks;
 
@@ -43,8 +45,17 @@ public class PlayerHud : MonoBehaviour
 
         if (isBoss)
         {
+            tankSprite.enabled = false;
+            tankInfo.enabled = false;
+            healthSliderBoss.enabled = true;
             healthSliderBoss.maxValue = healthBoss.CurrentHealth;
             healthSliderBoss.value = healthBoss.CurrentHealth;
+        }
+        else
+        {
+            tankSprite.enabled = true;
+            tankInfo.enabled = true;
+            healthSliderBoss.enabled = false;
         }
 
         for (int i = 0; i < tanks.Length; i++)

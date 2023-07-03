@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5210192802611845743}
   - component: {fileID: 6761399807706487044}
   - component: {fileID: 282361557159267344}
-  - component: {fileID: 3530507652380075609}
+  - component: {fileID: 2998478555026305261}
   m_Layer: 7
   m_Name: Boss_Shell
   m_TagString: Untagged
@@ -149,7 +149,7 @@ CapsuleCollider:
   m_Height: 2.468731
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3530507652380075609
+--- !u!114 &2998478555026305261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,17 +158,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 4829409194887708885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 667bbaac356194f42974ebddd679efdf, type: 3}
+  m_Script: {fileID: 11500000, guid: c8f060cb7f3cffd4f9ddb885d6d970e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Shell: {fileID: 4829409194887708885}
   ShellRender: {fileID: 0}
   ExplotionAnimation: {fileID: 1214540017548006883}
   Rigidbody: {fileID: 6761399807706487044}
-  explotionForce: 100
+  LifeTime: 5
+  explotionForce: 200
   explotionRadius: 5
   explotionTimerAnimation: 2
-  enemyShootlogic: {fileID: 4939778704463038442, guid: ad899c9168e7f5c4db7f2447350a5249, type: 3}
+  damage: 0
 --- !u!1001 &1214021373716751449
 PrefabInstance:
   m_ObjectHideFlags: 0
