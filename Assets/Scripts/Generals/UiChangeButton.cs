@@ -22,16 +22,18 @@ public class UiChangeButton : MonoBehaviour
         canvasEnable.alpha = 1;
         canvasEnable.interactable = true;
         canvasEnable.blocksRaycasts = true;
-        currentCanvas = canvasEnable;
 
         canvasDisable.alpha = 0;
         canvasDisable.interactable = false;
         canvasDisable.blocksRaycasts = false;
+
+        currentCanvas = canvasEnable;
     }
 
     public void SetFirstButton(GameObject firstButton)
     {
-        eventSystem.firstSelectedGameObject = firstButton;
+        eventSystem.SetSelectedGameObject(firstButton);
+        Debug.Log(eventSystem.currentSelectedGameObject); 
     }
 
     public void GoToMenu()
