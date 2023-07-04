@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Weapon type - MachineGun
+/// </summary>
 public class MachineGunWeapon : Weapon
 {
     [SerializeField] private int bulletsCosume;

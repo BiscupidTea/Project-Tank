@@ -1,6 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
-
+/// <summary>
+/// shell behavior
+/// </summary>
 public class ShellLogic : MonoBehaviour
 {
     [SerializeField] private GameObject Shell;

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Camera that moves around the player turret
+/// </summary>
 public class FreeCamera : CameraBehavior
 {
     [SerializeField] private Transform turret;

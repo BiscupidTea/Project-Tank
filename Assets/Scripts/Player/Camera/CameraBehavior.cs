@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Base camera
+/// </summary>
 public abstract class CameraBehavior : MonoBehaviour
 {
     [SerializeField] private Camera cameraUsed;

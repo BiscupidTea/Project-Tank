@@ -1,6 +1,8 @@
-using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Win condition manager
+/// </summary>
 public class WinCondition : MonoBehaviour
 {
     [SerializeField] private SceneLoader sceneLoader;

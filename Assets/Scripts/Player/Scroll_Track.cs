@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Rotate the player wheel Texture
+/// </summary>
 public class Scroll_Track : MonoBehaviour
 {
     [SerializeField] private Renderer right;

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Menu Canvas switcher
+/// </summary>
 public class UiChangeButton : MonoBehaviour
 {
     [SerializeField] private EventSystem eventSystem;

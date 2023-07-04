@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// player hud manager
+/// </summary>
 public class PlayerHud : MonoBehaviour
 {
     [SerializeField] private EventSystem eventSystem;

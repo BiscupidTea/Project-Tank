@@ -1,7 +1,9 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// Player Movment manager
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     [Serializable]
@@ -129,7 +131,9 @@ public class PlayerMovement : MonoBehaviour
             isRotating = false;
         }
     }
-
+    /// <summary>
+    /// assign the wheel rotation on the left and right
+    /// </summary>
     private void AssingWheelRotation()
     {
         WheelConfig newWheelMovemntRight = new WheelConfig(false, false);

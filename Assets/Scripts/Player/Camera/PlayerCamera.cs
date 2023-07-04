@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Player camera controller that manage 3 types of cameras
+/// </summary>
 public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private FreeCamera freeCamera;
@@ -17,7 +20,10 @@ public class PlayerCamera : MonoBehaviour
         LockTurret = true;
         isAiming = false;
     }
-
+    /// <summary>
+    /// Camera manager for freeCamera, turretCamera and aimCamera
+    /// </summary>
+    /// <param name="input"></param>
     public void MoveCamera(Vector2 input)
     {
         if (LockTurret)
@@ -39,12 +45,16 @@ public class PlayerCamera : MonoBehaviour
             freeCamera.RotateCamera(input);
         }
     }
-
+    /// <summary>
+    /// Change value of lockTurret
+    /// </summary>
     public void ChangeCameraState()
     {
         LockTurret = !LockTurret;
     }
-
+    /// <summary>
+    /// Change value of isAiming
+    /// </summary>
     public void ChangeAimState()
     {
         IsAiming = !IsAiming;

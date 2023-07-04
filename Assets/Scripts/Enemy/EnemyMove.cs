@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// Enemy move manager whit navMesh
+/// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMove : MonoBehaviour
 {
@@ -58,6 +61,10 @@ public class EnemyMove : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Change destination for enemy
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator UpdateDestination()
     {
 

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Camera input for controller
+/// </summary>
 public class TranslateStickToConstantCameraRotation : MonoBehaviour
 {
     [SerializeField] private PlayerCamera playerCamera;

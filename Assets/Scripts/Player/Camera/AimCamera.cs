@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Camera that moves around the player turret
+/// </summary>
 public class AimCamera : CameraBehavior
 {
     [SerializeField] private Transform aimPosition;
@@ -20,6 +23,9 @@ public class AimCamera : CameraBehavior
 
         LimitCannonRotation();
     }
+    /// <summary>
+    /// Limit the cannon rotation with cannonAngleMin and  cannonAngleMax
+    /// </summary>
     private void LimitCannonRotation()
     {
         actualcannonAngle = Mathf.Clamp(actualcannonAngle, cannonAngleMin, cannonAngleMax);

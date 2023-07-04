@@ -1,7 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Enemy shoot manager
+/// </summary>
 public class Enemy_Shoot : MonoBehaviour
 {
     [Header("GameObjects Info")]
@@ -46,13 +48,19 @@ public class Enemy_Shoot : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// shoot weapon inserted
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator AttackPlayer()
     {
         cannon.Shoot();
         yield return null;
     }
-
+    /// <summary>
+    /// rotate turret towards player
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator TargetPlayer()
     {
         Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - turret.transform.position);

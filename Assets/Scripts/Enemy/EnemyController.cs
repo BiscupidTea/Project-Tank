@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Enemy state Manager
+/// </summary>
 [RequireComponent(typeof(Health))]
 public class EnemyController : MonoBehaviour
 {
@@ -13,6 +16,9 @@ public class EnemyController : MonoBehaviour
     {
         health.OnDeath += HandleDeath;
     }
+    /// <summary>
+    /// kill enemy by debug
+    /// </summary>
     private void HandleDeath()
     {
         Destroy(gameObject);

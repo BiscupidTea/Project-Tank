@@ -1,8 +1,7 @@
 using UnityEngine;
 
-
 /// <summary>
-/// 
+/// level 1 wall that destroys when enemy are destroyed
 /// </summary>
 public class Level_1_wall : MonoBehaviour
 {
@@ -16,7 +15,6 @@ public class Level_1_wall : MonoBehaviour
             tank.OnDeath += HandleTankDeath;
         }
     }
-
     private void Start()
     {
         tanksQuantity = tanks.Length;

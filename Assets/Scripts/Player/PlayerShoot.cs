@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Controls the player shoot
+/// </summary>
 public class PlayerShoot : MonoBehaviour
 {
     [Header("Weapons")]

@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Cannon Visual effect manager
+/// </summary>
 public class CannonVFX : MonoBehaviour
 {
     [SerializeField] private CannonWeapon cannon;

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Pause manager
+/// </summary>
 public class PauseSystem : MonoBehaviour
 {
     [SerializeField] private CanvasGroup canvasPause;
@@ -15,7 +18,9 @@ public class PauseSystem : MonoBehaviour
         IsPause = false;
         Time.timeScale = 1;
     }
-
+    /// <summary>
+    /// Change the pause state, change the time scale and show/hide cursor
+    /// </summary>
     public void SwitchPause()
     {
         isPause = !isPause;

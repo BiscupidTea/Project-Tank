@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Rotate the Enemy wheel Texture
+/// </summary>
 public class Scroll_TrackEnemy : MonoBehaviour {
 
     [SerializeField]

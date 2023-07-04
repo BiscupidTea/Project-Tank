@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Camera that moves the player turret
+/// </summary>
 public class TurretCamera : CameraBehavior
 {
     [SerializeField] private Transform turret;
@@ -8,6 +11,7 @@ public class TurretCamera : CameraBehavior
     [SerializeField] float cannonAngleMin = -10;
 
     private float actualcannonAngle = 0;
+
     public override void RotateCamera(Vector2 input)
     {
         turret.transform.RotateAround(turret.position, turret.up, ScaledDelta.x * RotationSpeedCamera.x);
@@ -18,7 +22,9 @@ public class TurretCamera : CameraBehavior
 
         LimitCannonRotation();
     }
-
+    /// <summary>
+    /// Limit the cannon rotation with cannonAngleMin and  cannonAngleMax
+    /// </summary>
     private void LimitCannonRotation()
     {
         actualcannonAngle = Mathf.Clamp(actualcannonAngle, cannonAngleMin, cannonAngleMax);

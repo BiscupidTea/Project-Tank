@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// player input controller
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerShoot playerShoot;
@@ -26,7 +29,10 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// Take input for move player forward and back
+    /// </summary>
+    /// <param name="input"></param>
     public void OnMoveFB(InputAction.CallbackContext input)
     {
         if (!pauseSystem.IsPause)
@@ -35,7 +41,10 @@ public class PlayerController : MonoBehaviour
             playerMovemnt.MovePlayerForwardBack(ActualInput);
         }
     }
-
+    /// <summary>
+    /// Take input for move player rotation
+    /// </summary>
+    /// <param name="input"></param>
     public void OnMoveRo(InputAction.CallbackContext input)
     {
         if (!pauseSystem.IsPause)

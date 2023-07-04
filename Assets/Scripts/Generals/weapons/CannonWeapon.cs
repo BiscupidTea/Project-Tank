@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Weapon type - CannonWeapon
+/// </summary>
 public class CannonWeapon : Weapon
 {
     [SerializeField] private float damage;

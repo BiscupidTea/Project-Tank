@@ -1,8 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 
+/// <summary>
+/// MachineGun Visual effect manager
+/// </summary>
 public class MachineGunVFX : MonoBehaviour
 {
     [SerializeField] private MachineGunWeapon machineGun;
