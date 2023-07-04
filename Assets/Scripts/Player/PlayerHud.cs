@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,6 +8,8 @@ public class PlayerHud : MonoBehaviour
 {
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject firstButtonWin;
+    [SerializeField] private GameObject firstButtonLose;
     [SerializeField] private WinCondition winCondition;
 
     [Header("Canvas Info")]
@@ -103,24 +106,31 @@ public class PlayerHud : MonoBehaviour
 
         if (pause.IsPause)
         {
-            SwitchCanvas(PauseCanvas, CurrentCanvas);
+            if (currentCanvas != pauseCanvas)
+            {
+                StartCoroutine(SwitchCanvas(PauseCanvas, CurrentCanvas));
+            }
         }
         else
         {
             if (currentCanvas != UICanvas)
             {
-                SwitchCanvas(UICanvas, CurrentCanvas);
+                StartCoroutine(SwitchCanvas(UICanvas, CurrentCanvas));
             }
         }
 
         if (winCondition.playerWin)
         {
-            SwitchCanvas(winCanvas, UICanvas);
+            StartCoroutine(SwitchCanvas(winCanvas, UICanvas));
+            eventSystem.SetSelectedGameObject(firstButtonWin);
+            Time.timeScale = 0;
         }
-        
-        if(winCondition.playerLose)
+
+        if (winCondition.playerLose)
         {
-            SwitchCanvas(loseCanvas, UICanvas);
+            StartCoroutine(SwitchCanvas(loseCanvas, UICanvas));
+            eventSystem.SetSelectedGameObject(firstButtonLose);
+            Time.timeScale = 0;
         }
     }
 
@@ -176,11 +186,13 @@ public class PlayerHud : MonoBehaviour
         }
     }
 
-    public void SwitchCanvas(CanvasGroup canvasEnable, CanvasGroup canvasDisable)
+    public IEnumerator SwitchCanvas(CanvasGroup canvasEnable, CanvasGroup canvasDisable)
     {
         EnableCanvas(canvasEnable);
         DisableCanvas(canvasDisable);
         CurrentCanvas = canvasEnable;
+        Debug.Log("Change canvas form: " + canvasDisable + " to " + canvasEnable);
+        yield return null;
     }
 
     public void SetFirstButton(GameObject firstButton)

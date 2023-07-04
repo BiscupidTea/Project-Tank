@@ -10,27 +10,39 @@ public class PlayerController : MonoBehaviour
 
     public void ShootInput(InputAction.CallbackContext input)
     {
-        playerShoot.ShootWeapon();
+        if (!pauseSystem.IsPause)
+        {
+            playerShoot.ShootWeapon();
+        }
     }
 
     public void ChangeWeapon(InputAction.CallbackContext input)
     {
-        if (input.performed)
+        if (!pauseSystem.IsPause)
         {
-            playerShoot.SwitchToNextWeapon();
+            if (input.performed)
+            {
+                playerShoot.SwitchToNextWeapon();
+            }
         }
     }
 
     public void OnMoveFB(InputAction.CallbackContext input)
     {
-        float ActualInput = input.ReadValue<float>();
-        playerMovemnt.MovePlayerForwardBack(ActualInput);
+        if (!pauseSystem.IsPause)
+        {
+            float ActualInput = input.ReadValue<float>();
+            playerMovemnt.MovePlayerForwardBack(ActualInput);
+        }
     }
 
     public void OnMoveRo(InputAction.CallbackContext input)
     {
-        float ActualInput = input.ReadValue<float>();
-        playerMovemnt.MovePlayerRightLeft(ActualInput);
+        if (!pauseSystem.IsPause)
+        {
+            float ActualInput = input.ReadValue<float>();
+            playerMovemnt.MovePlayerRightLeft(ActualInput);
+        }
     }
 
     public void ChangePause(InputAction.CallbackContext input)
@@ -40,20 +52,29 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveCamera(InputAction.CallbackContext ctx)
     {
-        Vector2 input = ctx.ReadValue<Vector2>();
-        playerCamera.MoveCamera(input);
+        if (!pauseSystem.IsPause)
+        {
+            Vector2 input = ctx.ReadValue<Vector2>();
+            playerCamera.MoveCamera(input);
+        }
     }
 
     public void FreeCamera(InputAction.CallbackContext input)
     {
-        playerCamera.ChangeCameraState();
+        if (!pauseSystem.IsPause)
+        {
+            playerCamera.ChangeCameraState();
+        }
     }
 
     public void Aim(InputAction.CallbackContext input)
     {
-        if (input.performed)
+        if (!pauseSystem.IsPause)
         {
-            playerCamera.ChangeAimState();
+            if (input.performed)
+            {
+                playerCamera.ChangeAimState();
+            }
         }
     }
 }

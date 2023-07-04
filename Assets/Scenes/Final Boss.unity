@@ -241,7 +241,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2093735754294893977, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
       propertyPath: force
-      value: 150
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 2093735754294893977, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
       propertyPath: reloadTime
@@ -254,6 +254,18 @@ PrefabInstance:
     - target: {fileID: 4982289247614975477, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982289247614975477, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982289247614975477, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982289247614975477, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4982289247614975477, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -303,6 +315,22 @@ PrefabInstance:
       propertyPath: prewarm
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6748458682081360519, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748458682081360519, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748586234097605537, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748586234097605537, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8322648213895008230, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
       propertyPath: m_Name
       value: The Kv-nagi boss
@@ -349,6 +377,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 403640, guid: 197516cbd53895c4a884a452291fd503, type: 3}
   m_PrefabInstance: {fileID: 682471700}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &268964960 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3157794998552900541, guid: 59426dd6ac2a6124296519aafc2451cc, type: 3}
+  m_PrefabInstance: {fileID: 1282659649}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3ddc47a3f7ef34486bbfd89b6b8b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &382052995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -766,6 +805,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4785865420044135325, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5668808103688728708, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -818,6 +861,14 @@ PrefabInstance:
       propertyPath: pauseSystem
       value: 
       objectReference: {fileID: 1874005267}
+    - target: {fileID: 8634996330306031384, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
+      propertyPath: m_TagString
+      value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 8770704938477380701, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
 --- !u!1 &862087870 stripped
@@ -968,11 +1019,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b541118b3217d14fb595ec3c6e3222f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneLoader: {fileID: 1037832795}
-  playerHud: {fileID: 1874005265}
+  sceneLoader: {fileID: 1037832795}
   tanks:
   - {fileID: 1651835336}
   player: {fileID: 1078617499}
+  playerWin: 0
+  playerLose: 0
 --- !u!114 &1037832795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,6 +1787,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2448260334912284977, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448260334912284977, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 268964960}
+    - target: {fileID: 2448260334912284977, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeVolumeMusicSlider
+      objectReference: {fileID: 0}
     - target: {fileID: 3668745207934601892, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1751,6 +1815,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4668952609007972522, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 880979217}
     - target: {fileID: 4756538708862734247, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1773,7 +1841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4828586542910210218, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4828586542910210218, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1847,6 +1915,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4872709817496606549, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 268964960}
+    - target: {fileID: 4872709817496606549, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeVolumeSFXSlider
+      objectReference: {fileID: 0}
     - target: {fileID: 5962467510256714419, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1854,6 +1930,10 @@ PrefabInstance:
     - target: {fileID: 5962467510256714419, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962467511269114593, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Menu
       objectReference: {fileID: 0}
     - target: {fileID: 6713763182598338907, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1879,6 +1959,18 @@ PrefabInstance:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 880979217}
+    - target: {fileID: 6899756920408652194, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: winCondition
+      value: 
+      objectReference: {fileID: 1037832794}
+    - target: {fileID: 6899756920408652194, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: tanks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6899756920408652194, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: tanks.Array.data[0]
+      value: 
+      objectReference: {fileID: 1651835336}
     - target: {fileID: 7110660277506427466, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1925,61 +2017,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 438600, guid: 4fd85412d5d49484faf3fb17d44eea6e, type: 3}
   m_PrefabInstance: {fileID: 104962358}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1797651720
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1797651722}
-  - component: {fileID: 1797651721}
-  m_Layer: 0
-  m_Name: Sounds
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1797651721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797651720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef99222766926d94cb19a156e2234e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1797651722
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797651720}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 634.19635, y: 320.49384, z: -2.5412903}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1874005265 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6899756920408652194, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
-  m_PrefabInstance: {fileID: 1711479877}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77d14c9acd0c80e43b190a7d28f657fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1874005267 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4668952609007972522, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
