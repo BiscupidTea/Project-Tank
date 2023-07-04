@@ -56,6 +56,14 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Stop music that is playing
+    /// </summary>
+    public void PlayMusicAlreadyCharged()
+    {
+        MusicSource.Play();
+    }
+
+    /// <summary>
     /// change audio state off/on
     /// </summary>
     public void ToggleAudio()

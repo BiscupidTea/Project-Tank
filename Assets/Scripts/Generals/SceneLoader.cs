@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    [SerializeField]private SoundManager soundManager;
     public void LoadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
