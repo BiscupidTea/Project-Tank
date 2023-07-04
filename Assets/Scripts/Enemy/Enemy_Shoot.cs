@@ -1,128 +1,79 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Enemy shoot manager
+/// </summary>
 public class Enemy_Shoot : MonoBehaviour
 {
     [Header("GameObjects Info")]
     [SerializeField] private GameObject turret;
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject Shell;
-    [SerializeField] private GameObject shootShellPosition;
+    [SerializeField] private Weapon cannon;
 
     [Header("Basic Info")]
-    [SerializeField] private float ViewRagnge;
-    [SerializeField] private float ShootRange;
-    [SerializeField] private float RotationSpeed;
-    [SerializeField] private bool shootTurret;
+    [SerializeField] private float viewRange;
+    [SerializeField] private float shootRange;
+    [SerializeField] private float rotationSpeed;
 
-    [Header("Shoot Info")]
-    [SerializeField] private float Damage;
-    [SerializeField] private float ReloadTime;
-    [SerializeField] private float shootForce;
+    private bool playerInViewRange;
+    private bool playerInShootRange;
 
-    private float timerReload;
-    private bool TargetingPlayer;
-    private bool AttackingPlayer;
+    private GameObject player;
+    public float ShootRange { get => shootRange; set => shootRange = value; }
+    public float ViewRange { get => viewRange; set => viewRange = value; }
+    public bool PlayerInViewRange { get => playerInViewRange; set => playerInViewRange = value; }
+    public bool PlayerInShootRange { get => playerInShootRange; set => playerInShootRange = value; }
 
     private void Start()
     {
-        if (shootTurret)
-        {
-            player = GameObject.FindGameObjectWithTag("Turret");
-        }
+        player = GameObject.FindGameObjectWithTag("Turret");
+
     }
     private void Update()
     {
-        DetectViewPlayer();
-        DetectAttackPlayer();
-
-        RotateTurret();
-        AttackPlayer();
-
-        timerReload += Time.deltaTime;
-    }
-    private void DetectViewPlayer()
-    {
         var distancePlayerEnemy = Vector3.Distance(transform.position, player.transform.position);
-        if (distancePlayerEnemy <= ViewRagnge)
-        {
-            TargetingPlayer = true;
-        }
-        else
-        {
-            TargetingPlayer = false;
-        }
-    }
 
-    private void DetectAttackPlayer()
-    {
-        var distancePlayerEnemy = Vector3.Distance(transform.position, player.transform.position);
-        if (distancePlayerEnemy <= ShootRange)
+        if (distancePlayerEnemy <= ViewRange)
         {
-            AttackingPlayer = true;
-        }
-        else
-        {
-            AttackingPlayer = false;
-        }
-    }
-
-    private void RotateTurret()
-    {
-        if (TargetingPlayer)
-        {
-            if (shootTurret)
+            PlayerInViewRange = true;
+            StartCoroutine(TargetPlayer());
+            if (distancePlayerEnemy <= ShootRange)
             {
-                Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - turret.transform.position);
-                turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, RotationSpeed * Time.deltaTime);
+                PlayerInShootRange = true;
+                StartCoroutine(AttackPlayer());
             }
             else
             {
-                Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - new Vector3(0, 3, 0) - turret.transform.position);
-                turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, RotationSpeed * Time.deltaTime);
+                PlayerInShootRange = false;
             }
         }
+    }
+    /// <summary>
+    /// shoot weapon inserted
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator AttackPlayer()
+    {
+        cannon.Shoot();
+        yield return null;
+    }
+    /// <summary>
+    /// rotate turret towards player
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator TargetPlayer()
+    {
+        Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - turret.transform.position);
+        turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, rotationSpeed * Time.deltaTime);
+        yield return null;
     }
 
-    private void AttackPlayer()
-    {
-        if (AttackingPlayer)
-        {
-            if (timerReload >= ReloadTime)
-            {
-                GameObject NewBullet = Instantiate(Shell, shootShellPosition.transform.position, shootShellPosition.transform.rotation);
-                NewBullet.GetComponent<Rigidbody>().AddForce(shootShellPosition.transform.forward * shootForce, ForceMode.Impulse);
-                timerReload = 0;
-            }
-        }
-    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(gameObject.transform.position, ViewRagnge);
+        Gizmos.DrawWireSphere(gameObject.transform.position, ViewRange);
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(gameObject.transform.position, ShootRange);
-
-        if (player && AttackingPlayer)
-        {
-            Gizmos.DrawLine(turret.transform.position, player.transform.position);
-        }
-    }
-
-    public float GetDamage()
-    {
-        return Damage;
-    }
-
-    public bool IsTargetingPlayer()
-    {
-        return TargetingPlayer;
-    }
-
-    public float GetDistanceShoot()
-    {
-        return ShootRange;
     }
 }

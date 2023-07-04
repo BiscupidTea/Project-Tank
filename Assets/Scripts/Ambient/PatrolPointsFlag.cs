@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Show Patrol points
+/// </summary>
 public class PatrolPointsFlag : MonoBehaviour
 {
     [SerializeField] private bool showPosition;

@@ -1,21 +1,60 @@
 using System;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 
+/// <summary>
+/// Player Movment manager
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    [Serializable]
+    private struct WallDetectionOrigin
+    {
+        [SerializeField] private Transform origin;
+        [SerializeField] private float distance;
+
+        public Transform Origin { get => origin; set => origin = value; }
+        public float Distance { get => distance; set => distance = value; }
+
+        public bool IsColliding(float directionMultiplier)
+        {
+            return origin != null && Physics.Raycast(Origin.position, Origin.forward * directionMultiplier, Distance);
+        }
+    }
+
+    public struct WheelConfig
+    {
+        public bool forward;
+        public bool back;
+
+        public WheelConfig(bool forward, bool back)
+        {
+            this.forward = forward;
+            this.back = back;
+        }
+
+        public int ReturnIntWheelMove()
+        {
+            if (!forward && !back || forward && back)
+            {
+                return 0;
+            }
+            else if (forward)
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+    }
+
     [SerializeField] private Scroll_Track scroll_Track;
 
     [Header("Setup")]
 
     [SerializeField] private Rigidbody playerRigidbody;
-    [SerializeField] private Transform rayWallLineFoward;
-    [SerializeField] private Transform rayWallLineSide1;
-    [SerializeField] private Transform rayWallLineSide2;
+    [SerializeField] private WallDetectionOrigin[] collisionCheckers;
 
     [Header("Movement")]
 
@@ -24,18 +63,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxTurnSpeed;
     [SerializeField] private float turnSpeed;
 
-    [Header("WallInteraction")]
-    [SerializeField] private float wallDistanceFoward;
-    [SerializeField] private float wallDistanceSides;
-
     private float horizontalMovement;
     private float verticalMovement;
     private bool isRotating;
-    private bool isMoving;
-
-    private bool RayColitioningWallFoward;
-    private bool RayColitioningWallSide1;
-    private bool RayColitioningWallSide2;
 
     private void Start()
     {
@@ -45,24 +75,28 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        ModifyTrayectory(movementForce);
-
-        ModifyTurnRotation();
-
         float force = GetModifiedForceBasedOnRotation(movementForce, isRotating);
-
-        WallLimiter();
 
         playerRigidbody.MoveRotation(playerRigidbody.rotation * Quaternion.Euler(Vector3.up * horizontalMovement * turnSpeed * Time.fixedDeltaTime));
 
-        if (RayColitioningWallFoward && RayColitioningWallSide1 && RayColitioningWallSide2)
+        bool isColidingToWalls = false;
+
+        foreach (var ray in collisionCheckers)
+        {
+            if (ray.IsColliding(verticalMovement))
+            {
+                isColidingToWalls = true;
+            }
+        }
+
+        if (!isColidingToWalls)
         {
             playerRigidbody.AddForce(transform.forward * ((verticalMovement * force)) * Time.fixedDeltaTime, ForceMode.Force);
         }
 
         playerRigidbody.velocity = Vector3.ClampMagnitude(playerRigidbody.velocity, maxSpeed);
 
-        scroll_Track.AssignMoveTrack(RotateTexture());
+        AssingWheelRotation();
     }
 
     private float GetModifiedForceBasedOnRotation(float force, bool IsRotating)
@@ -72,26 +106,9 @@ public class PlayerMovement : MonoBehaviour
         return force;
     }
 
-    private void ModifyTurnRotation()
+    public void MovePlayerForwardBack(float input)
     {
-        if (isMoving)
-        {
-            turnSpeed = maxTurnSpeed;
-        }
-        else
-        {
-            turnSpeed = maxTurnSpeed + maxTurnSpeed / 8;
-        }
-    }
-
-    private void ModifyTrayectory(float currentInput)
-    {
-        isMoving = verticalMovement != 0 ? true : false;
-    }
-
-    public void OnMoveFB(InputAction.CallbackContext input)
-    {
-        var currentInput = input.ReadValue<float>();
+        var currentInput = input;
 
         float verticalRotation = transform.eulerAngles.x;
 
@@ -101,9 +118,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void OnMoveRo(InputAction.CallbackContext input)
+    public void MovePlayerRightLeft(float input)
     {
-        horizontalMovement = input.ReadValue<float>();
+        horizontalMovement = input;
 
         if (horizontalMovement != 0)
         {
@@ -114,107 +131,59 @@ public class PlayerMovement : MonoBehaviour
             isRotating = false;
         }
     }
-
-    private void WallLimiter()
+    /// <summary>
+    /// assign the wheel rotation on the left and right
+    /// </summary>
+    private void AssingWheelRotation()
     {
-        if (Physics.Raycast(rayWallLineFoward.transform.position, rayWallLineFoward.transform.forward*verticalMovement, wallDistanceFoward))
+        WheelConfig newWheelMovemntRight = new WheelConfig(false, false);
+        WheelConfig newWheelMovemntLeft = new WheelConfig(false, false);
+
+        if (verticalMovement == 1)
         {
-            RayColitioningWallFoward = false;
+            newWheelMovemntRight.forward = true;
+            newWheelMovemntLeft.forward = true;
         }
-        else
+        else if (verticalMovement == -1)
         {
-            RayColitioningWallFoward = true;
+            newWheelMovemntRight.back = true;
+            newWheelMovemntLeft.back = true;
         }
 
-        if (Physics.Raycast(rayWallLineSide1.transform.position, rayWallLineSide1.transform.forward * verticalMovement, wallDistanceSides))
+
+        if (horizontalMovement == 1)
         {
-            RayColitioningWallSide1 = false;
+            newWheelMovemntRight.back = true;
+            newWheelMovemntLeft.forward = true;
         }
-        else
+        else if (horizontalMovement == -1)
         {
-            RayColitioningWallSide1 = true;
+            newWheelMovemntRight.forward = true;
+            newWheelMovemntLeft.back = true;
         }
 
-        if (Physics.Raycast(rayWallLineSide2.transform.position, rayWallLineSide2.transform.forward * verticalMovement, wallDistanceSides))
-        {
-            RayColitioningWallSide2 = false;
-        }
-        else
-        {
-            RayColitioningWallSide2 = true;
-        }
+        scroll_Track.AssignTrackMove(newWheelMovemntRight, newWheelMovemntLeft);
     }
 
     private void OnDrawGizmos()
     {
-        if (RayColitioningWallFoward)
+        for (int i = 0; i < collisionCheckers.Length; i++)
         {
-            Gizmos.color = Color.green;
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawRay(rayWallLineFoward.transform.position, rayWallLineFoward.transform.forward * wallDistanceFoward * verticalMovement);
-        
-        if (RayColitioningWallSide1)
-        {
-            Gizmos.color = Color.green;
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawRay(rayWallLineSide1.transform.position, rayWallLineSide1.transform.forward * wallDistanceSides * verticalMovement);
+            if (collisionCheckers[i].Origin == null)
+            {
+                continue;
+            }
 
-        if (RayColitioningWallSide2)
-        {
-            Gizmos.color = Color.green;
+            if (collisionCheckers[i].IsColliding(verticalMovement))
+            {
+                Gizmos.color = Color.red;
+            }
+            else
+            {
+                Gizmos.color = Color.green;
+            }
+            Gizmos.DrawRay(collisionCheckers[i].Origin.position, collisionCheckers[i].Origin.forward * collisionCheckers[i].Distance * verticalMovement);
         }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawRay(rayWallLineSide2.transform.position, rayWallLineSide2.transform.forward * wallDistanceSides * verticalMovement);
-    }
-
-    private int RotateTexture()
-    {
-
-        if (verticalMovement == 1 && horizontalMovement == 0)
-        {
-            return 1;
-        }
-        if (verticalMovement == -1 && horizontalMovement == 0)
-        {
-            return 2;
-        }
-        if (verticalMovement == 1 && horizontalMovement == 1)
-        {
-            return 3;
-        }
-        if (verticalMovement == 1 && horizontalMovement == -1)
-        {
-            return 4;
-        }
-        if (verticalMovement == -1 && horizontalMovement == -1)
-        {
-            return 5;
-        }
-        if (verticalMovement == -1 && horizontalMovement == 1)
-        {
-            return 6;
-        }
-        if (verticalMovement == 0 && horizontalMovement == 1)
-        {
-            return 7;
-        }
-        if (verticalMovement == 0 && horizontalMovement == -1)
-        {
-            return 8;
-        }
-
-        return 0;
     }
 
 #if UNITY_EDITOR

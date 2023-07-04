@@ -1,35 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// level 1 wall that destroys when enemy are destroyed
+/// </summary>
 public class Level_1_wall : MonoBehaviour
 {
-    [SerializeField] private GameObject[] tanks;
-    private int tanksDestroyed;
+    [SerializeField] private Health[] tanks;
+    private int tanksQuantity;
 
-    private void Start()
+    private void OnEnable()
     {
-        for (int i = 0; i < tanks.Length; i++)
+        foreach (var tank in tanks) 
         {
-            tanksDestroyed++;
+            tank.OnDeath += HandleTankDeath;
         }
     }
-    private void Update()
+    private void Start()
     {
-        tanksDestroyed = 0;
-        for (int i = 0; i < tanks.Length; i++)
-        {
-            if (tanks[i] != null)
-            {
-                tanksDestroyed++;
-            }
-        }
+        tanksQuantity = tanks.Length;
+    }
+    private void HandleTankDeath()
+    {
+        tanksQuantity--;
 
-        if (tanksDestroyed == 0)
+        if (tanksQuantity == 0)
         {
             Destroy(gameObject);
         }
-
     }
 }

@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
+/// <summary>
+/// Sound Manage, you can give it a sound or a song and it will play it
+/// </summary>
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource effectSource;
-    [SerializeField] public AudioClip button;
+    [SerializeField] private float currentVolumeMusic;
+    [SerializeField] private float currentVolumeSfx;
 
+    public AudioSource MusicSource { get => musicSource; set => musicSource = value; }
+    public AudioSource EffectSource { get => effectSource; set => effectSource = value; }
 
     private void Awake()
     {
@@ -22,39 +25,62 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
     }
 
+    /// <summary>
+    /// Play the audio clip inserted
+    /// </summary>
+    /// <param name="clip"></param>
     public void PlaySound(AudioClip clip)
     {
-        effectSource.PlayOneShot(clip);
+        EffectSource.volume = currentVolumeSfx;
+        EffectSource.PlayOneShot(clip);
     }
-
-    public AudioSource GetMusicSource()
-    {
-        return musicSource;
-    }
-    public void ToggleAudio()
-    {
-        effectSource.mute = !effectSource.mute;
-        musicSource.mute = !musicSource.mute;
-        PlaySound(button);
-    }
-
-    public void PlaySound(AudioClip clip, float volume)
-    {
-        effectSource.PlayOneShot(clip, volume);
-    }
-
+    /// <summary>
+    /// Play the music inserted
+    /// </summary>
+    /// <param name="clip"></param>
     public void PlayMusic(AudioClip clip)
     {
-        musicSource.clip = clip;
-        musicSource.Play();
+        MusicSource.volume = currentVolumeMusic;
+        MusicSource.clip = clip;
+        MusicSource.Play();
     }
 
+    /// <summary>
+    /// Stop music that is playing
+    /// </summary>
     public void StopMusic()
     {
-        musicSource.Stop();
+        MusicSource.Stop();
     }
 
+    /// <summary>
+    /// change audio state off/on
+    /// </summary>
+    public void ToggleAudio()
+    {
+        EffectSource.mute = !EffectSource.mute;
+        MusicSource.mute = !MusicSource.mute;
+    }
+
+    /// <summary>
+    /// adds the entered value to the current SFX volume, if it passes 10(max) or 0(min) it will return to the nearest number
+    /// </summary>
+    /// <param name="Value"></param>
+    public void ChangeVolumeSFXSlider(float Value)
+    {
+        currentVolumeSfx = Value;
+        effectSource.volume = currentVolumeSfx;
+    }
+
+    /// <summary>
+    /// adds the entered value to the current MUSIC volume, if it passes 10(max) or 0(min) it will return to the nearest number
+    /// </summary>
+    /// <param name="Value"></param>
+    public void ChangeVolumeMusicSlider(float Value)
+    {
+        currentVolumeMusic = Value;
+        musicSource.volume = currentVolumeMusic;
+    }
 }
