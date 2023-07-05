@@ -15,6 +15,6 @@ public class TranslateStickToConstantCameraRotation : MonoBehaviour
 
     private void LateUpdate()
     {
-        playerCamera.MoveCamera(currentDelta);
+        playerCamera.MoveCamera(currentDelta * Time.deltaTime);
     }
 }

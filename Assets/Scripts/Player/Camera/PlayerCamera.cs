@@ -30,18 +30,15 @@ public class PlayerCamera : MonoBehaviour
         {
             if (IsAiming)
             {
-                aimCamera.CalculateScaledDelta(input, aimCamera.RotationSpeedCamera);
                 aimCamera.RotateCamera(input);
             }
             else
             {
-                turretCamera.CalculateScaledDelta(input, turretCamera.RotationSpeedCamera);
                 turretCamera.RotateCamera(input);
             }
         }
         else
         {
-            freeCamera.CalculateScaledDelta(input, freeCamera.RotationSpeedCamera);
             freeCamera.RotateCamera(input);
         }
     }
