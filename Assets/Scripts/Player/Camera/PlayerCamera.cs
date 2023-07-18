@@ -5,19 +5,16 @@ using UnityEngine;
 /// </summary>
 public class PlayerCamera : MonoBehaviour
 {
-    [SerializeField] private FreeCamera freeCamera;
-    [SerializeField] private TurretCamera turretCamera;
-    [SerializeField] private AimCamera aimCamera;
-    [SerializeField] private bool LockTurret;
+    [SerializeField] private CameraBehavior actualCamera;
     [SerializeField] private bool isAiming;
 
     public bool IsAiming { get => isAiming; set => isAiming = value; }
+    public CameraBehavior ActualCamera { get => actualCamera; set => actualCamera = value; }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        LockTurret = true;
         isAiming = false;
     }
     /// <summary>
@@ -26,34 +23,7 @@ public class PlayerCamera : MonoBehaviour
     /// <param name="input"></param>
     public void MoveCamera(Vector2 input)
     {
-        if (LockTurret)
-        {
-            if (IsAiming)
-            {
-                aimCamera.RotateCamera(input);
-            }
-            else
-            {
-                turretCamera.RotateCamera(input);
-            }
-        }
-        else
-        {
-            freeCamera.RotateCamera(input);
-        }
-    }
-    /// <summary>
-    /// Change value of lockTurret
-    /// </summary>
-    public void ChangeCameraState()
-    {
-        LockTurret = !LockTurret;
-    }
-    /// <summary>
-    /// Change value of isAiming
-    /// </summary>
-    public void ChangeAimState()
-    {
-        IsAiming = !IsAiming;
+        actualCamera.CalculateScaledDelta(input);
+        actualCamera.RotateCamera(input);
     }
 }

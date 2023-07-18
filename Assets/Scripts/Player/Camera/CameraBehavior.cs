@@ -18,7 +18,7 @@ public abstract class CameraBehavior : MonoBehaviour
 
     public abstract void RotateCamera(Vector2 input);
 
-    public void CalculateScaledDelta(Vector2 input, Vector2 rotationSpeedCamera)
+    public void CalculateScaledDelta(Vector2 input)
     {
         scaledDelta = Vector2.Scale(input, rotationSpeedCamera) * Time.deltaTime;
     }

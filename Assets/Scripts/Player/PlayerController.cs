@@ -6,10 +6,16 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    [Header("System")]
     [SerializeField] private PlayerShoot playerShoot;
     [SerializeField] private PlayerMovement playerMovemnt;
     [SerializeField] private PauseSystem pauseSystem;
     [SerializeField] private PlayerCamera playerCamera;
+
+    [Header("Cameras")]
+    [SerializeField] private CameraBehavior freeCamera;
+    [SerializeField] private CameraBehavior turretCamera;
+    [SerializeField] private CameraBehavior aimCamera;
 
     public void ShootInput(InputAction.CallbackContext input)
     {
@@ -67,22 +73,49 @@ public class PlayerController : MonoBehaviour
             playerCamera.MoveCamera(input);
         }
     }
-
+    /// <summary>
+    /// Set player camera to free camera or turret camera
+    /// </summary>
+    /// <param name="input"></param>
     public void FreeCamera(InputAction.CallbackContext input)
     {
         if (!pauseSystem.IsPause)
         {
-            playerCamera.ChangeCameraState();
+            if (input.performed)
+            {
+                if (playerCamera.ActualCamera == freeCamera)
+                {
+                    playerCamera.ActualCamera = turretCamera;
+                }
+                else
+                {
+                    playerCamera.ActualCamera = freeCamera;
+                }
+                Debug.Log("Change Camera to: " + playerCamera.ActualCamera);
+            }
         }
     }
-
+    /// <summary>
+    /// Set the player's camera to the aiming camera or the turret camera
+    /// </summary>
+    /// <param name="input"></param>
     public void Aim(InputAction.CallbackContext input)
     {
         if (!pauseSystem.IsPause)
         {
             if (input.performed)
             {
-                playerCamera.ChangeAimState();
+                if (playerCamera.ActualCamera == aimCamera)
+                {
+                    playerCamera.ActualCamera = turretCamera;
+                    playerCamera.IsAiming = false;
+                }
+                else
+                {
+                    playerCamera.ActualCamera = aimCamera;
+                    playerCamera.IsAiming = true;
+                }
+                Debug.Log("Change Camera to: " + playerCamera.ActualCamera);
             }
         }
     }

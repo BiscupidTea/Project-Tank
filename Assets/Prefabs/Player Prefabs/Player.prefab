@@ -65,6 +65,58 @@ Transform:
   m_Father: {fileID: 5668808103688728708}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3044399450412072110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8930656167318464789}
+  - component: {fileID: 7334306066977038681}
+  m_Layer: 0
+  m_Name: AimCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8930656167318464789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3044399450412072110}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2483090880377844450}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7334306066977038681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3044399450412072110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 569d0e141b24a1d4fab28ee1a983d496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraUsed: {fileID: 1556254299665874127}
+  cameraPosition: {fileID: 5668808104318838545}
+  rotationSpeedCamera: {x: 5, y: 5}
+  aimPosition: {fileID: 5668808104318838545}
+  turret: {fileID: 5370433558306613076}
+  cannon: {fileID: 5932996788328510579}
+  cannonAngleMax: 30
+  cannonAngleMin: -10
 --- !u!1 &3928699633426080573
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +201,57 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3928699633426080573}
   m_Enabled: 1
+--- !u!1 &4968660817866947690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3597705599279875746}
+  - component: {fileID: 4523398363865465414}
+  m_Layer: 0
+  m_Name: TurretCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3597705599279875746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4968660817866947690}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2483090880377844450}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4523398363865465414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4968660817866947690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0f37002790c384db8a1751671bb765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraUsed: {fileID: 1556254299665874127}
+  cameraPosition: {fileID: 5668808105225021532}
+  rotationSpeedCamera: {x: 3, y: 3}
+  turret: {fileID: 5370433558306613076}
+  cannon: {fileID: 5932996788328510579}
+  cannonAngleMax: 30
+  cannonAngleMin: -10
 --- !u!1 &5425685050610189859
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +535,9 @@ MonoBehaviour:
   playerMovemnt: {fileID: 5668808103688728710}
   pauseSystem: {fileID: 0}
   playerCamera: {fileID: 5668808103688728707}
+  freeCamera: {fileID: 4685368462021883450}
+  turretCamera: {fileID: 4523398363865465414}
+  aimCamera: {fileID: 7334306066977038681}
 --- !u!114 &7370717202650630128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,10 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38aeb6c65bf01584182591401519c153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freeCamera: {fileID: 6459085919679830257}
-  turretCamera: {fileID: 2309445121859576642}
-  aimCamera: {fileID: 6815120448018148243}
-  LockTurret: 1
+  actualCamera: {fileID: 4523398363865465414}
   isAiming: 0
 --- !u!114 &5668808103688728704
 MonoBehaviour:
@@ -546,6 +649,54 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.7513633, y: 1.4277959, z: 6.3558555}
   m_Center: {x: 0.0000009536743, y: 1.2899792, z: -0.18787003}
+--- !u!1 &5947321614939150938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1373509901159798063}
+  - component: {fileID: 4685368462021883450}
+  m_Layer: 0
+  m_Name: FreeCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1373509901159798063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5947321614939150938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2483090880377844450}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4685368462021883450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5947321614939150938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242ae1ac46cb8f845bb47d2a7f17d7b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraUsed: {fileID: 1556254299665874127}
+  cameraPosition: {fileID: 5668808105225021532}
+  rotationSpeedCamera: {x: 8, y: 8}
+  turret: {fileID: 5370433558306613076}
 --- !u!1 &6042798452069822622
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,9 +770,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2483090880377844450}
-  - component: {fileID: 2309445121859576642}
-  - component: {fileID: 6459085919679830257}
-  - component: {fileID: 6815120448018148243}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -640,65 +788,13 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3597705599279875746}
+  - {fileID: 1373509901159798063}
+  - {fileID: 8930656167318464789}
   m_Father: {fileID: 5668808103688728708}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2309445121859576642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7070630460463318520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0f37002790c384db8a1751671bb765, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraUsed: {fileID: 1556254299665874127}
-  cameraPosition: {fileID: 5668808105225021532}
-  rotationSpeedCamera: {x: 3, y: 3}
-  turret: {fileID: 5370433558306613076}
-  cannon: {fileID: 5932996788328510579}
-  cannonAngleMax: 30
-  cannonAngleMin: -10
---- !u!114 &6459085919679830257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7070630460463318520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 242ae1ac46cb8f845bb47d2a7f17d7b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraUsed: {fileID: 1556254299665874127}
-  cameraPosition: {fileID: 5668808105225021532}
-  rotationSpeedCamera: {x: 8, y: 8}
-  turret: {fileID: 5370433558306613076}
---- !u!114 &6815120448018148243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7070630460463318520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 569d0e141b24a1d4fab28ee1a983d496, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraUsed: {fileID: 1556254299665874127}
-  cameraPosition: {fileID: 5668808104318838545}
-  rotationSpeedCamera: {x: 5, y: 5}
-  aimPosition: {fileID: 5668808104318838545}
-  turret: {fileID: 5370433558306613076}
-  cannon: {fileID: 5932996788328510579}
-  cannonAngleMax: 30
-  cannonAngleMin: -10
 --- !u!1001 &793774644261595856
 PrefabInstance:
   m_ObjectHideFlags: 0

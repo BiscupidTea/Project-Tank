@@ -16,8 +16,8 @@ public class Scroll_Track : MonoBehaviour
 
     void Update()
     {
-        offSetRight = +(offSetRight + Time.deltaTime * scrollSpeed * scrollSpeedRight) % 1f;
-        offSetLeft = +(offSetLeft + Time.deltaTime * scrollSpeed * scrollSpeedLeft) % 1f;
+        offSetRight = +(offSetRight + Time.deltaTime * scrollSpeed * scrollSpeedRight);
+        offSetLeft = +(offSetLeft + Time.deltaTime * scrollSpeed * scrollSpeedLeft);
 
         right.material.SetTextureOffset("_MainTex", new Vector2(offSetRight, 0f));
         left.material.SetTextureOffset("_MainTex", new Vector2(offSetLeft, 0f));
