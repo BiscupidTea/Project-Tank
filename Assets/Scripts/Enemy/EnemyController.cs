@@ -16,6 +16,10 @@ public class EnemyController : MonoBehaviour
     {
         health.OnDeath += HandleDeath;
     }
+    private void OnDestroy()
+    {
+        health.OnDeath -= HandleDeath;
+    }
     /// <summary>
     /// kill enemy by debug
     /// </summary>

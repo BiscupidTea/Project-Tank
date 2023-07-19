@@ -25,6 +25,10 @@ public class Level_1_wall : MonoBehaviour
 
         if (tanksQuantity == 0)
         {
+            foreach (var tank in tanks)
+            {
+                tank.OnDeath -= HandleTankDeath;
+            }
             Destroy(gameObject);
         }
     }

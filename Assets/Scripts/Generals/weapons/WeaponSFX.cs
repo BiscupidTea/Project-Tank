@@ -13,6 +13,11 @@ public class WeaponSFX : MonoBehaviour
         weapon.OnShoot += OnAction;
     }
 
+    private void OnDestroy()
+    {
+        weapon.OnShoot -= OnAction;
+    }
+
     private void OnAction()
     {
         SoundManager.Instance.PlaySound(weaponSound);

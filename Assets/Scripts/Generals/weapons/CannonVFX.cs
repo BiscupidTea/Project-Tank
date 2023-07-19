@@ -12,6 +12,11 @@ public class CannonVFX : MonoBehaviour
         cannon.OnShootCannon += OnAction;
     }
 
+    private void OnDestroy()
+    {
+        cannon.OnShootCannon -= OnAction;
+    }
+
     private void OnAction()
     {
         effectParticle.Play();

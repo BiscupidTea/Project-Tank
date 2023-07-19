@@ -14,13 +14,17 @@ public class MachineGunVFX : MonoBehaviour
         machineGun.OnShootMachineGun += OnAction;
     }
 
+    private void OnDestroy()
+    {
+        machineGun.OnShootMachineGun -= OnAction;
+    }
+
     private void OnAction(Vector3 finalPosition)
     {
         TrailRenderer trail = Instantiate(PrefabBulletTrail, machineGun.InitialShootPosition.position, Quaternion.identity);
         StartCoroutine(SpawnTrail(trail, finalPosition));
         effectParticle.Play();
     }
-
 
     private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 EndPosition)
     {
