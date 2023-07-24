@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 642746898252610161}
   m_Layer: 0
   m_Name: USA_Tank_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,7 +384,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 1177279995377348176}
   patrolPoints: []
-  targetPoint: 0
 --- !u!1 &4284700262975299488
 GameObject:
   m_ObjectHideFlags: 0

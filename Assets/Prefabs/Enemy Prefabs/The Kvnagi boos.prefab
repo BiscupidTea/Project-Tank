@@ -421,14 +421,14 @@ GameObject:
   - component: {fileID: 7729068081427938106}
   - component: {fileID: 1426569370}
   - component: {fileID: 1426569371}
-  - component: {fileID: 1426569372}
   - component: {fileID: 4973301059510607481}
+  - component: {fileID: 1426569372}
   - component: {fileID: 1651835337}
   - component: {fileID: 6154830286252981548}
   - component: {fileID: 2465048470129707317}
   m_Layer: 0
   m_Name: The Kvnagi boos
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -531,6 +531,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.214611, y: 1.6974865, z: 6.4290133}
   m_Center: {x: -0.00000059604645, y: 0.9331865, z: -0.11322367}
+--- !u!114 &4973301059510607481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322648213895008230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c17fa3d058a9018418284dba2e7294bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 1426569372}
 --- !u!114 &1426569372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,19 +558,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1000
   isAlive: 1
---- !u!114 &4973301059510607481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8322648213895008230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17fa3d058a9018418284dba2e7294bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 1426569372}
 --- !u!114 &1651835337
 MonoBehaviour:
   m_ObjectHideFlags: 0

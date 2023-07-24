@@ -1,3 +1,4 @@
+using System.Data;
 using UnityEngine;
 
 /// <summary>
@@ -14,6 +15,8 @@ public class WinCondition : MonoBehaviour
 
     private void Start()
     {
+        tanks = GameObject.FindGameObjectsWithTag("Enemy");
+
         for (int i = 0; i < tanks.Length; i++)
         {
             tanksDestroyed++;
