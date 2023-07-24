@@ -5075,6 +5075,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997221823}
     m_Modifications:
+    - target: {fileID: 136560870, guid: 5f694739ee4c9494c905f4e9353cfe0c, type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4842966408264066102, guid: 5f694739ee4c9494c905f4e9353cfe0c, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -9861,9 +9865,9 @@ Terrain:
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 716a9e70c5f57bb40a93a0a9b361e24d, type: 2}
   m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
+  m_TreeBillboardDistance: 200
+  m_TreeCrossFadeLength: 0
+  m_TreeMaximumFullLODCount: 0
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
