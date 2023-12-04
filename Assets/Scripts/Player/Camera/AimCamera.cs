@@ -5,7 +5,6 @@ using UnityEngine;
 /// </summary>
 public class AimCamera : CameraBehavior
 {
-    [SerializeField] private Transform aimPosition;
     [SerializeField] private Transform turret;
     [SerializeField] private Transform cannon;
     [SerializeField] float cannonAngleMax = 30;
@@ -18,8 +17,8 @@ public class AimCamera : CameraBehavior
         turret.transform.RotateAround(turret.position, turret.up, ScaledDelta.x * RotationSpeedCamera.x);
         cannon.transform.localRotation = Quaternion.Euler(-actualcannonAngle, 0f, 0f);
 
-        CameraUsed.transform.position = aimPosition.transform.position;
-        CameraUsed.transform.rotation = aimPosition.transform.rotation;
+        CameraUsed.transform.position = CameraPosition.transform.position;
+        CameraUsed.transform.rotation = CameraPosition.rotation;
 
         LimitCannonRotation();
     }
