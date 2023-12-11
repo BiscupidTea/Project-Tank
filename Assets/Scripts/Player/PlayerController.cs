@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CameraBehavior freeCamera;
     [SerializeField] private CameraBehavior turretCamera;
     [SerializeField] private CameraBehavior aimCamera;
+    [SerializeField] private CameraBehavior artilleryCamera;
 
     public void ShootInput(InputAction.CallbackContext input)
     {
@@ -63,6 +64,11 @@ public class PlayerController : MonoBehaviour
     public void ChangePause(InputAction.CallbackContext input)
     {
         pauseSystem.SwitchPause();
+    }
+
+    public void ChangeArtilleyCamera(InputAction.CallbackContext input)
+    {
+        artilleryCamera.GetComponent<ArtilleryCamera>().ChangeStateCamera();
     }
 
     public void OnMoveCamera(InputAction.CallbackContext ctx)

@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ArtilleryCamera",
+                    "type": "Button",
+                    "id": "4919fb38-df58-4a55-8d9f-5a539640ae4c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -349,6 +358,17 @@
                     "processors": "ScaleVector2(x=5,y=5)",
                     "groups": "",
                     "action": "SetCameraConstantRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08d1194b-34d0-45f9-a127-83abe8baf24a",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ArtilleryCamera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
