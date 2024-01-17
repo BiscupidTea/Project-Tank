@@ -12,6 +12,11 @@ public class TurretCamera : CameraBehavior
 
     private float actualcannonAngle = 0;
 
+    public override void SetCameraValues()
+    {
+        
+    }
+
     public override void RotateCamera(Vector2 input)
     {
         turret.transform.RotateAround(turret.position, turret.up, ScaledDelta.x * RotationSpeedCamera.x);

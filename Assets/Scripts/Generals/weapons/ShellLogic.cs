@@ -8,12 +8,14 @@ public class ShellLogic : MonoBehaviour
     [SerializeField] private MeshRenderer ShellRender;
     [SerializeField] private GameObject ExplotionAnimation;
     [SerializeField] private Rigidbody Rigidbody;
-    [SerializeField] private float LifeTime;
     [SerializeField] private float explotionForce;
     [SerializeField] private float explotionRadius;
     [SerializeField] private float explotionTimerAnimation;
     [SerializeField] private float damage;
+    [SerializeField] private float lifeTime;
     public float Damage { get => damage; set => damage = value; }
+    public float LifeTime { get => lifeTime; set => lifeTime = value; }
+    public float ExplotionRadius { get => explotionRadius; set => explotionRadius = value; }
 
     private float explotionTime = 0;
     private float lifeTimer = 0;
@@ -46,16 +48,24 @@ public class ShellLogic : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if (transform.parent != null)
+        {
+            transform.parent.GetComponent<ArtilleryShoot>().RemoveShellFromList(gameObject);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        Collider[] entitys = Physics.OverlapSphere(transform.position, explotionRadius);
+        Collider[] entitys = Physics.OverlapSphere(transform.position, ExplotionRadius);
 
         foreach (Collider collider in entitys)
         {
             Rigidbody EntRB = collider.GetComponent<Rigidbody>();
             if (EntRB != null)
             {
-                EntRB.AddExplosionForce(explotionForce, transform.position, explotionRadius);
+                EntRB.AddExplosionForce(explotionForce, transform.position, ExplotionRadius);
                 RunExplotionAnimation();
             }
         }
@@ -80,6 +90,6 @@ public class ShellLogic : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, explotionRadius);
+        Gizmos.DrawWireSphere(transform.position, ExplotionRadius);
     }
 }

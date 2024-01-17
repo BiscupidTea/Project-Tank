@@ -609,10 +609,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraUsed: {fileID: 1556254299634332485}
-  cameraPosition: {fileID: 879065114}
-  rotationSpeedCamera: {x: 0, y: 0}
+  cameraPosition: {fileID: 0}
+  rotationSpeedCamera: {x: 1, y: 5}
   StartPosition: {fileID: 1157750715}
   EndPosition: {fileID: 879065114}
+  timeToReachTarget: 2
+  maxVerticalAngle: 50
+  minVerticalAngle: 10
+  onLerpEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1082795658 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3723617169531193818, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
@@ -6289,11 +6295,11 @@ MonoBehaviour:
   playerRigidbody: {fileID: 5668808103720271631}
   collisionCheckers:
   - origin: {fileID: 6272379561586639507}
-    distance: 10
+    distance: 8
   - origin: {fileID: 3139885457948326167}
-    distance: 8
+    distance: 6
   - origin: {fileID: 4333516665116739842}
-    distance: 8
+    distance: 6
   maxSpeed: 20
   movementForce: 30000
   maxTurnSpeed: 30
@@ -6467,6 +6473,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4ef01bd3-754c-490c-bf44-e53e3e499799
     m_ActionName: Game/SetCameraConstantRotation[/XInputControllerWindows/rightStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6016909988792087873}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ChangeArtilleryCamera
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4919fb38-df58-4a55-8d9f-5a539640ae4c
+    m_ActionName: Game/ArtilleryCamera[/Keyboard/g]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -6715,7 +6737,7 @@ MonoBehaviour:
   freeCamera: {fileID: 4685368462053423536}
   turretCamera: {fileID: 4523398363834093004}
   aimCamera: {fileID: 7334306067008614099}
-  artilleryCamera: {fileID: 0}
+  artilleryCamera: {fileID: 993836041}
 --- !u!1 &6042798452101103380
 GameObject:
   m_ObjectHideFlags: 0

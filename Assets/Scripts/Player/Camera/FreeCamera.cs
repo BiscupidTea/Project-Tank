@@ -6,6 +6,10 @@ using UnityEngine;
 public class FreeCamera : CameraBehavior
 {
     [SerializeField] private Transform turret;
+    public override void SetCameraValues()
+    {
+        
+    }
 
     public override void RotateCamera(Vector2 input)
     {

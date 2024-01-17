@@ -1,40 +1,26 @@
+using System;
 using UnityEngine;
 
 public class ArtilleryCamera : CameraBehavior
 {
-    [SerializeField] private Transform StartPosition;
-    [SerializeField] private Transform EndPosition;
+    [SerializeField] private float maxVerticalAngle;
+    [SerializeField] private float minVerticalAngle;
 
-    private bool cameraChangingPosition;
-    private bool changeNewPosition;
+    [SerializeField] private float mouseSensitivity;
 
-    public bool CameraInPosition { get => cameraChangingPosition; set => cameraChangingPosition = value; }
-
-    private float timer;
-
-    private void Start()
+    public override void SetCameraValues()
     {
-        CameraInPosition = false;
-    }
-
-    public void ChangeStateCamera()
-    {
-        changeNewPosition = true;
-    }
-
-    private void Update()
-    {
-
+        CameraUsed.transform.position = CameraPosition.transform.position;
+        CameraUsed.transform.rotation = CameraPosition.transform.rotation;
     }
 
     public override void RotateCamera(Vector2 input)
     {
+        CameraUsed.transform.Rotate(CameraPosition.up, ScaledDelta.x);
 
-    }
+        float clampAngles = CameraUsed.transform.localEulerAngles.x - ScaledDelta.y;
+        clampAngles = Mathf.Clamp(clampAngles, minVerticalAngle, maxVerticalAngle);
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(StartPosition.position, EndPosition.position);
+        CameraUsed.transform.localEulerAngles = Vector3.right * clampAngles;
     }
 }

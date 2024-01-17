@@ -15,6 +15,7 @@ public abstract class Weapon : MonoBehaviour
     public event Action OnShoot;
 
     public Transform InitialShootPosition { get => initialShootPosition; set => initialShootPosition = value; }
+    public bool IsReloading { get => isReloading; set => isReloading = value; }
 
     /// <summary>
     /// Event raised when ConsumeAmmo is called
@@ -37,12 +38,12 @@ public abstract class Weapon : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Reload()
     {
-        isReloading = true;
+        IsReloading = true;
         Debug.Log(name + ": reloading ammo...");
         yield return new WaitForSeconds(reloadTime);
         currentAmmo = maxAmmo;
         Debug.Log(name + ": ammo reloaded; current ammo = " + currentAmmo);
-        isReloading = false;
+        IsReloading = false;
     }
 
     /// <summary>
@@ -66,7 +67,7 @@ public abstract class Weapon : MonoBehaviour
             didConsume = true;
         }
 
-        if (currentAmmo <= 0 && !isReloading)
+        if (currentAmmo <= 0 && !IsReloading)
         {
             StartCoroutine(Reload());
         }

@@ -16,6 +16,7 @@ public abstract class CameraBehavior : MonoBehaviour
     public Vector2 ScaledDelta { get => scaledDelta; set => scaledDelta = value; }
     public Vector2 RotationSpeedCamera { get => rotationSpeedCamera; set => rotationSpeedCamera = value; }
 
+    public abstract void SetCameraValues();
     public abstract void RotateCamera(Vector2 input);
 
     public void CalculateScaledDelta(Vector2 input)

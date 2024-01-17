@@ -5,19 +5,24 @@ using UnityEngine;
 /// </summary>
 public class PlayerShoot : MonoBehaviour
 {
-    [Header("Weapons")]
     [SerializeField] private Weapon[] weapons;
+    [SerializeField] private Weapon[] specialWeapons;
 
-    private int weaponInUse;
+    private Weapon weaponInUse;
+
+    private int normalWeaponInUse;
+
     private int totalWeapons;
+    private int totalSpecialWeapons;
 
-    public int WeaponInUse { get => weaponInUse; set => weaponInUse = value; }
     public int TotalWeapons { get => totalWeapons; set => totalWeapons = value; }
 
     private void Awake()
     {
         TotalWeapons = weapons.Length;
-        weaponInUse = 0;
+        totalSpecialWeapons = specialWeapons.Length;
+        normalWeaponInUse = 0;
+        weaponInUse = weapons[normalWeaponInUse];
     }
 
     /// <summary>
@@ -25,7 +30,7 @@ public class PlayerShoot : MonoBehaviour
     /// </summary>
     public void ShootWeapon()
     {
-        weapons[WeaponInUse].Shoot();
+        weaponInUse.Shoot();
     }
 
     /// <summary>
@@ -33,10 +38,29 @@ public class PlayerShoot : MonoBehaviour
     /// </summary>
     public void SwitchToNextWeapon()
     {
-        WeaponInUse++;
-        if (WeaponInUse > totalWeapons-1) 
+        normalWeaponInUse++;
+        if (normalWeaponInUse > totalWeapons - 1)
         {
-            WeaponInUse = 0;
+            normalWeaponInUse = 0;
+        }
+        weaponInUse = weapons[normalWeaponInUse];
+    }
+
+    public void SwitchToArtillery()
+    {
+        for (int i = 0; i < totalSpecialWeapons; i++)
+        {
+            if (specialWeapons[i].GetComponent<ArtilleryWeapon>())
+            {
+                if (weaponInUse == specialWeapons[i])
+                {
+                    weaponInUse = weapons[normalWeaponInUse];
+                    break;
+                }
+
+                weaponInUse = specialWeapons[i];
+                break;
+            }
         }
     }
 }

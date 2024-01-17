@@ -160,17 +160,17 @@ public class PlayerHud : MonoBehaviour
     }
     private void SetWeaponSelect()
     {
-        for (int i = 0; i < playerShoot.TotalWeapons; i++)
-        {
-            if (i == playerShoot.WeaponInUse)
-            {
-                weaponImage[i].color = Color.yellow;
-            }
-            else
-            {
-                weaponImage[i].color = Color.black;
-            }
-        }
+        //for (int i = 0; i < playerShoot.TotalWeapons; i++)
+        //{
+        //    if (i == playerShoot.WeaponInUse)
+        //    {
+        //        weaponImage[i].color = Color.yellow;
+        //    }
+        //    else
+        //    {
+        //        weaponImage[i].color = Color.black;
+        //    }
+        //}
     }
 
     private void SetTankShow()
