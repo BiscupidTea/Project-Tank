@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Terrain
   - BasePlayer
+  - EnemyTurret
+  - EnemyShootPosition
   layers:
   - Default
   - TransparentFX

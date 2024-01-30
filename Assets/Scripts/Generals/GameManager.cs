@@ -1,14 +1,15 @@
-using System.Data;
 using UnityEngine;
 
 /// <summary>
-/// Win condition manager
+/// Game manager
 /// </summary>
-public class WinCondition : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private GameObject[] tanks;
-    [SerializeField] private Health player;
+    [SerializeField] private EnemyManager enemyManager;
+
+    private PlayerController player;
     private int tanksDestroyed;
     public bool playerWin;
     public bool playerLose;
@@ -16,6 +17,8 @@ public class WinCondition : MonoBehaviour
     private void Start()
     {
         tanks = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject PlayerObject = GameObject.FindGameObjectWithTag("Player");
+        player = PlayerObject.GetComponent<PlayerController>();
 
         for (int i = 0; i < tanks.Length; i++)
         {
@@ -33,7 +36,7 @@ public class WinCondition : MonoBehaviour
             }
         }
 
-        if (player.IsAlive)
+        if (player.IsAlive())
         {
             if (tanksDestroyed == 0)
             {

@@ -1,38 +1,40 @@
 using System.Collections;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
 /// <summary>
 /// Enemy move manager whit navMesh
 /// </summary>
-[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMove : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent Enemy;
-    [SerializeField] private Transform[] patrolPoints;
+    [SerializeField] private NavMeshAgent enemy;
+    [SerializeField] public Transform[] patrolPoints;
     private int targetPoint;
     private Vector3 target;
-    private Enemy_Shoot enemyShoot;
+    private EnemyShoot enemyShoot;
     private GameObject player;
     private bool isStatic;
 
-    void Awake()
+    public NavMeshAgent Enemy { get => enemy; set => enemy = value; }
+
+    private void OnEnable()
     {
         Enemy = GetComponent<NavMeshAgent>();
-        enemyShoot = GetComponent<Enemy_Shoot>();
+        enemyShoot = GetComponent<EnemyShoot>();
         player = GameObject.FindGameObjectWithTag("Turret");
 
         if (patrolPoints.Length != 0)
         {
             targetPoint = 0;
             isStatic = false;
+            Enemy.destination = patrolPoints[0].position;
         }
         else
         {
             Enemy.isStopped = true;
             isStatic = true;
         }
-
     }
 
     void Update()

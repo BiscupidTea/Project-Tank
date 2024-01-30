@@ -1,30 +1,54 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Enemy state Manager
 /// </summary>
-[RequireComponent(typeof(Health))]
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IHealthComponent
 {
-    [SerializeField] private Health health;
+    [SerializeField] public UnityEvent<GameObject> onDeath;
+    private string id;
+    private float currentHealth;
+    protected bool isAlive;
 
-    private void Awake()
+    public float CurrentHealth { get => currentHealth; set => currentHealth = value; }
+    public string Id { get => id; set => id = value; }
+
+    public virtual void Death()
     {
-        health = GetComponent<Health>();
+        onDeath.Invoke(this.gameObject);
     }
-    private void OnEnable()
+
+    [ContextMenu("Kill Enemy")]
+    private void KillEnemy()
     {
-        health.OnDeath += HandleDeath;
+        currentHealth = 0;
+        isAlive = false;
+        Death();
     }
-    private void OnDestroy()
-    {
-        health.OnDeath -= HandleDeath;
-    }
+
     /// <summary>
-    /// kill enemy by debug
+    /// Decreases current health taking damage
     /// </summary>
-    private void HandleDeath()
+    /// <param name="damage"></param>
+    public void ReceiveDamage(float damage)
     {
-        Destroy(gameObject);
+        CurrentHealth -= damage;
+
+        if (CurrentHealth <= 0)
+        {
+            isAlive = false;
+            Death();
+        }
+    }
+
+    public virtual bool IsAlive()
+    {
+        return isAlive;
+    }
+
+    public void SetIsAlive(bool status)
+    {
+        isAlive = status;
     }
 }

@@ -1,13 +1,19 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
 /// <summary>
 /// player input controller
 /// </summary>
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IHealthComponent
 {
+    [SerializeField] public UnityEvent<GameObject> onDeath;
+    [SerializeField] private float currentHealth;
+    protected bool isAlive;
+    public float CurrentHealth { get => currentHealth; set => currentHealth = value; }
+
     [Header("System")]
     [SerializeField] private PlayerShoot playerShoot;
     [SerializeField] private PlayerMovement playerMovemnt;
@@ -153,5 +159,30 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Change Camera to: " + playerCamera.ActualCamera);
             }
         }
+    }
+
+    public virtual void Death()
+    {
+        onDeath.Invoke(this.gameObject);
+    }
+
+    /// <summary>
+    /// Decreases current health taking damage
+    /// </summary>
+    /// <param name="damage"></param>
+    public void ReceiveDamage(float damage)
+    {
+        CurrentHealth -= damage;
+
+        if (CurrentHealth <= 0)
+        {
+            isAlive = false;
+            Death();
+        }
+    }
+
+    public virtual bool IsAlive()
+    {
+        return isAlive;
     }
 }

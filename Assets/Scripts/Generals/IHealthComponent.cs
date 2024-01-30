@@ -1,0 +1,6 @@
+public interface IHealthComponent
+{
+    public void ReceiveDamage(float damage);
+    public void Death();
+    public bool IsAlive();
+}

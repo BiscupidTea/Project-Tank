@@ -13,7 +13,7 @@ public class PlayerHud : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject firstButtonWin;
     [SerializeField] private GameObject firstButtonLose;
-    [SerializeField] private WinCondition winCondition;
+    //[SerializeField] private WinCondition winCondition;
 
     [Header("Canvas Info")]
     [SerializeField] private CanvasGroup winCanvas;
@@ -27,8 +27,7 @@ public class PlayerHud : MonoBehaviour
     [SerializeField] private GameObject cross;
 
     [Header("HealthBar Player Info")]
-    [SerializeField] private Health healthPlayer;
-    [SerializeField] private Health healthBoss;
+    [SerializeField] private float healthPlayer;
     [SerializeField] private Slider healthSliderPlayer;
 
     [Header("HealthBar Boss Info")]
@@ -61,12 +60,12 @@ public class PlayerHud : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerCamera = player.GetComponent<PlayerCamera>();
         playerShoot = player.GetComponent<PlayerShoot>();
-        healthPlayer = player.GetComponent<Health>();
+        healthPlayer = player.GetComponent<PlayerController>().CurrentHealth;
 
         CurrentCanvas = UICanvas;
 
-        healthSliderPlayer.maxValue = healthPlayer.CurrentHealth;
-        healthSliderPlayer.value = healthPlayer.CurrentHealth;
+        healthSliderPlayer.maxValue = healthPlayer;
+        healthSliderPlayer.value = healthPlayer;
 
         DisableCanvas(loseCanvas);
         DisableCanvas(winCanvas);
@@ -80,8 +79,6 @@ public class PlayerHud : MonoBehaviour
 
             healthSliderBoss.enabled = true;
             healthGameObjectBoss.SetActive(true);
-            healthSliderBoss.maxValue = healthBoss.CurrentHealth;
-            healthSliderBoss.value = healthBoss.CurrentHealth;
         }
         else
         {
@@ -122,19 +119,19 @@ public class PlayerHud : MonoBehaviour
             }
         }
 
-        if (winCondition.playerWin)
-        {
-            StartCoroutine(SwitchCanvas(winCanvas, UICanvas));
-            eventSystem.SetSelectedGameObject(firstButtonWin);
-            Time.timeScale = 0;
-        }
-
-        if (winCondition.playerLose)
-        {
-            StartCoroutine(SwitchCanvas(loseCanvas, UICanvas));
-            eventSystem.SetSelectedGameObject(firstButtonLose);
-            Time.timeScale = 0;
-        }
+        //if (winCondition.playerWin)
+        //{
+        //    StartCoroutine(SwitchCanvas(winCanvas, UICanvas));
+        //    eventSystem.SetSelectedGameObject(firstButtonWin);
+        //    Time.timeScale = 0;
+        //}
+        //
+        //if (winCondition.playerLose)
+        //{
+        //    StartCoroutine(SwitchCanvas(loseCanvas, UICanvas));
+        //    eventSystem.SetSelectedGameObject(firstButtonLose);
+        //    Time.timeScale = 0;
+        //}
     }
 
     private void SetAim()
@@ -150,13 +147,7 @@ public class PlayerHud : MonoBehaviour
     }
     private void SetHealthBar()
     {
-        healthSliderPlayer.value = healthPlayer.CurrentHealth;
-
-        if (isBoss)
-        {
-            healthSliderBoss.value = healthBoss.CurrentHealth;
-            healthBossNumber.text = healthBoss.CurrentHealth + " / " + healthBoss.MaxHealth;
-        }
+        healthSliderPlayer.value = healthPlayer;
     }
     private void SetWeaponSelect()
     {

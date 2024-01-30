@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: c91be939041641b478805cfa6835b82e, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1001 &123408405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -439,12 +439,13 @@ GameObject:
   - component: {fileID: 485202745}
   - component: {fileID: 485202744}
   - component: {fileID: 485202743}
+  - component: {fileID: 485202746}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 2147483639
   m_IsActive: 1
 --- !u!154 &485202743
 TerrainCollider:
@@ -520,6 +521,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &485202746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485202742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 1
+  m_GenerateLinks: 1
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!114 &549587891 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3157794998552900541, guid: 59426dd6ac2a6124296519aafc2451cc, type: 3}
@@ -531,6 +551,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df3ddc47a3f7ef34486bbfd89b6b8b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &656521114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 656521116}
+  - component: {fileID: 656521115}
+  m_Layer: 0
+  m_Name: Navigation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &656521115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656521114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 3
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 1.3333334
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: c91be939041641b478805cfa6835b82e, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!4 &656521116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656521114}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &879065113
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,14 +694,9 @@ MonoBehaviour:
   cameraUsed: {fileID: 1556254299634332485}
   cameraPosition: {fileID: 0}
   rotationSpeedCamera: {x: 1, y: 5}
-  StartPosition: {fileID: 1157750715}
-  EndPosition: {fileID: 879065114}
-  timeToReachTarget: 2
   maxVerticalAngle: 50
   minVerticalAngle: 10
-  onLerpEnd:
-    m_PersistentCalls:
-      m_Calls: []
+  mouseSensitivity: 0
 --- !u!114 &1082795658 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3723617169531193818, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
@@ -694,7 +772,7 @@ MonoBehaviour:
   sceneLoader: {fileID: 1082795658}
   tanks:
   - {fileID: 1708066298}
-  player: {fileID: 6543535436554816284}
+  enemyManager: {fileID: 0}
   playerWin: 0
   playerLose: 0
 --- !u!114 &1487508117
@@ -6279,6 +6357,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 1590950788598383015}
   - {fileID: 2427034056221743612}
+  specialWeapons: []
 --- !u!114 &5668808103720271628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6730,6 +6809,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67426cd0e3e29e34b8b4a47977da875c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  currentHealth: 0
   playerShoot: {fileID: 5668808103720271627}
   playerMovemnt: {fileID: 5668808103720271628}
   pauseSystem: {fileID: 363299232}
@@ -36314,3 +36397,4 @@ SceneRoots:
   - {fileID: 5668808103720271630}
   - {fileID: 485202745}
   - {fileID: 414213099}
+  - {fileID: 656521116}

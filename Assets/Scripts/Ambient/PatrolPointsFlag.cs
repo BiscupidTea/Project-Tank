@@ -5,13 +5,14 @@ using UnityEngine;
 /// </summary>
 public class PatrolPointsFlag : MonoBehaviour
 {
-    [SerializeField] private bool showPosition;
+    [SerializeField] private bool hide;
     [SerializeField] private float radius;
+    [SerializeField] private Color gizmoColor = Color.blue;
     private void OnDrawGizmos()
     {
-        if (showPosition)
+        if (!hide)
         {
-            Gizmos.color = Color.blue;
+            Gizmos.color = gizmoColor;
             Gizmos.DrawSphere(transform.position, radius);
         }
     }

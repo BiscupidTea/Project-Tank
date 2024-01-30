@@ -4,10 +4,10 @@ using UnityEngine;
 /// <summary>
 /// Enemy shoot manager
 /// </summary>
-public class Enemy_Shoot : MonoBehaviour
+public class EnemyShoot : MonoBehaviour
 {
     [Header("GameObjects Info")]
-    [SerializeField] private GameObject turret;
+    [SerializeField] private Transform turret;
     [SerializeField] private Weapon cannon;
 
     [Header("Basic Info")]
@@ -23,6 +23,9 @@ public class Enemy_Shoot : MonoBehaviour
     public float ViewRange { get => viewRange; set => viewRange = value; }
     public bool PlayerInViewRange { get => playerInViewRange; set => playerInViewRange = value; }
     public bool PlayerInShootRange { get => playerInShootRange; set => playerInShootRange = value; }
+    public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
+    public Transform Turret { get => turret; set => turret = value; }
+    public Weapon Cannon { get => cannon; set => cannon = value; }
 
     private void Start()
     {
@@ -54,7 +57,7 @@ public class Enemy_Shoot : MonoBehaviour
     /// <returns></returns>
     private IEnumerator AttackPlayer()
     {
-        cannon.Shoot();
+        Cannon.Shoot();
         yield return null;
     }
     /// <summary>
@@ -63,8 +66,8 @@ public class Enemy_Shoot : MonoBehaviour
     /// <returns></returns>
     private IEnumerator TargetPlayer()
     {
-        Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - turret.transform.position);
-        turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, rotTarget, rotationSpeed * Time.deltaTime);
+        Quaternion rotTarget = Quaternion.LookRotation(player.transform.position - Turret.position);
+        Turret.rotation = Quaternion.RotateTowards(Turret.rotation, rotTarget, RotationSpeed * Time.deltaTime);
         yield return null;
     }
 

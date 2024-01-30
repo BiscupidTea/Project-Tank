@@ -23,7 +23,7 @@ public class MachineGunWeapon : Weapon
 
                 if (hit.rigidbody)
                 {
-                    if (hit.collider.TryGetComponent<Health>(out var health))
+                    if (hit.collider.TryGetComponent<IHealthComponent>(out var health))
                     {
                         health.ReceiveDamage(damage);
                     }

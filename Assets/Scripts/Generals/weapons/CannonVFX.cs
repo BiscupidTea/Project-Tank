@@ -7,6 +7,9 @@ public class CannonVFX : MonoBehaviour
 {
     [SerializeField] private CannonWeapon cannon;
     [SerializeField] private ParticleSystem effectParticle;
+
+    public ParticleSystem EffectParticle { get => effectParticle; set => effectParticle = value; }
+
     private void Awake()
     {
         cannon.OnShootCannon += OnAction;
@@ -19,6 +22,6 @@ public class CannonVFX : MonoBehaviour
 
     private void OnAction()
     {
-        effectParticle.Play();
+        EffectParticle.Play();
     }
 }
