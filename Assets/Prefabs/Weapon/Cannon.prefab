@@ -49,7 +49,7 @@ MonoBehaviour:
   initialShootPosition: {fileID: 0}
   reloadTime: 2
   maxAmmo: 1
-  infinite: 1
+  id: Cannon
   damage: 50
   force: 50
   PrefabShell: {fileID: 3172073774485086772, guid: bdcabea2d42b1a3478dfe61a1c609145, type: 3}

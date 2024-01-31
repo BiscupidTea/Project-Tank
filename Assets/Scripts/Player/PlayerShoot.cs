@@ -16,13 +16,14 @@ public class PlayerShoot : MonoBehaviour
     private int totalSpecialWeapons;
 
     public int TotalWeapons { get => totalWeapons; set => totalWeapons = value; }
+    public Weapon WeaponInUse { get => weaponInUse; set => weaponInUse = value; }
 
     private void Awake()
     {
         TotalWeapons = weapons.Length;
         totalSpecialWeapons = specialWeapons.Length;
         normalWeaponInUse = 0;
-        weaponInUse = weapons[normalWeaponInUse];
+        WeaponInUse = weapons[normalWeaponInUse];
     }
 
     /// <summary>
@@ -30,7 +31,7 @@ public class PlayerShoot : MonoBehaviour
     /// </summary>
     public void ShootWeapon()
     {
-        weaponInUse.Shoot();
+        WeaponInUse.Shoot();
     }
 
     /// <summary>
@@ -43,7 +44,7 @@ public class PlayerShoot : MonoBehaviour
         {
             normalWeaponInUse = 0;
         }
-        weaponInUse = weapons[normalWeaponInUse];
+        WeaponInUse = weapons[normalWeaponInUse];
     }
 
     public void SwitchToArtillery()
@@ -52,13 +53,13 @@ public class PlayerShoot : MonoBehaviour
         {
             if (specialWeapons[i].GetComponent<ArtilleryWeapon>())
             {
-                if (weaponInUse == specialWeapons[i])
+                if (WeaponInUse == specialWeapons[i])
                 {
-                    weaponInUse = weapons[normalWeaponInUse];
+                    WeaponInUse = weapons[normalWeaponInUse];
                     break;
                 }
 
-                weaponInUse = specialWeapons[i];
+                WeaponInUse = specialWeapons[i];
                 break;
             }
         }

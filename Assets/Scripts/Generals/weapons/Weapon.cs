@@ -13,9 +13,11 @@ public abstract class Weapon : MonoBehaviour
     private int currentAmmo;
     private bool isReloading;
     public event Action OnShoot;
+    public string id;
 
     public Transform InitialShootPosition { get => initialShootPosition; set => initialShootPosition = value; }
     public bool IsReloading { get => isReloading; set => isReloading = value; }
+    public string Id { get => id; set => id = value; }
 
     /// <summary>
     /// Event raised when ConsumeAmmo is called

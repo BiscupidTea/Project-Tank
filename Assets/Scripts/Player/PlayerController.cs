@@ -26,6 +26,11 @@ public class PlayerController : MonoBehaviour, IHealthComponent
     [SerializeField] private CameraBehavior aimCamera;
     [SerializeField] private CameraBehavior artilleryCamera;
 
+    private void Start()
+    {
+        isAlive = true;
+    }
+
     public void ShootInput(InputAction.CallbackContext input)
     {
         if (!pauseSystem.IsPause)
@@ -40,6 +45,12 @@ public class PlayerController : MonoBehaviour, IHealthComponent
         {
             if (input.performed)
             {
+                if (playerCamera.ActualCamera == artilleryCamera)
+                {
+                    playerCamera.ActualCamera = turretCamera;
+                    playerCamera.IsAiming = false;
+                }
+
                 playerShoot.SwitchToNextWeapon();
             }
         }
@@ -145,18 +156,22 @@ public class PlayerController : MonoBehaviour, IHealthComponent
         {
             if (input.performed)
             {
-                if (playerCamera.ActualCamera == aimCamera)
+                if (playerShoot.WeaponInUse.id == "Cannon")
                 {
-                    playerCamera.ActualCamera = turretCamera;
-                    playerCamera.IsAiming = false;
+
+                    if (playerCamera.ActualCamera == aimCamera)
+                    {
+                        playerCamera.ActualCamera = turretCamera;
+                        playerCamera.IsAiming = false;
+                    }
+                    else
+                    {
+                        playerCamera.ActualCamera = aimCamera;
+                        playerCamera.IsAiming = true;
+                        playerCamera.ActualCamera.SetCameraValues();
+                    }
+                    Debug.Log("Change Camera to: " + playerCamera.ActualCamera);
                 }
-                else
-                {
-                    playerCamera.ActualCamera = aimCamera;
-                    playerCamera.IsAiming = true;
-                    playerCamera.ActualCamera.SetCameraValues();
-                }
-                Debug.Log("Change Camera to: " + playerCamera.ActualCamera);
             }
         }
     }

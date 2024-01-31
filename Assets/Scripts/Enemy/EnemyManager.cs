@@ -13,6 +13,8 @@ public class EnemyManager : MonoBehaviour
     private Dictionary<string, ObjectPool<GameObject>> EnemyPoolById = new();
     private EnemyFactory enemyFactory = new EnemyFactory();
 
+    public List<GameObject> EnemySpawned { get => enemySpawned; set => enemySpawned = value; }
+
     private void Start()
     {
         foreach (var e in tankSpawnList)
@@ -33,11 +35,6 @@ public class EnemyManager : MonoBehaviour
         {
             addNewEnemy(tankSpawnList[i]);
         }
-    }
-
-    private void Update()
-    {
-
     }
 
     private void addNewEnemy(TankSpawn tankSpawn)
@@ -67,17 +64,15 @@ public class EnemyManager : MonoBehaviour
         if (tankSpawn.PatrolPoints.Length < 1)
         {
             enemyFactory.NewEnemyConfigure(ref newEnemy, tankSpawn.EnemySo, tankSpawn.SpawnPoint);
-            Debug.Log("New Static Enemy created");
 
         }
         else
         {
-            enemyFactory.NewEnemyConfigure(ref newEnemy, tankSpawn.EnemySo, tankSpawn.SpawnPoint, tankSpawn.PatrolPoints);
-            Debug.Log("New Patrol Enemy created");
-
+           enemyFactory.NewEnemyConfigure(ref newEnemy, tankSpawn.EnemySo, tankSpawn.SpawnPoint, tankSpawn.PatrolPoints);
         }
 
-        enemySpawned.Add(newEnemy);
+        EnemySpawned.Add(newEnemy);
+        Debug.Log("Enemy Created! total Enemies = " + enemySpawned.Count);
     }
 
     private void OnKillEnemy(GameObject enemy)
@@ -86,8 +81,7 @@ public class EnemyManager : MonoBehaviour
         baseEnemy.onDeath.RemoveListener(OnKillEnemy);
         ObjectPool<GameObject> pool = EnemyPoolById[baseEnemy.Id];
         pool.Release(enemy);
-        enemySpawned.Remove(enemy);
-        Debug.Log(enemy.name + " has been destroyed");
+        EnemySpawned.Remove(enemy);
     }
 }
 

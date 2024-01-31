@@ -49,7 +49,7 @@ MonoBehaviour:
   initialShootPosition: {fileID: 0}
   reloadTime: 5
   maxAmmo: 30
-  infinite: 1
+  id: MachineGun
   bulletsCosume: 0
   damage: 10
   force: 5
