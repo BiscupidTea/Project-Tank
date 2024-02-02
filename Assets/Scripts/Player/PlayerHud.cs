@@ -75,6 +75,8 @@ public class PlayerHud : MonoBehaviour
         {
             weaponImage[i] = weaponImageGameObject[i].GetComponent<Image>();
         }
+        weaponImage[0].color = Color.yellow;
+
 
         if (isBoss)
         {
@@ -92,34 +94,37 @@ public class PlayerHud : MonoBehaviour
             healthSliderBoss.enabled = false;
             healthGameObjectBoss.SetActive(false);
         }
+
+        pause.onPause.AddListener(SwitchPause);
+        playerController.onTakeDamage.AddListener(SetHealthBar);
+        playerController.onAim.AddListener(SetAim);
+        playerController.onSwitchWeapon.AddListener(SetWeaponSelect);
     }
-    void Update()
+
+    private void OnDestroy()
     {
-        SetAim();
+        pause.onPause.RemoveListener(SwitchPause);
+        playerController.onTakeDamage.RemoveListener(SetHealthBar);
+        playerController.onAim.RemoveListener(SetAim);
+        playerController.onSwitchWeapon.RemoveListener(SetWeaponSelect);
+    }
 
-        SetHealthBar();
-
-        SetWeaponSelect();
-
-        if (pause.IsPause)
+    private void SwitchPause(GameObject pause)
+    {
+        if (currentCanvas != pauseCanvas)
         {
-            if (currentCanvas != pauseCanvas)
-            {
-                StartCoroutine(SwitchCanvas(PauseCanvas, CurrentCanvas));
-            }
+            SwitchCanvas(PauseCanvas, CurrentCanvas);
+
         }
         else
         {
-            if (currentCanvas != UICanvas)
-            {
-                StartCoroutine(SwitchCanvas(UICanvas, CurrentCanvas));
-            }
+            SwitchCanvas(UICanvas, CurrentCanvas);
         }
     }
 
-    private void SetAim()
+    private void SetAim(GameObject playerController)
     {
-        if (playerCamera.IsAiming)
+        if (!cross.active)
         {
             cross.SetActive(true);
         }
@@ -128,16 +133,17 @@ public class PlayerHud : MonoBehaviour
             cross.SetActive(false);
         }
     }
-    private void SetHealthBar()
+    private void SetHealthBar(float playerController)
     {
-        healthSliderPlayer.value = playerController.CurrentHealth;
+        healthSliderPlayer.value = playerController;
     }
 
     public void SetPlayerWin()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        StartCoroutine(SwitchCanvas(winCanvas, UICanvas));
+
+        SwitchCanvas(winCanvas, UICanvas);
         eventSystem.SetSelectedGameObject(firstButtonWin);
         Time.timeScale = 0;
     }
@@ -146,11 +152,12 @@ public class PlayerHud : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        StartCoroutine(SwitchCanvas(loseCanvas, UICanvas));
+
+        SwitchCanvas(loseCanvas, UICanvas);
         eventSystem.SetSelectedGameObject(firstButtonLose);
         Time.timeScale = 0;
     }
-    private void SetWeaponSelect()
+    private void SetWeaponSelect(GameObject playerController)
     {
         for (int i = 0; i < weaponImageGameObject.Length; i++)
         {
@@ -170,13 +177,12 @@ public class PlayerHud : MonoBehaviour
         tankInfo.text = totalTanks.ToString();
     }
 
-    public IEnumerator SwitchCanvas(CanvasGroup canvasEnable, CanvasGroup canvasDisable)
+    private void SwitchCanvas(CanvasGroup canvasEnable, CanvasGroup canvasDisable)
     {
         EnableCanvas(canvasEnable);
         DisableCanvas(canvasDisable);
         CurrentCanvas = canvasEnable;
         Debug.Log("Change canvas form: " + canvasDisable + " to " + canvasEnable);
-        yield return null;
     }
 
     public void SetFirstButton(GameObject firstButton)

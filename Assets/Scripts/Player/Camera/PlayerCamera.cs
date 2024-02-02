@@ -6,16 +6,12 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private CameraBehavior actualCamera;
-    [SerializeField] private bool isAiming;
-
-    public bool IsAiming { get => isAiming; set => isAiming = value; }
     public CameraBehavior ActualCamera { get => actualCamera; set => actualCamera = value; }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        isAiming = false;
     }
     /// <summary>
     /// Camera manager for freeCamera, turretCamera and aimCamera

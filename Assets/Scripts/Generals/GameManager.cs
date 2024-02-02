@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     {
         GameObject PlayerObject = GameObject.FindGameObjectWithTag("Player");
         player = PlayerObject.GetComponent<PlayerController>();
-
+        player.onDeath.AddListener(PlayerDeath);
+        enemyManager.winCondition.AddListener(PlayerWin);
     }
     private void Update()
     {
@@ -26,11 +27,19 @@ public class GameManager : MonoBehaviour
                 playerHud.SetPlayerWin();
             }
         }
-        else
-        {
-            playerHud.SetPlayerLose();
-        }
 
         playerHud.SetTankShow(enemyManager.EnemySpawned.Count);
+    }
+
+    private void PlayerDeath(GameObject Player)
+    {
+        playerHud.SetPlayerLose();
+        player.onDeath.RemoveListener(PlayerDeath);
+    }
+
+    private void PlayerWin(GameObject Player)
+    {
+        playerHud.SetPlayerWin();
+        player.onDeath.RemoveListener(PlayerWin);
     }
 }

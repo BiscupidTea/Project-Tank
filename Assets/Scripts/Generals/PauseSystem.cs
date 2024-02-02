@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 /// <summary>
@@ -6,6 +7,7 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class PauseSystem : MonoBehaviour
 {
+    [SerializeField] public UnityEvent<GameObject> onPause;
     [SerializeField] private CanvasGroup canvasPause;
     [SerializeField] private GameObject firstButtonPause;
     [SerializeField] private EventSystem eventSystem;
@@ -37,6 +39,6 @@ public class PauseSystem : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
         }
-
+        onPause.Invoke(this.gameObject);
     }
 }

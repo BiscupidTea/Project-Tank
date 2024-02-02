@@ -10,6 +10,9 @@ using UnityEngine.Windows;
 public class PlayerController : MonoBehaviour, IHealthComponent
 {
     [SerializeField] public UnityEvent<GameObject> onDeath;
+    [SerializeField] public UnityEvent<GameObject> onAim;
+    [SerializeField] public UnityEvent<float> onTakeDamage;
+    [SerializeField] public UnityEvent<GameObject> onSwitchWeapon;
     [SerializeField] private float currentHealth;
     protected bool isAlive;
     public float CurrentHealth { get => currentHealth; set => currentHealth = value; }
@@ -48,11 +51,12 @@ public class PlayerController : MonoBehaviour, IHealthComponent
                 if (playerCamera.ActualCamera == artilleryCamera)
                 {
                     playerCamera.ActualCamera = turretCamera;
-                    playerCamera.IsAiming = false;
                 }
 
                 playerShoot.SwitchToNextWeapon();
             }
+
+            onSwitchWeapon.Invoke(this.gameObject);
         }
     }
     /// <summary>
@@ -94,16 +98,16 @@ public class PlayerController : MonoBehaviour, IHealthComponent
                 if (playerCamera.ActualCamera == artilleryCamera)
                 {
                     playerCamera.ActualCamera = turretCamera;
-                    playerCamera.IsAiming = false;
                 }
                 else
                 {
                     playerCamera.ActualCamera = artilleryCamera;
                     playerCamera.ActualCamera.SetCameraValues();
-                    playerCamera.IsAiming = true;
                 }
+                onAim.Invoke(this.gameObject);
                 Debug.Log("Change Camera to: " + playerCamera.ActualCamera);
             }
+
         }
     }
 
@@ -112,6 +116,7 @@ public class PlayerController : MonoBehaviour, IHealthComponent
         if (!pauseSystem.IsPause)
         {
             playerShoot.SwitchToArtillery();
+            onSwitchWeapon.Invoke(this.gameObject);
         }
     }
 
@@ -162,18 +167,25 @@ public class PlayerController : MonoBehaviour, IHealthComponent
                     if (playerCamera.ActualCamera == aimCamera)
                     {
                         playerCamera.ActualCamera = turretCamera;
-                        playerCamera.IsAiming = false;
                     }
                     else
                     {
                         playerCamera.ActualCamera = aimCamera;
-                        playerCamera.IsAiming = true;
                         playerCamera.ActualCamera.SetCameraValues();
                     }
                     Debug.Log("Change Camera to: " + playerCamera.ActualCamera);
+                    onAim.Invoke(this.gameObject);
                 }
             }
         }
+    }
+
+    [ContextMenu("Kill Player")]
+    private void KillPlayer()
+    {
+        currentHealth = 0;
+        isAlive = false;
+        Death();
     }
 
     public virtual void Death()
@@ -188,6 +200,7 @@ public class PlayerController : MonoBehaviour, IHealthComponent
     public void ReceiveDamage(float damage)
     {
         CurrentHealth -= damage;
+        onTakeDamage.Invoke(currentHealth);
 
         if (CurrentHealth <= 0)
         {

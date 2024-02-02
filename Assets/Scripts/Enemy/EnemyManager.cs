@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.Pool;
 
 public class EnemyManager : MonoBehaviour
 {
+    [SerializeField] public UnityEvent<GameObject> winCondition;
     [SerializeField] private TankSpawn[] tankSpawnList;
     [SerializeField] Transform enemyParent;
     [SerializeField] GameObject BaseEnemy;
@@ -68,7 +70,7 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-           enemyFactory.NewEnemyConfigure(ref newEnemy, tankSpawn.EnemySo, tankSpawn.SpawnPoint, tankSpawn.PatrolPoints);
+            enemyFactory.NewEnemyConfigure(ref newEnemy, tankSpawn.EnemySo, tankSpawn.SpawnPoint, tankSpawn.PatrolPoints);
         }
 
         EnemySpawned.Add(newEnemy);
@@ -82,6 +84,15 @@ public class EnemyManager : MonoBehaviour
         ObjectPool<GameObject> pool = EnemyPoolById[baseEnemy.Id];
         pool.Release(enemy);
         EnemySpawned.Remove(enemy);
+        CheckWinCondition();
+    }
+
+    private void CheckWinCondition()
+    {
+        if (enemySpawned.Count <= 0)
+        {
+            winCondition.Invoke(this.gameObject);
+        }
     }
 }
 
