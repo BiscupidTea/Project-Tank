@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33a7151c93d80c478daf377c34124e8, type: 3}
+  m_Name: USA_Tank_2
+  m_EditorClassIdentifier: 
+  health: 250
+  enemyType: 0
+  Asset: {fileID: 6606005299345233778, guid: 7aff9190f32585948a8d7838a859933a, type: 3}
+  boxColliderCenter: {x: 0, y: 1.2, z: 0}
+  boxColliderSize: {x: 3, y: 2.4, z: 6.3}
+  mass: 50
+  viewRange: 50
+  shootRange: 30
+  rotationSpeed: 5
+  weapon: {fileID: 4342006453618384460, guid: 93ba5323f53294b4d9d0262bbe87fcaf, type: 3}

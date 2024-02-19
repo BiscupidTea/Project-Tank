@@ -21,7 +21,7 @@ public class MachineGunWeapon : Weapon
             {
                 OnShootMachineGun?.Invoke(hit.point);
 
-                if (hit.rigidbody)
+                if (hit.collider)
                 {
                     if (hit.collider.TryGetComponent<IHealthComponent>(out var health))
                     {
@@ -36,5 +36,11 @@ public class MachineGunWeapon : Weapon
                 OnShootMachineGun?.Invoke(defaultPos);
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(InitialShootPosition.position, InitialShootPosition.position + InitialShootPosition.forward * range);
     }
 }

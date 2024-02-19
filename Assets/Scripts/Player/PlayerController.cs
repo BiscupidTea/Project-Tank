@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour, IHealthComponent
         {
             if (input.performed)
             {
-                if (playerShoot.WeaponInUse.id == "Cannon")
+                if (playerShoot.WeaponInUse.id != "Artillery")
                 {
 
                     if (playerCamera.ActualCamera == aimCamera)

@@ -3,18 +3,18 @@ using UnityEngine;
 public class EnemyFactory
 {
 
-    public void NewEnemyConfigure(ref GameObject enemy, EnemySO enemySO, Transform spawnPosition)
+    public void NewEnemyTankConfigure(ref GameObject enemy, EnemyTankSO enemySO, Transform spawnPosition)
     {
         enemy.transform.position = spawnPosition.position;
 
         //asset
         CleanEnemy(enemy);
-        GameObject Asset = GameObject.Instantiate(enemySO.tankAsset, enemy.transform);
+        GameObject Asset = GameObject.Instantiate(enemySO.Asset, enemy.transform);
 
         //basic Info
-        enemy.GetComponent<EnemyController>().CurrentHealth = enemySO.health;
-        enemy.GetComponent<EnemyController>().SetIsAlive(true);
-        enemy.GetComponent<EnemyController>().Id = enemySO.tankAsset.name;
+        enemy.GetComponent<EnemyTankController>().CurrentHealth = enemySO.health;
+        enemy.GetComponent<EnemyTankController>().SetIsAlive(true);
+        enemy.GetComponent<EnemyTankController>().Id = enemySO.Asset.name;
 
         //Phisics
         enemy.GetComponent<Rigidbody>().mass = enemySO.mass;
@@ -27,7 +27,7 @@ public class EnemyFactory
         cannon.GetComponent<CannonVFX>().EffectParticle = Asset.GetComponentInChildren<ParticleSystem>();
 
         //Shoot
-        var EnemyShootComponent = enemy.GetComponent<EnemyShoot>();
+        var EnemyShootComponent = enemy.GetComponent<EnemyTankShoot>();
         EnemyShootComponent.Cannon = cannon.GetComponent<CannonWeapon>();
         EnemyShootComponent.Turret = Asset.GetComponent<EnemyComponentFinder>().turret;
         EnemyShootComponent.ViewRange = enemySO.viewRange;
@@ -35,18 +35,18 @@ public class EnemyFactory
         EnemyShootComponent.RotationSpeed = enemySO.rotationSpeed;
     }
 
-    public void NewEnemyConfigure(ref GameObject enemy, EnemySO enemySO, Transform spawnPosition, Transform[] patrolPoints)
+    public void NewEnemyTankConfigure(ref GameObject enemy, EnemyTankSO enemySO, Transform spawnPosition, Transform[] patrolPoints)
     {
         enemy.transform.position = spawnPosition.position;
 
         //asset
         CleanEnemy(enemy);
-        GameObject Asset = GameObject.Instantiate(enemySO.tankAsset, enemy.transform);
+        GameObject Asset = GameObject.Instantiate(enemySO.Asset, enemy.transform);
 
         //basic Info
-        enemy.GetComponent<EnemyController>().CurrentHealth = enemySO.health;
-        enemy.GetComponent<EnemyController>().SetIsAlive(true);
-        enemy.GetComponent<EnemyController>().Id = enemySO.tankAsset.name;
+        enemy.GetComponent<EnemyTankController>().CurrentHealth = enemySO.health;
+        enemy.GetComponent<EnemyTankController>().SetIsAlive(true);
+        enemy.GetComponent<EnemyTankController>().Id = enemySO.Asset.name;
 
         //Phisics
         enemy.GetComponent<Rigidbody>().mass = enemySO.mass;
@@ -59,7 +59,7 @@ public class EnemyFactory
         cannon.GetComponent<CannonVFX>().EffectParticle = Asset.GetComponentInChildren<ParticleSystem>();
 
         //Shoot
-        var EnemyShootComponent = enemy.GetComponent<EnemyShoot>();
+        var EnemyShootComponent = enemy.GetComponent<EnemyTankShoot>();
         EnemyShootComponent.Cannon = cannon.GetComponent<CannonWeapon>();
         EnemyShootComponent.Turret = Asset.GetComponent<EnemyComponentFinder>().turret;
         EnemyShootComponent.ViewRange = enemySO.viewRange;
@@ -67,16 +67,66 @@ public class EnemyFactory
         EnemyShootComponent.RotationSpeed = enemySO.rotationSpeed;
 
         //Patroll
-        enemy.GetComponent<EnemyMove>().patrolPoints = new Transform[patrolPoints.Length];
+        enemy.GetComponent<EnemyTankMovement>().patrolPoints = new Transform[patrolPoints.Length];
         for (int i = 0; i < patrolPoints.Length; i++)
         {
-            enemy.GetComponent<EnemyMove>().patrolPoints[i] = patrolPoints[i];
+            enemy.GetComponent<EnemyTankMovement>().patrolPoints[i] = patrolPoints[i];
         }
 
         enemy.SetActive(false);
         enemy.SetActive(true);
     }
 
+    public void NewEnemyPlaneConfigure(ref GameObject enemy, EnemyPlaneSO enemySO, Transform spawnPosition, Transform[] patrolPoints)
+    {
+        enemy.transform.position = spawnPosition.position;
+
+        //asset
+        CleanEnemy(enemy);
+        GameObject Asset = GameObject.Instantiate(enemySO.Asset, enemy.transform);
+
+        //basic Info
+        var EnemyControllerComponent = enemy.GetComponent<EnemyPlaneController>();
+        EnemyControllerComponent.CurrentHealth = enemySO.health;
+        EnemyControllerComponent.SetIsAlive(true);
+        EnemyControllerComponent.Id = enemySO.Asset.name;
+
+        //movement
+        var EnemyMoveComponent = enemy.GetComponent<EnemyPlaneMovement>();
+        EnemyControllerComponent.FlyEnemyMovement = EnemyMoveComponent;
+        EnemyMoveComponent.MinDistancePatrolPoints = enemySO.minDistancePatrolPoints;
+        EnemyMoveComponent.MinDistancePlayer = enemySO.minDistancePlayer;
+        EnemyMoveComponent.MovementSpeed = enemySO.movementSpeed;
+        EnemyMoveComponent.RotationSpeed = enemySO.rotationSpeed;
+
+        //Phisics
+        enemy.GetComponent<BoxCollider>().center = enemySO.boxColliderCenter;
+        enemy.GetComponent<BoxCollider>().size = enemySO.boxColliderSize;
+
+        //Weapon
+        GameObject cannon = GameObject.Instantiate(enemySO.weapon, enemy.transform);
+        cannon.GetComponent<CannonWeapon>().InitialShootPosition = Asset.GetComponent<EnemyComponentFinder>().shootPosition;
+
+        //Shoot
+        var EnemyShootComponent = enemy.GetComponent<EnemyPlaneShoot>();
+        EnemyControllerComponent.FlyEnemyAttack = EnemyShootComponent;
+        EnemyShootComponent.Cannon = cannon.GetComponent<CannonWeapon>();
+        EnemyShootComponent.ViewRange = enemySO.viewRange;
+        EnemyShootComponent.AttackDelay = enemySO.attackDelay;
+        EnemyShootComponent.AttackPlayerDistance = enemySO.attackPlayerDistance;
+        EnemyShootComponent.ShootPosition = Asset.GetComponent<EnemyComponentFinder>().shootPosition;
+
+        //Patroll
+        EnemyMoveComponent.PatrolPoints = new Transform[patrolPoints.Length];
+        for (int i = 0; i < patrolPoints.Length; i++)
+        {
+            EnemyMoveComponent.PatrolPoints[i] = patrolPoints[i];
+        }
+
+        EnemyControllerComponent.AddListenersToController();
+        EnemyMoveComponent.StartPlaneBasics();
+        EnemyShootComponent.StartPlaneBasics();
+    }
     private void CleanEnemy(GameObject Enemy)
     {
         if (Enemy.transform.childCount > 0)

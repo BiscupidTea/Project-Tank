@@ -22,6 +22,9 @@ public class CannonVFX : MonoBehaviour
 
     private void OnAction()
     {
-        EffectParticle.Play();
+        if (effectParticle)
+        {
+            EffectParticle.Play();
+        }
     }
 }

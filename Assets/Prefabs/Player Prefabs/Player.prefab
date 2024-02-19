@@ -31,6 +31,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4295928799842926956}
   m_LocalEulerAnglesHint: {x: 0, y: 60, z: 0}
+--- !u!1 &511451542779352826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7941130660412262330}
+  - component: {fileID: 5716193164183857139}
+  m_Layer: 0
+  m_Name: AirPlaneObjectives
+  m_TagString: AirPlaneObjective
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7941130660412262330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511451542779352826}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5668808103688728708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5716193164183857139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511451542779352826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93c0bf8c2071714f820429f17638219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hide: 0
+  radius: 2
+  gizmoColor: {r: 0.9758564, g: 1, b: 0, a: 1}
 --- !u!1 &2049478914172208688
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +435,7 @@ Transform:
   - {fileID: 4160971273350415412}
   - {fileID: 8086241876321954161}
   - {fileID: 3623337639102073995}
+  - {fileID: 7941130660412262330}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5668808103688728711
@@ -604,6 +652,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67426cd0e3e29e34b8b4a47977da875c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onAim:
+    m_PersistentCalls:
+      m_Calls: []
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwitchWeapon:
+    m_PersistentCalls:
+      m_Calls: []
+  currentHealth: 400
   playerShoot: {fileID: 5668808103688728705}
   playerMovemnt: {fileID: 5668808103688728710}
   pauseSystem: {fileID: 0}
@@ -663,7 +724,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actualCamera: {fileID: 4523398363865465414}
-  isAiming: 0
 --- !u!114 &5668808103688728704
 MonoBehaviour:
   m_ObjectHideFlags: 0

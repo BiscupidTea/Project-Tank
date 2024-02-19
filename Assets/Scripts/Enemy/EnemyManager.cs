@@ -7,9 +7,11 @@ using UnityEngine.Pool;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] public UnityEvent<GameObject> winCondition;
-    [SerializeField] private TankSpawn[] tankSpawnList;
+    [SerializeField] private EnemyTankSpawn[] EnemyTankList;
+    [SerializeField] private EnemyPlaneSpawn[] EnemyPlaneList;
     [SerializeField] Transform enemyParent;
-    [SerializeField] GameObject BaseEnemy;
+    [SerializeField] GameObject BaseTankEnemy;
+    [SerializeField] GameObject BaseAirEnemy;
     [SerializeField] private List<GameObject> enemySpawned;
 
     private Dictionary<string, ObjectPool<GameObject>> EnemyPoolById = new();
@@ -19,29 +21,48 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (var e in tankSpawnList)
+        foreach (var e in EnemyTankList)
         {
-            if (EnemyPoolById.TryAdd(e.EnemyTank.name, new ObjectPool<GameObject>(() => Instantiate(BaseEnemy, enemyParent),
+            if (EnemyPoolById.TryAdd(e.EnemySo.Asset.name, new ObjectPool<GameObject>(() => Instantiate(BaseTankEnemy, enemyParent),
             enemy => { enemy.gameObject.SetActive(true); }, enemy => { enemy.gameObject.SetActive(false); },
-            enemy => { Destroy(enemy.gameObject); }, false, tankSpawnList.Length, 100)))
+            enemy => { Destroy(enemy.gameObject); }, false, EnemyTankList.Length, 100)))
             {
-                Debug.Log("New Pool: " + e.EnemyTank.name);
+                Debug.Log("New Pool: " + e.EnemySo.Asset.name);
             }
             else
             {
-                Debug.Log(e.EnemyTank.name + ": pool Already Exist");
+                Debug.Log(e.EnemySo.Asset.name + ": pool Already Exist");
             }
         }
 
-        for (int i = 0; i < tankSpawnList.Length; i++)
+        for (int i = 0; i < EnemyTankList.Length; i++)
         {
-            addNewEnemy(tankSpawnList[i]);
+            addNewEnemyTank(EnemyTankList[i]);
+        }
+
+        foreach (var e in EnemyPlaneList)
+        {
+            if (EnemyPoolById.TryAdd(e.EnemySo.Asset.name, new ObjectPool<GameObject>(() => Instantiate(BaseAirEnemy, enemyParent),
+            enemy => { enemy.gameObject.SetActive(true); }, enemy => { enemy.gameObject.SetActive(false); },
+            enemy => { Destroy(enemy.gameObject); }, false, EnemyPlaneList.Length, 100)))
+            {
+                Debug.Log("New Pool: " + e.EnemySo.Asset.name);
+            }
+            else
+            {
+                Debug.Log(e.EnemySo.Asset.name + ": pool Already Exist");
+            }
+        }
+
+        for (int i = 0; i < EnemyPlaneList.Length; i++)
+        {
+            addNewEnemyPlane(EnemyPlaneList[i]);
         }
     }
 
-    private void addNewEnemy(TankSpawn tankSpawn)
+    private void addNewEnemyTank(EnemyTankSpawn NewEnemyTank)
     {
-        var pool = EnemyPoolById[tankSpawn.EnemyTank.name];
+        var pool = EnemyPoolById[NewEnemyTank.EnemySo.Asset.name];
         if (pool == null)
         {
             Debug.LogError("Enemy Pool not found");
@@ -50,37 +71,66 @@ public class EnemyManager : MonoBehaviour
 
         GameObject newEnemy = null;
         pool.Get(out newEnemy);
-        newEnemy.GetComponent<EnemyController>().onDeath.AddListener(OnKillEnemy);
+        newEnemy.GetComponent<EnemyTankController>().onDeath.AddListener(OnKillEnemyTank);
 
         NavMeshHit Hit;
-        if (NavMesh.SamplePosition(tankSpawn.SpawnPoint.position, out Hit, 2f, 1))
+        if (NavMesh.SamplePosition(NewEnemyTank.SpawnPoint.position, out Hit, 2f, 1))
         {
-            newEnemy.GetComponent<EnemyMove>().Enemy.Warp(Hit.position);
-            newEnemy.GetComponent<EnemyMove>().Enemy.enabled = true;
+            newEnemy.GetComponent<EnemyTankMovement>().Enemy.Warp(Hit.position);
+            newEnemy.GetComponent<EnemyTankMovement>().Enemy.enabled = true;
         }
         else
         {
             Debug.LogError("Unable to place NavMeshAgent on NavMesh");
         }
 
-        if (tankSpawn.PatrolPoints.Length < 1)
+        if (NewEnemyTank.PatrolPoints.Length < 1)
         {
-            enemyFactory.NewEnemyConfigure(ref newEnemy, tankSpawn.EnemySo, tankSpawn.SpawnPoint);
+            enemyFactory.NewEnemyTankConfigure(ref newEnemy, NewEnemyTank.EnemySo, NewEnemyTank.SpawnPoint);
 
         }
         else
         {
-            enemyFactory.NewEnemyConfigure(ref newEnemy, tankSpawn.EnemySo, tankSpawn.SpawnPoint, tankSpawn.PatrolPoints);
+            enemyFactory.NewEnemyTankConfigure(ref newEnemy, NewEnemyTank.EnemySo, NewEnemyTank.SpawnPoint, NewEnemyTank.PatrolPoints);
         }
 
         EnemySpawned.Add(newEnemy);
         Debug.Log("Enemy Created! total Enemies = " + enemySpawned.Count);
     }
 
-    private void OnKillEnemy(GameObject enemy)
+    private void addNewEnemyPlane(EnemyPlaneSpawn NewEnemyPlane)
     {
-        EnemyController baseEnemy = enemy.GetComponent<EnemyController>();
-        baseEnemy.onDeath.RemoveListener(OnKillEnemy);
+        var pool = EnemyPoolById[NewEnemyPlane.EnemySo.Asset.name];
+        if (pool == null)
+        {
+            Debug.LogError("Enemy Pool not found");
+            return;
+        }
+
+        GameObject newEnemy = null;
+        pool.Get(out newEnemy);
+        newEnemy.GetComponent<EnemyPlaneController>().onDeath.AddListener(OnKillEnemyPlane);
+
+        enemyFactory.NewEnemyPlaneConfigure(ref newEnemy, NewEnemyPlane.EnemySo, NewEnemyPlane.SpawnPoint, NewEnemyPlane.PatrolPoints);
+
+        EnemySpawned.Add(newEnemy);
+        Debug.Log("Enemy Created! total Enemies = " + enemySpawned.Count);
+    }
+
+    private void OnKillEnemyTank(GameObject enemy)
+    {
+        EnemyTankController baseEnemy = enemy.GetComponent<EnemyTankController>();
+        baseEnemy.onDeath.RemoveListener(OnKillEnemyTank);
+        ObjectPool<GameObject> pool = EnemyPoolById[baseEnemy.Id];
+        pool.Release(enemy);
+        EnemySpawned.Remove(enemy);
+        CheckWinCondition();
+    }
+
+    private void OnKillEnemyPlane(GameObject enemy)
+    {
+        EnemyPlaneController baseEnemy = enemy.GetComponent<EnemyPlaneController>();
+        baseEnemy.onDeath.RemoveListener(OnKillEnemyPlane);
         ObjectPool<GameObject> pool = EnemyPoolById[baseEnemy.Id];
         pool.Release(enemy);
         EnemySpawned.Remove(enemy);
@@ -97,10 +147,17 @@ public class EnemyManager : MonoBehaviour
 }
 
 [System.Serializable]
-public class TankSpawn
+public class EnemyTankSpawn
 {
-    public GameObject EnemyTank;
-    public EnemySO EnemySo;
+    public EnemyTankSO EnemySo;
+    public Transform SpawnPoint;
+    public Transform[] PatrolPoints;
+}
+
+[System.Serializable]
+public class EnemyPlaneSpawn
+{
+    public EnemyPlaneSO EnemySo;
     public Transform SpawnPoint;
     public Transform[] PatrolPoints;
 }
