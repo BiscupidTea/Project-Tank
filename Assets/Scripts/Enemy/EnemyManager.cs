@@ -144,6 +144,29 @@ public class EnemyManager : MonoBehaviour
             winCondition.Invoke(this.gameObject);
         }
     }
+
+    public void ClearAllEnemies()
+    {
+        for (int i = enemySpawned.Count - 1; i >= 0; i--)
+        {
+            GameObject enemyObject = enemySpawned[i];
+            EnemyTankController tankController = enemyObject.GetComponent<EnemyTankController>();
+            EnemyPlaneController planeController = enemyObject.GetComponent<EnemyPlaneController>();
+
+            if (tankController != null)
+            {
+                tankController.KillEnemy();
+            }
+            else if (planeController != null)
+            {
+                planeController.KillEnemy();
+            }
+            else
+            {
+                Debug.Log("error enemy dont have kill method");
+            }
+        }
+    }
 }
 
 [System.Serializable]

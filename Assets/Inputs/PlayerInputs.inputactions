@@ -139,6 +139,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ContinueTutorial",
+                    "type": "Button",
+                    "id": "750b1ff6-6ce3-47ec-acf5-6e3291d9bb86",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -376,7 +385,7 @@
                 {
                     "name": "",
                     "id": "1d56d789-2507-45ec-ae82-faa842dfdeee",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -419,8 +428,30 @@
                 },
                 {
                     "name": "",
+                    "id": "329277a3-629d-4b90-8d29-d8431980be18",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ArtilleryCall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5e36ae17-4102-4f35-b1aa-f00cb0736e73",
                     "path": "<Keyboard>/f9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31e56280-e144-4036-b353-9aa310e7a156",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -441,8 +472,30 @@
                 },
                 {
                     "name": "",
+                    "id": "23e5958a-4962-4edf-b1e2-4f14abcba240",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GodMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "57a614ca-8791-496a-ace6-ad5bec57aa8a",
                     "path": "<Keyboard>/f11",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e60f233-f587-47bb-850c-0dd8f89ad807",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -462,9 +515,20 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Two Modifiers",
-                    "id": "5ab7577f-ff6b-4a71-ae45-e6e21a83cab9",
-                    "path": "TwoModifiers",
+                    "name": "",
+                    "id": "0a76752d-b64b-4944-bab1-19c05c6c0f05",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Nuke",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "e04da714-bcda-40d3-a84d-631ea4524a63",
+                    "path": "OneModifier",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -473,20 +537,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier1",
-                    "id": "87c3f4be-a832-404c-b291-909f951eac44",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ActiveCheats",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "modifier2",
-                    "id": "c4397693-a2eb-4de3-9cd6-e4afa08ccf6a",
-                    "path": "<Keyboard>/alt",
+                    "name": "modifier",
+                    "id": "136dd336-fd92-4e8e-8833-21e86373fa47",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -496,14 +549,69 @@
                 },
                 {
                     "name": "binding",
-                    "id": "945aca87-8191-44e9-a97a-c64e5b4027b2",
-                    "path": "<Keyboard>/p",
+                    "id": "808661d4-0dd6-4c2a-a062-8c91f86e836d",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ActiveCheats",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "c012c14f-04dc-420d-90c3-3734235c76dd",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActiveCheats",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "882997a0-dcc6-445a-94ce-0123f676936d",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActiveCheats",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "e11fbef8-f27a-4a99-a354-c273cdadc899",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActiveCheats",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "3a0dee00-2372-410f-9558-363de76cc474",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ContinueTutorial",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22eb8a1a-9076-46bb-9c05-1a519511c496",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ContinueTutorial",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

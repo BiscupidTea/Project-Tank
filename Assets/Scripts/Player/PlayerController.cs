@@ -13,9 +13,14 @@ public class PlayerController : MonoBehaviour, IHealthComponent
     [SerializeField] public UnityEvent<GameObject> onAim;
     [SerializeField] public UnityEvent<float> onTakeDamage;
     [SerializeField] public UnityEvent<GameObject> onSwitchWeapon;
+    [SerializeField] public UnityEvent<GameObject> activateCheats;
+    [SerializeField] public UnityEvent<GameObject> continueTutorial;
+    [SerializeField] public UnityEvent<string> sendCheatCode;
     [SerializeField] private float currentHealth;
     protected bool isAlive;
+    private bool immortal;
     public float CurrentHealth { get => currentHealth; set => currentHealth = value; }
+    public bool Immortal { get => immortal; set => immortal = value; }
 
     [Header("System")]
     [SerializeField] private PlayerShoot playerShoot;
@@ -180,6 +185,54 @@ public class PlayerController : MonoBehaviour, IHealthComponent
         }
     }
 
+    public void ActiveCheats(InputAction.CallbackContext input)
+    {
+        if (input.performed)
+        {
+            activateCheats.Invoke(this.gameObject);
+        }
+    }
+
+    public void NextLevelCheat(InputAction.CallbackContext input)
+    {
+        if (input.performed)
+        {
+            sendCheatCode.Invoke("NextLevel");
+        }
+    }
+
+    public void GodModeCheat(InputAction.CallbackContext input)
+    {
+        if (input.performed)
+        {
+            sendCheatCode.Invoke("GodMode");
+        }
+    }
+
+    public void FlashCheat(InputAction.CallbackContext input)
+    {
+        if (input.performed)
+        {
+            sendCheatCode.Invoke("Flash");
+        }
+    }
+
+    public void NukeCheat(InputAction.CallbackContext input)
+    {
+        if (input.performed)
+        {
+            sendCheatCode.Invoke("Nuke");
+        }
+    }
+
+    public void ContinueTutorial(InputAction.CallbackContext input)
+    {
+        if (input.performed)
+        {
+            continueTutorial.Invoke(this.gameObject);
+        }
+    }
+
     [ContextMenu("Kill Player")]
     private void KillPlayer()
     {
@@ -199,13 +252,16 @@ public class PlayerController : MonoBehaviour, IHealthComponent
     /// <param name="damage"></param>
     public void ReceiveDamage(float damage)
     {
-        CurrentHealth -= damage;
-        onTakeDamage.Invoke(currentHealth);
-
-        if (CurrentHealth <= 0)
+        if (!Immortal)
         {
-            isAlive = false;
-            Death();
+            CurrentHealth -= damage;
+            onTakeDamage.Invoke(currentHealth);
+
+            if (CurrentHealth <= 0)
+            {
+                isAlive = false;
+                Death();
+            }
         }
     }
 

@@ -49,7 +49,7 @@ MonoBehaviour:
   delayBetweenSheels: 2
   cuantity: 3
   attackHeight: 150
-  ArtilleryShell: {fileID: 4829409194887708885, guid: bdcabea2d42b1a3478dfe61a1c609145, type: 3}
+  ArtilleryShell: {fileID: 4829409194887708885, guid: 33fdae2636b6c024986ef4c1176d644e, type: 3}
 --- !u!1001 &4525966928084211063
 PrefabInstance:
   m_ObjectHideFlags: 0

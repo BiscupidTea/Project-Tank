@@ -43,7 +43,7 @@ public class EnemyPlaneController : MonoBehaviour, IHealthComponent
     }
 
     [ContextMenu("Kill Enemy")]
-    private void KillEnemy()
+    public void KillEnemy()
     {
         currentHealth = 0;
         isAlive = false;

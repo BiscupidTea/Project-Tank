@@ -494,6 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 91719848244753065}
+  cannon: {fileID: 1086404298634868}
   shootPosition: {fileID: 8388647282145604524}
 --- !u!1001 &7423775788600278773
 PrefabInstance:

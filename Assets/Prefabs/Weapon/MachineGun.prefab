@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialShootPosition: {fileID: 0}
-  reloadTime: 5
-  maxAmmo: 30
+  reloadTime: 8
+  maxAmmo: 40
   id: MachineGun
   bulletsCosume: 0
   damage: 10

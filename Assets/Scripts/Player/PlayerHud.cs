@@ -32,6 +32,7 @@ public class PlayerHud : MonoBehaviour
     [Header("HealthBar Boss Info")]
     [SerializeField] private TextMeshProUGUI healthBossNumber;
     [SerializeField] private bool isBoss;
+    [SerializeField] private GameObject boss;
     [SerializeField] private GameObject healthGameObjectBoss;
     [SerializeField] private Slider healthSliderBoss;
 
@@ -85,6 +86,22 @@ public class PlayerHud : MonoBehaviour
 
             healthSliderBoss.enabled = true;
             healthGameObjectBoss.SetActive(true);
+
+            GameObject[] enemies = GameObject.FindObjectsOfType<GameObject>();
+
+            foreach (GameObject enemy in enemies)
+            {
+                EnemyTankController component = enemy.GetComponent<EnemyTankController>();
+
+                if (component != null)
+                {
+                    boss = enemy;
+                    component.onTakeDamage.AddListener(SetBossHealthBar);
+                    healthSliderBoss.maxValue = component.CurrentHealth;
+                    healthSliderBoss.value = component.CurrentHealth;
+                }
+            }
+
         }
         else
         {
@@ -96,7 +113,7 @@ public class PlayerHud : MonoBehaviour
         }
 
         pause.onPause.AddListener(SwitchPause);
-        playerController.onTakeDamage.AddListener(SetHealthBar);
+        playerController.onTakeDamage.AddListener(SetPlayerHealthBar);
         playerController.onAim.AddListener(SetAim);
         playerController.onSwitchWeapon.AddListener(SetWeaponSelect);
     }
@@ -104,7 +121,7 @@ public class PlayerHud : MonoBehaviour
     private void OnDestroy()
     {
         pause.onPause.RemoveListener(SwitchPause);
-        playerController.onTakeDamage.RemoveListener(SetHealthBar);
+        playerController.onTakeDamage.RemoveListener(SetPlayerHealthBar);
         playerController.onAim.RemoveListener(SetAim);
         playerController.onSwitchWeapon.RemoveListener(SetWeaponSelect);
     }
@@ -133,9 +150,14 @@ public class PlayerHud : MonoBehaviour
             cross.SetActive(false);
         }
     }
-    private void SetHealthBar(float playerController)
+    private void SetPlayerHealthBar(float playerController)
     {
         healthSliderPlayer.value = playerController;
+    }
+
+    private void SetBossHealthBar(float bossLife)
+    {
+        healthSliderBoss.value = bossLife;
     }
 
     public void SetPlayerWin()

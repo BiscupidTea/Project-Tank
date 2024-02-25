@@ -9,8 +9,13 @@ public class EnemyTankSO : EnemySO
     [Header("Shoot Info")]
     public int viewRange;
     public int shootRange;
-    public int rotationSpeed;
+    public float turretRotationSpeed;
+    public float cannonRotationSpeed;
+    public float cannonMaxRotation;
+    public float cannonMinRotation;
 
     [Header("Cannon Weapon Info")]
     public GameObject weapon;
+    public float damage;
+    public float force;
 }

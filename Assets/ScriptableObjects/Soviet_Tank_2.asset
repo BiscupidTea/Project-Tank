@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: Soviet_Tank_2
   m_EditorClassIdentifier: 
   health: 250
-  enemyType: 0
   Asset: {fileID: 605512819774308200, guid: 2ebf979aaaeff1a45966f55f233733e7, type: 3}
   boxColliderCenter: {x: 0, y: 1.2, z: 0}
   boxColliderSize: {x: 3, y: 2.4, z: 6.3}
   mass: 50
   viewRange: 50
   shootRange: 30
-  rotationSpeed: 5
+  turretRotationSpeed: 5
+  cannonRotationSpeed: 5
+  cannonMaxRotation: 20
+  cannonMinRotation: -45
   weapon: {fileID: 4342006453618384460, guid: 93ba5323f53294b4d9d0262bbe87fcaf, type: 3}
+  damage: 50
+  force: 50

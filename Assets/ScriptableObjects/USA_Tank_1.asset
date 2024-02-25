@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: USA_Tank_1
   m_EditorClassIdentifier: 
   health: 250
-  enemyType: 0
   Asset: {fileID: 1335991254495539031, guid: ad899c9168e7f5c4db7f2447350a5249, type: 3}
   boxColliderCenter: {x: 0, y: 1.2, z: 0}
   boxColliderSize: {x: 3, y: 2.4, z: 6.3}
   mass: 50
-  viewRange: 50
+  viewRange: 90
   shootRange: 30
-  rotationSpeed: 5
+  turretRotationSpeed: 5
+  cannonRotationSpeed: 5
+  cannonMaxRotation: 20
+  cannonMinRotation: -45
   weapon: {fileID: 4342006453618384460, guid: 93ba5323f53294b4d9d0262bbe87fcaf, type: 3}
+  damage: 50
+  force: 50

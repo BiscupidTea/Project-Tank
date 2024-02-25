@@ -635,6 +635,86 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4919fb38-df58-4a55-8d9f-5a539640ae4c
     m_ActionName: Game/ArtilleryCamera[/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6016909988756290251}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ActiveCheats
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ba6aea6b-f6a0-47e5-9b55-1060dcc80c2a
+    m_ActionName: Game/ActiveCheats[/Keyboard/ctrl,/Keyboard/alt,/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6016909988756290251}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: NextLevelCheat
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fb727edc-4f74-4b24-ac0f-35ce4037181c
+    m_ActionName: Game/NextLevel[/Keyboard/f9]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6016909988756290251}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: GodModeCheat
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 476574c2-6b89-4eed-b99b-30b3afb394c2
+    m_ActionName: Game/GodMode[/Keyboard/f10]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6016909988756290251}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: FlashCheat
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 590a5a28-6d69-4955-aa85-664607ed2754
+    m_ActionName: Game/Flash[/Keyboard/f11]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6016909988756290251}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: NukeCheat
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 30e22261-0fa4-4618-ad93-df3f5235a535
+    m_ActionName: Game/Nuke[/Keyboard/f12]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -662,6 +742,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onSwitchWeapon:
+    m_PersistentCalls:
+      m_Calls: []
+  activateCheats:
+    m_PersistentCalls:
+      m_Calls: []
+  sendCheatCode:
     m_PersistentCalls:
       m_Calls: []
   currentHealth: 400
@@ -708,6 +794,7 @@ MonoBehaviour:
   - origin: {fileID: 4333516665152472712}
     distance: 8
   maxSpeed: 20
+  currentSpeed: 0
   movementForce: 30000
   maxTurnSpeed: 30
   turnSpeed: 0
@@ -990,6 +1077,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5668808103688728708}
     m_Modifications:
+    - target: {fileID: 1096440276061706009, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096440276061706009, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096440276061706009, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.13
+      objectReference: {fileID: 0}
     - target: {fileID: 4766235881035176951, guid: 8f9c017906bf3714da80f842a6ab7f4e, type: 3}
       propertyPath: m_RootOrder
       value: 2

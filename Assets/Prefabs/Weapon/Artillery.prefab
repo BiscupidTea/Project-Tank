@@ -50,7 +50,7 @@ MonoBehaviour:
   reloadTime: 30
   maxAmmo: 1
   id: Artillery
-  attackRange: 5
+  attackRange: 10
   PrefabArtilleryShoot: {fileID: 2755484241404315759, guid: 27053a115f668da41a8d34509c1a1c41, type: 3}
 --- !u!114 &2083600001889400438
 MonoBehaviour:

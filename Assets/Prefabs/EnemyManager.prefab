@@ -44,6 +44,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9ffe86d8f88074187a7b851474d622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankSpawnList: []
-  enemyParent: {fileID: 0}
-  EnemyPoolSize: 0
+  winCondition:
+    m_PersistentCalls:
+      m_Calls: []
+  EnemyTankList:
+  - EnemySo: {fileID: 11400000, guid: b3551ba6dcd9a064d976ef5208475a56, type: 2}
+    SpawnPoint: {fileID: 0}
+    PatrolPoints: []
+  - EnemySo: {fileID: 11400000, guid: b3551ba6dcd9a064d976ef5208475a56, type: 2}
+    SpawnPoint: {fileID: 0}
+    PatrolPoints: []
+  - EnemySo: {fileID: 11400000, guid: b3551ba6dcd9a064d976ef5208475a56, type: 2}
+    SpawnPoint: {fileID: 0}
+    PatrolPoints: []
+  - EnemySo: {fileID: 11400000, guid: b3551ba6dcd9a064d976ef5208475a56, type: 2}
+    SpawnPoint: {fileID: 0}
+    PatrolPoints: []
+  - EnemySo: {fileID: 11400000, guid: b3551ba6dcd9a064d976ef5208475a56, type: 2}
+    SpawnPoint: {fileID: 0}
+    PatrolPoints: []
+  - EnemySo: {fileID: 11400000, guid: 754cac5909c694846a0413a0eca9edf0, type: 2}
+    SpawnPoint: {fileID: 0}
+    PatrolPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - EnemySo: {fileID: 11400000, guid: 754cac5909c694846a0413a0eca9edf0, type: 2}
+    SpawnPoint: {fileID: 0}
+    PatrolPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - EnemySo: {fileID: 11400000, guid: 754cac5909c694846a0413a0eca9edf0, type: 2}
+    SpawnPoint: {fileID: 0}
+    PatrolPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - EnemySo: {fileID: 11400000, guid: 754cac5909c694846a0413a0eca9edf0, type: 2}
+    SpawnPoint: {fileID: 0}
+    PatrolPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  EnemyPlaneList:
+  - EnemySo: {fileID: 11400000, guid: 2c86e817b48cd7e498f1a6b290c8ced4, type: 2}
+    SpawnPoint: {fileID: 0}
+    PatrolPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  enemyParent: {fileID: 6991841652319536724}
+  BaseTankEnemy: {fileID: 6065827182555475718, guid: 046a216b42f4408449011d0e7d2c833a, type: 3}
+  BaseAirEnemy: {fileID: 5417775930470529886, guid: 29c4c586d688adb43b008437f9d6d129, type: 3}
+  enemySpawned: []

@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
 
     [SerializeField] private float maxSpeed;
+    [SerializeField] private float currentSpeed;
     [SerializeField] private float movementForce;
     [SerializeField] private float maxTurnSpeed;
     [SerializeField] private float turnSpeed;
@@ -67,10 +68,14 @@ public class PlayerMovement : MonoBehaviour
     private float verticalMovement;
     private bool isRotating;
 
+    public float CurrentSpeed { get => currentSpeed; set => currentSpeed = value; }
+    public float MaxSpeed { get => maxSpeed; set => maxSpeed = value; }
+
     private void Start()
     {
         playerRigidbody ??= GetComponent<Rigidbody>();
 
+        CurrentSpeed = MaxSpeed;
         turnSpeed = maxTurnSpeed;
     }
     private void FixedUpdate()
@@ -94,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
             playerRigidbody.AddForce(transform.forward * ((verticalMovement * force)) * Time.fixedDeltaTime, ForceMode.Force);
         }
 
-        playerRigidbody.velocity = Vector3.ClampMagnitude(playerRigidbody.velocity, maxSpeed);
+        playerRigidbody.velocity = Vector3.ClampMagnitude(playerRigidbody.velocity, CurrentSpeed);
 
         AssingWheelRotation();
     }

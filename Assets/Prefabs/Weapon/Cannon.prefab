@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialShootPosition: {fileID: 0}
-  reloadTime: 2
+  reloadTime: 5
   maxAmmo: 1
   id: Cannon
-  damage: 50
+  damage: 200
   force: 50
   PrefabShell: {fileID: 3172073774485086772, guid: bdcabea2d42b1a3478dfe61a1c609145, type: 3}
 --- !u!114 &1643889645111300719

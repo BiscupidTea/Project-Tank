@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class EnemyTankController : MonoBehaviour, IHealthComponent
 {
     [SerializeField] public UnityEvent<GameObject> onDeath;
+    [SerializeField] public UnityEvent<float> onTakeDamage;
     private string id;
     private float currentHealth;
     protected bool isAlive;
@@ -20,7 +21,7 @@ public class EnemyTankController : MonoBehaviour, IHealthComponent
     }
 
     [ContextMenu("Kill Enemy")]
-    private void KillEnemy()
+    public void KillEnemy()
     {
         currentHealth = 0;
         isAlive = false;
@@ -34,6 +35,7 @@ public class EnemyTankController : MonoBehaviour, IHealthComponent
     public void ReceiveDamage(float damage)
     {
         CurrentHealth -= damage;
+        onTakeDamage.Invoke(currentHealth);
 
         if (CurrentHealth <= 0)
         {

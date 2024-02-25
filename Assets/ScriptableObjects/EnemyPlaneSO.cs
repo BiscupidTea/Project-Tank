@@ -16,4 +16,5 @@ public class EnemyPlaneSO : EnemySO
 
     [Header("Cannon Weapon Info")]
     public GameObject weapon;
+    public float damage;
 }

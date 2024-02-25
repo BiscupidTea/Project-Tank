@@ -6,6 +6,7 @@ public class EnemyFactory
     public void NewEnemyTankConfigure(ref GameObject enemy, EnemyTankSO enemySO, Transform spawnPosition)
     {
         enemy.transform.position = spawnPosition.position;
+        enemy.transform.rotation = spawnPosition.rotation;
 
         //asset
         CleanEnemy(enemy);
@@ -24,15 +25,23 @@ public class EnemyFactory
         //Weapon
         GameObject cannon = GameObject.Instantiate(enemySO.weapon, enemy.transform);
         cannon.GetComponent<CannonWeapon>().InitialShootPosition = Asset.GetComponent<EnemyComponentFinder>().shootPosition;
+        cannon.GetComponent<CannonWeapon>().Damage = enemySO.damage;
+        cannon.GetComponent<CannonWeapon>().Force = enemySO.force;
         cannon.GetComponent<CannonVFX>().EffectParticle = Asset.GetComponentInChildren<ParticleSystem>();
 
         //Shoot
         var EnemyShootComponent = enemy.GetComponent<EnemyTankShoot>();
         EnemyShootComponent.Cannon = cannon.GetComponent<CannonWeapon>();
-        EnemyShootComponent.Turret = Asset.GetComponent<EnemyComponentFinder>().turret;
+        EnemyShootComponent.AssetTurret = Asset.GetComponent<EnemyComponentFinder>().turret;
+        EnemyShootComponent.AssetCannon = Asset.GetComponent<EnemyComponentFinder>().cannon;
+
         EnemyShootComponent.ViewRange = enemySO.viewRange;
         EnemyShootComponent.ShootRange = enemySO.shootRange;
-        EnemyShootComponent.RotationSpeed = enemySO.rotationSpeed;
+
+        EnemyShootComponent.TurretRotationSpeed = enemySO.turretRotationSpeed;
+        EnemyShootComponent.CannonRotationSpeed = enemySO.cannonRotationSpeed;
+        EnemyShootComponent.CannonMaxRotation = enemySO.cannonMaxRotation;
+        EnemyShootComponent.CannonMinRotation = enemySO.cannonMinRotation;
     }
 
     public void NewEnemyTankConfigure(ref GameObject enemy, EnemyTankSO enemySO, Transform spawnPosition, Transform[] patrolPoints)
@@ -56,15 +65,23 @@ public class EnemyFactory
         //Weapon
         GameObject cannon = GameObject.Instantiate(enemySO.weapon, enemy.transform);
         cannon.GetComponent<CannonWeapon>().InitialShootPosition = Asset.GetComponent<EnemyComponentFinder>().shootPosition;
+        cannon.GetComponent<CannonWeapon>().Damage = enemySO.damage;
+        cannon.GetComponent<CannonWeapon>().Force = enemySO.force;
         cannon.GetComponent<CannonVFX>().EffectParticle = Asset.GetComponentInChildren<ParticleSystem>();
 
         //Shoot
         var EnemyShootComponent = enemy.GetComponent<EnemyTankShoot>();
         EnemyShootComponent.Cannon = cannon.GetComponent<CannonWeapon>();
-        EnemyShootComponent.Turret = Asset.GetComponent<EnemyComponentFinder>().turret;
+        EnemyShootComponent.AssetTurret = Asset.GetComponent<EnemyComponentFinder>().turret;
+        EnemyShootComponent.AssetCannon = Asset.GetComponent<EnemyComponentFinder>().cannon;
+
         EnemyShootComponent.ViewRange = enemySO.viewRange;
         EnemyShootComponent.ShootRange = enemySO.shootRange;
-        EnemyShootComponent.RotationSpeed = enemySO.rotationSpeed;
+
+        EnemyShootComponent.TurretRotationSpeed = enemySO.turretRotationSpeed;
+        EnemyShootComponent.CannonRotationSpeed = enemySO.cannonRotationSpeed;
+        EnemyShootComponent.CannonMaxRotation = enemySO.cannonMaxRotation;
+        EnemyShootComponent.CannonMinRotation = enemySO.cannonMinRotation;
 
         //Patroll
         enemy.GetComponent<EnemyTankMovement>().patrolPoints = new Transform[patrolPoints.Length];

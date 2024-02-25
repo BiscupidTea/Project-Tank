@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c623f5492932c84bb3b5f734269233a, type: 3}
   m_Name: Spitfire
   m_EditorClassIdentifier: 
-  health: 300
+  health: 150
   Asset: {fileID: 4504137862883824125, guid: 5172feb503949c74e8ae15f6a53b304b, type: 3}
   boxColliderCenter: {x: 0, y: 2, z: 0}
   boxColliderSize: {x: 17, y: 4, z: 15}
@@ -24,3 +24,4 @@ MonoBehaviour:
   attackDelay: 30
   attackPlayerDistance: 15
   weapon: {fileID: 4342006453618384460, guid: 93ba5323f53294b4d9d0262bbe87fcaf, type: 3}
+  damage: 100

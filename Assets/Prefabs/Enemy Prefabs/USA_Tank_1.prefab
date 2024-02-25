@@ -281,6 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 7356313576600519488}
+  cannon: {fileID: 295933270744736298}
   shootPosition: {fileID: 9209877435928633499}
 --- !u!1 &4284700262975299488
 GameObject:
