@@ -3,9 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField]private SoundManager soundManager;
+    private AudioClip NextSongToPlay;
     public void LoadLevel(string levelName)
     {
+        SoundManager.Instance.PlayMusic(NextSongToPlay);
         SceneManager.LoadScene(levelName);
     }
 
@@ -21,4 +22,10 @@ public class SceneLoader : MonoBehaviour
     {
         Application.Quit();
     } 
+
+    public void SetNextSong(AudioClip audioClip)
+    {
+        NextSongToPlay = audioClip;
+    }
+
 }

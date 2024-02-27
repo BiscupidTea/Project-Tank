@@ -14,12 +14,12 @@ public class TurretCamera : CameraBehavior
 
     public override void SetCameraValues()
     {
-        
+
     }
 
     public override void RotateCamera(Vector2 input)
     {
-        turret.transform.RotateAround(turret.position, turret.up, ScaledDelta.x * RotationSpeedCamera.x);
+        turret.transform.RotateAround(turret.position, turret.up, ScaledDelta.x);
         cannon.transform.localRotation = Quaternion.Euler(-actualcannonAngle, 0f, 0f);
 
         CameraUsed.transform.position = CameraPosition.transform.position;
@@ -33,6 +33,6 @@ public class TurretCamera : CameraBehavior
     private void LimitCannonRotation()
     {
         actualcannonAngle = Mathf.Clamp(actualcannonAngle, cannonAngleMin, cannonAngleMax);
-        actualcannonAngle += ScaledDelta.y * RotationSpeedCamera.y;
+        actualcannonAngle += ScaledDelta.y;
     }
 }

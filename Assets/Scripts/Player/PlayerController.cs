@@ -100,6 +100,11 @@ public class PlayerController : MonoBehaviour, IHealthComponent
         {
             if (input.performed)
             {
+                if (playerCamera.ActualCamera != aimCamera)
+                {
+                    onAim.Invoke(this.gameObject);
+                }
+
                 if (playerCamera.ActualCamera == artilleryCamera)
                 {
                     playerCamera.ActualCamera = turretCamera;
@@ -109,7 +114,6 @@ public class PlayerController : MonoBehaviour, IHealthComponent
                     playerCamera.ActualCamera = artilleryCamera;
                     playerCamera.ActualCamera.SetCameraValues();
                 }
-                onAim.Invoke(this.gameObject);
                 Debug.Log("Change Camera to: " + playerCamera.ActualCamera);
             }
 

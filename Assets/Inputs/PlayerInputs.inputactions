@@ -319,7 +319,7 @@
                 {
                     "name": "",
                     "id": "0a59fae5-4de0-44bf-a6d7-478e40604660",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -409,7 +409,7 @@
                     "id": "f18467aa-ba0c-4ba5-82ba-89b2b883a5b3",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "ScaleVector2(x=5,y=5)",
+                    "processors": "",
                     "groups": "",
                     "action": "SetCameraConstantRotation",
                     "isComposite": false,
@@ -605,7 +605,7 @@
                 {
                     "name": "",
                     "id": "22eb8a1a-9076-46bb-9c05-1a519511c496",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

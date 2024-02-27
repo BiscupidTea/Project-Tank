@@ -158,7 +158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraUsed: {fileID: 1556254299665874127}
   cameraPosition: {fileID: 5668808104318838545}
-  rotationSpeedCamera: {x: 5, y: 5}
+  rotationControllerSpeedCamera: {x: 1e-10, y: 1e-10}
+  rotationMouseSpeedCamera: {x: 4, y: 4}
   aimPosition: {fileID: 5668808104318838545}
   turret: {fileID: 5370433558306613076}
   cannon: {fileID: 5932996788328510579}
@@ -303,7 +304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraUsed: {fileID: 1556254299665874127}
   cameraPosition: {fileID: 5527123507486457448}
-  rotationSpeedCamera: {x: 1, y: 5}
+  rotationControllerSpeedCamera: {x: 0.05, y: 0.05}
+  rotationMouseSpeedCamera: {x: 5, y: 5}
   maxVerticalAngle: 50
   minVerticalAngle: 10
   mouseSensitivity: 5
@@ -353,7 +355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraUsed: {fileID: 1556254299665874127}
   cameraPosition: {fileID: 5668808105225021532}
-  rotationSpeedCamera: {x: 3, y: 3}
+  rotationControllerSpeedCamera: {x: 0.3, y: 0.3}
+  rotationMouseSpeedCamera: {x: 10, y: 10}
   turret: {fileID: 5370433558306613076}
   cannon: {fileID: 5932996788328510579}
   cannonAngleMax: 30
@@ -715,6 +718,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 30e22261-0fa4-4618-ad93-df3f5235a535
     m_ActionName: Game/Nuke[/Keyboard/f12]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 750b1ff6-6ce3-47ec-acf5-6e3291d9bb86
+    m_ActionName: Game/ContinueTutorial[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -747,10 +754,13 @@ MonoBehaviour:
   activateCheats:
     m_PersistentCalls:
       m_Calls: []
+  continueTutorial:
+    m_PersistentCalls:
+      m_Calls: []
   sendCheatCode:
     m_PersistentCalls:
       m_Calls: []
-  currentHealth: 400
+  currentHealth: 500
   playerShoot: {fileID: 5668808103688728705}
   playerMovemnt: {fileID: 5668808103688728710}
   pauseSystem: {fileID: 0}
@@ -811,6 +821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actualCamera: {fileID: 4523398363865465414}
+  sensibilitySlider: {fileID: 0}
 --- !u!114 &5668808103688728704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,7 +948,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraUsed: {fileID: 1556254299665874127}
   cameraPosition: {fileID: 5668808105225021532}
-  rotationSpeedCamera: {x: 8, y: 8}
+  rotationControllerSpeedCamera: {x: 1, y: 1}
+  rotationMouseSpeedCamera: {x: 4, y: 4}
   turret: {fileID: 5370433558306613076}
 --- !u!1 &6042798452069822622
 GameObject:

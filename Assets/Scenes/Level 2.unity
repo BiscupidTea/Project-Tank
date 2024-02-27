@@ -2879,6 +2879,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5668808103688728707, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
+      propertyPath: sensibilitySlider
+      value: 
+      objectReference: {fileID: 581935037}
     - target: {fileID: 5668808103688728708, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 267.433
@@ -2927,10 +2931,6 @@ PrefabInstance:
       propertyPath: pauseSystem
       value: 
       objectReference: {fileID: 1511954276}
-    - target: {fileID: 6016909988756290251, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-      propertyPath: currentHealth
-      value: 500
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3112,6 +3112,10 @@ PrefabInstance:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 500191025}
+    - target: {fileID: 3723617169531193818, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: NextSongToPlay
+      value: 
+      objectReference: {fileID: 8300000, guid: 735aa2a882d2e224e8ae26b315cba461, type: 3}
     - target: {fileID: 4065078481425339376, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3229,7 +3233,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5962467511269114593, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: 735aa2a882d2e224e8ae26b315cba461, type: 3}
+    - target: {fileID: 5962467511269114593, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Final Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962467511269114593, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
       value: Final Boss
       objectReference: {fileID: 0}
     - target: {fileID: 6713763182598338907, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
@@ -3293,6 +3305,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e435daae09a4a64086018b5be2a2e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &581935037 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 551566151273344991, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+  m_PrefabInstance: {fileID: 581935034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &617558517
