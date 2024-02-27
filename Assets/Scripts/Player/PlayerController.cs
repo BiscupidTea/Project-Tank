@@ -9,13 +9,13 @@ using UnityEngine.Windows;
 /// </summary>
 public class PlayerController : MonoBehaviour, IHealthComponent
 {
-    [SerializeField] public UnityEvent<GameObject> onDeath;
-    [SerializeField] public UnityEvent<GameObject> onAim;
-    [SerializeField] public UnityEvent<float> onTakeDamage;
-    [SerializeField] public UnityEvent<GameObject> onSwitchWeapon;
-    [SerializeField] public UnityEvent<GameObject> activateCheats;
-    [SerializeField] public UnityEvent<GameObject> continueTutorial;
-    [SerializeField] public UnityEvent<string> sendCheatCode;
+    public UnityEvent<GameObject> onDeath;
+    public UnityEvent<GameObject> onAim;
+    public UnityEvent<float> onTakeDamage;
+    public UnityEvent<GameObject> onSwitchWeapon;
+    public UnityEvent<GameObject> activateCheats;
+    public UnityEvent<GameObject> continueTutorial;
+    public UnityEvent<string> sendCheatCode;
     [SerializeField] private float currentHealth;
     protected bool isAlive;
     private bool immortal;

@@ -22,7 +22,6 @@ public class PlayerHud : MonoBehaviour
     [SerializeField] private CanvasGroup currentCanvas;
 
     [Header("Aim Info")]
-    private PlayerCamera playerCamera;
     [SerializeField] private GameObject cross;
 
     [Header("Player Info")]
@@ -37,9 +36,8 @@ public class PlayerHud : MonoBehaviour
     [SerializeField] private Slider healthSliderBoss;
 
     [Header("Weapons Info")]
-    [SerializeField] private GameObject[] weaponImageGameObject;
+    [SerializeField] private WeaponUI[] weaponUI;
     private PlayerShoot playerShoot;
-    private Image[] weaponImage;
 
     [Header("TankRemaing Info")]
     [SerializeField] private Image tankSprite;
@@ -57,7 +55,6 @@ public class PlayerHud : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerCamera = player.GetComponent<PlayerCamera>();
         playerShoot = player.GetComponent<PlayerShoot>();
         playerController = player.GetComponent<PlayerController>();
 
@@ -71,13 +68,13 @@ public class PlayerHud : MonoBehaviour
         DisableCanvas(pauseCanvas);
         EnableCanvas(UICanvas);
 
-        weaponImage = new Image[weaponImageGameObject.Length];
-        for (int i = 0; i < weaponImageGameObject.Length; i++)
-        {
-            weaponImage[i] = weaponImageGameObject[i].GetComponent<Image>();
-        }
-        weaponImage[0].color = Color.yellow;
 
+        weaponUI[0].weaponSelectBorder.color = Color.yellow;
+        foreach (var weapon in weaponUI)
+        {
+            weapon.weapon.onReloadTimer.AddListener(weapon.ChangeSliderValue);
+            weapon.innerSliderImage.color = weapon.reloadComplete;
+        }
 
         if (isBoss)
         {
@@ -124,6 +121,11 @@ public class PlayerHud : MonoBehaviour
         playerController.onTakeDamage.RemoveListener(SetPlayerHealthBar);
         playerController.onAim.RemoveListener(SetAim);
         playerController.onSwitchWeapon.RemoveListener(SetWeaponSelect);
+
+        foreach (var weapon in weaponUI)
+        {
+            weapon.weapon.onReloadTimer.RemoveListener(weapon.ChangeSliderValue);
+        }
     }
 
     private void SwitchPause(GameObject pause)
@@ -181,19 +183,18 @@ public class PlayerHud : MonoBehaviour
     }
     private void SetWeaponSelect(GameObject playerController)
     {
-        for (int i = 0; i < weaponImageGameObject.Length; i++)
+        for (int i = 0; i < weaponUI.Length; i++)
         {
-            if (playerShoot.WeaponInUse.id == weaponImageGameObject[i].name)
+            if (playerShoot.WeaponInUse.id == weaponUI[i].weaponUIGameObject.name)
             {
-                weaponImage[i].color = Color.yellow;
+                weaponUI[i].weaponSelectBorder.color = Color.yellow;
             }
             else
             {
-                weaponImage[i].color = Color.black;
+                weaponUI[i].weaponSelectBorder.color = Color.white;
             }
         }
     }
-
     public void SetTankShow(int totalTanks)
     {
         tankInfo.text = totalTanks.ToString();
@@ -225,5 +226,31 @@ public class PlayerHud : MonoBehaviour
         canvas.alpha = 1;
         canvas.interactable = true;
         canvas.blocksRaycasts = true;
+    }
+}
+
+[System.Serializable]
+public class WeaponUI
+{
+    public GameObject weaponUIGameObject;
+    public Image weaponSelectBorder;
+    public Weapon weapon;
+    public Slider slider;
+    public Image innerSliderImage;
+    public Color reloadComplete;
+    public Color reloading;
+
+    public void ChangeSliderValue(float value)
+    {
+        slider.value = value;
+
+        if (slider.value >= slider.maxValue)
+        {
+            innerSliderImage.color = reloadComplete;
+        }
+        else
+        {
+            innerSliderImage.color = reloading;
+        }
     }
 }

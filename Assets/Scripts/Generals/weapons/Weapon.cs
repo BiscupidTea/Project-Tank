@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// abstract class for create a weapon
@@ -10,6 +12,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private Transform initialShootPosition;
     [SerializeField] private float reloadTime;
     [SerializeField] private int maxAmmo;
+    [SerializeField] public UnityEvent<float> onReloadTimer;
     private int currentAmmo;
     private bool isReloading;
     public event Action OnShoot;
@@ -40,12 +43,22 @@ public abstract class Weapon : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Reload()
     {
+        float timer = 0.0f;
         IsReloading = true;
         Debug.Log(name + ": reloading ammo...");
-        yield return new WaitForSeconds(reloadTime);
+
+        while (timer < reloadTime) 
+        { 
+            timer += Time.deltaTime;
+            onReloadTimer.Invoke(timer/reloadTime);
+            yield return null;
+        }
+
+        onReloadTimer.Invoke(timer / reloadTime);
         currentAmmo = maxAmmo;
         Debug.Log(name + ": ammo reloaded; current ammo = " + currentAmmo);
         IsReloading = false;
+        yield break;
     }
 
     /// <summary>
