@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -13,6 +14,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] GameObject BaseTankEnemy;
     [SerializeField] GameObject BaseAirEnemy;
     [SerializeField] private List<GameObject> enemySpawned;
+    [SerializeField] private GameObject player;
 
     private Dictionary<string, ObjectPool<GameObject>> EnemyPoolById = new();
     private EnemyFactory enemyFactory = new EnemyFactory();
@@ -93,6 +95,9 @@ public class EnemyManager : MonoBehaviour
         {
             enemyFactory.NewEnemyTankConfigure(ref newEnemy, NewEnemyTank.EnemySo, NewEnemyTank.SpawnPoint, NewEnemyTank.PatrolPoints);
         }
+
+        newEnemy.GetComponent<EnemyTankMovement>().Player = player;
+        newEnemy.GetComponent<EnemyTankShoot>().Player = player;
 
         EnemySpawned.Add(newEnemy);
         Debug.Log("Enemy Created! total Enemies = " + enemySpawned.Count);

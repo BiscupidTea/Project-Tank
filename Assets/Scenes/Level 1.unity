@@ -3426,6 +3426,11 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!1 &377402942 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8634996330306031384, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
+  m_PrefabInstance: {fileID: 2054906552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &386035070 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013408446254, guid: 7889b3e42b29881408a396ea8303773f, type: 3}
@@ -18907,14 +18912,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4523398363865465414, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-      propertyPath: rotationMouseSpeedCamera.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4523398363865465414, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
-      propertyPath: rotationMouseSpeedCamera.y
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5668808103688728707, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
       propertyPath: sensibilitySlider
       value: 
@@ -20736,6 +20733,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2576099437672264805, guid: dd201b164391ca34bad4fb876bfc2439, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 377402942}
     - target: {fileID: 2576099437672264805, guid: dd201b164391ca34bad4fb876bfc2439, type: 3}
       propertyPath: EnemyTankList.Array.data[0].SpawnPoint
       value: 

@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,24 +16,29 @@ public class EnemyTankMovement : MonoBehaviour
     private bool isStatic;
 
     public NavMeshAgent Enemy { get => enemy; set => enemy = value; }
+    public GameObject Player { get => player; set => player = value; }
 
-    private void OnEnable()
+    private void Start()
     {
-        Enemy = GetComponent<NavMeshAgent>();
-        enemyShoot = GetComponent<EnemyTankShoot>();
-        player = GameObject.FindGameObjectWithTag("Turret");
-
         if (patrolPoints.Length != 0)
         {
             targetPoint = 0;
             isStatic = false;
             Enemy.destination = patrolPoints[0].position;
+            Debug.Log("Patroll");
         }
         else
         {
-            Enemy.isStopped = true;
+            enemy.isStopped = true;
             isStatic = true;
+            Debug.Log("Static");
         }
+    }
+
+    private void OnEnable()
+    {
+        Enemy = GetComponent<NavMeshAgent>();
+        enemyShoot = GetComponent<EnemyTankShoot>();
     }
 
     void Update()
@@ -44,21 +48,27 @@ public class EnemyTankMovement : MonoBehaviour
             if (!Enemy.isStopped)
             {
                 StopCoroutine(UpdateDestination());
-                Enemy.destination = player.transform.position;
+                Enemy.destination = Player.transform.position;
             }
             if (!enemyShoot.PlayerInShootRange)
             {
                 Enemy.isStopped = false;
-                Enemy.destination = player.transform.position;
+                Enemy.destination = Player.transform.position;
             }
             else
             {
                 Enemy.isStopped = true;
             }
+            Debug.Log("Attack Player");
         }
         else if (!isStatic)
         {
             StartCoroutine(UpdateDestination());
+            Debug.Log("Patroll");
+        }
+        else
+        {
+            Debug.Log("static");
         }
 
     }

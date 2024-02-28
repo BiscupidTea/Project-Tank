@@ -34,15 +34,11 @@ public class EnemyTankShoot : MonoBehaviour
     public float CannonRotationSpeed { get => cannonRotationSpeed; set => cannonRotationSpeed = value; }
     public float CannonMaxRotation { get => cannonMaxRotation; set => cannonMaxRotation = value; }
     public float CannonMinRotation { get => cannonMinRotation; set => cannonMinRotation = value; }
+    public GameObject Player { get => player; set => player = value; }
 
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Turret");
-
-    }
     private void Update()
     {
-        var distancePlayerEnemy = Vector3.Distance(transform.position, player.transform.position);
+        var distancePlayerEnemy = Vector3.Distance(transform.position, Player.transform.position);
 
         if (distancePlayerEnemy <= ViewRange)
         {
@@ -82,7 +78,7 @@ public class EnemyTankShoot : MonoBehaviour
 
     private void RotateTurret()
     {
-        Vector3 direction = player.transform.position - assetTurret.position;
+        Vector3 direction = Player.transform.position - assetTurret.position;
         direction.y = 0f;
 
         Quaternion finalRotation = Quaternion.LookRotation(direction);
@@ -95,7 +91,7 @@ public class EnemyTankShoot : MonoBehaviour
     }
     private void RotateCannon()
     {
-        Vector3 direccion = player.transform.position - assetCannon.position;
+        Vector3 direccion = Player.transform.position - assetCannon.position;
 
         Quaternion rotacionDeseada = Quaternion.LookRotation(direccion);
 
