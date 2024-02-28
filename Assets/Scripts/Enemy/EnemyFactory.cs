@@ -123,6 +123,7 @@ public class EnemyFactory
         //Weapon
         GameObject cannon = GameObject.Instantiate(enemySO.weapon, enemy.transform);
         cannon.GetComponent<CannonWeapon>().InitialShootPosition = Asset.GetComponent<EnemyComponentFinder>().shootPosition;
+        cannon.GetComponent<CannonWeapon>().Damage = enemySO.damage;
 
         //Shoot
         var EnemyShootComponent = enemy.GetComponent<EnemyPlaneShoot>();
