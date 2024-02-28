@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290201906171259288}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.5, z: -0, w: 0.8660254}
+  m_LocalRotation: {x: 0, y: 0.42261827, z: 0, w: 0.9063079}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4295928799842926956}
-  m_LocalEulerAnglesHint: {x: 0, y: 60, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 50, z: 0}
 --- !u!1 &511451542779352826
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +356,7 @@ MonoBehaviour:
   cameraUsed: {fileID: 1556254299665874127}
   cameraPosition: {fileID: 5668808105225021532}
   rotationControllerSpeedCamera: {x: 0.3, y: 0.3}
-  rotationMouseSpeedCamera: {x: 10, y: 10}
+  rotationMouseSpeedCamera: {x: 4, y: 4}
   turret: {fileID: 5370433558306613076}
   cannon: {fileID: 5932996788328510579}
   cannonAngleMax: 30
@@ -385,13 +385,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5425685050610189859}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.5, z: -0, w: 0.8660254}
+  m_LocalRotation: {x: 0, y: -0.42261827, z: 0, w: 0.9063079}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4295928799842926956}
-  m_LocalEulerAnglesHint: {x: 0, y: -60, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -50, z: 0}
 --- !u!1 &5668808103688728825
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,12 +798,12 @@ MonoBehaviour:
   playerRigidbody: {fileID: 5668808103688728709}
   collisionCheckers:
   - origin: {fileID: 6272379561622113561}
-    distance: 10
+    distance: 6
   - origin: {fileID: 3139885457979897501}
-    distance: 8
+    distance: 5
   - origin: {fileID: 4333516665152472712}
-    distance: 8
-  maxSpeed: 20
+    distance: 5
+  maxSpeed: 7
   currentSpeed: 0
   movementForce: 30000
   maxTurnSpeed: 30

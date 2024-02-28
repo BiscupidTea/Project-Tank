@@ -59,13 +59,27 @@ public class GameManager : MonoBehaviour
             {
                 case "NextLevel":
                     var currentScene = SceneManager.GetActiveScene();
-                    sceneLoader.LoadLevel(currentScene.buildIndex + 1);
+                    if (currentScene.buildIndex + 1 <= 4)
+                    {
+                        sceneLoader.LoadLevel(currentScene.buildIndex + 1);
+                    }
+                    else
+                    {
+                        sceneLoader.LoadLevel(0);
+                    }
                     Debug.Log("NextLevel Activated!");
                     break;
 
                 case "GodMode":
                     playerController.Immortal = !playerController.Immortal;
-                    Debug.Log("GodMode Activated!");
+                    if (playerController.Immortal)
+                    {
+                        Debug.Log("GodMode Activated!");
+                    }
+                    else
+                    {
+                        Debug.Log("GodMode Deactivated!");
+                    }
                     break;
 
                 case "Flash":
@@ -73,13 +87,14 @@ public class GameManager : MonoBehaviour
 
                     if (playerMovement.CurrentSpeed == playerMovement.MaxSpeed)
                     {
-                        playerMovement.CurrentSpeed = playerMovement.MaxSpeed * 5;
+                        playerMovement.CurrentSpeed = playerMovement.MaxSpeed * 2;
+                        Debug.Log("Flash Activated!");
                     }
                     else
                     {
                         playerMovement.CurrentSpeed = playerMovement.MaxSpeed;
+                        Debug.Log("Flash Deactivated!");
                     }
-                    Debug.Log("Flash Activated!");
                     break;
 
                 case "Nuke":

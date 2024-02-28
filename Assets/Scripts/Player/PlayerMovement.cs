@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        float force = GetModifiedForceBasedOnRotation(movementForce, isRotating);
+        float force = GetModifiedForceBasedOnRotation(movementForce * CurrentSpeed, isRotating);
 
         playerRigidbody.MoveRotation(playerRigidbody.rotation * Quaternion.Euler(Vector3.up * horizontalMovement * turnSpeed * Time.fixedDeltaTime));
 
