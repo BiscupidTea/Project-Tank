@@ -523,7 +523,7 @@ Transform:
   m_GameObject: {fileID: 3527874826660746388}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.64, z: 1.84}
+  m_LocalPosition: {x: 0, y: -5.11, z: 1.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -774,6 +774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 0}
+  cannon: {fileID: 0}
   shootPosition: {fileID: 8121839840311541131}
 --- !u!1 &6645555533806433879
 GameObject:

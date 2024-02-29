@@ -25,13 +25,11 @@ public class EnemyTankMovement : MonoBehaviour
             targetPoint = 0;
             isStatic = false;
             Enemy.destination = patrolPoints[0].position;
-            Debug.Log("Patroll");
         }
         else
         {
             enemy.isStopped = true;
             isStatic = true;
-            Debug.Log("Static");
         }
     }
 
@@ -59,16 +57,10 @@ public class EnemyTankMovement : MonoBehaviour
             {
                 Enemy.isStopped = true;
             }
-            Debug.Log("Attack Player");
         }
         else if (!isStatic)
         {
             StartCoroutine(UpdateDestination());
-            Debug.Log("Patroll");
-        }
-        else
-        {
-            Debug.Log("static");
         }
 
     }
