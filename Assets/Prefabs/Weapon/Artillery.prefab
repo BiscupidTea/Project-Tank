@@ -49,6 +49,9 @@ MonoBehaviour:
   initialShootPosition: {fileID: 7167410455972970434}
   reloadTime: 30
   maxAmmo: 1
+  onReloadTimer:
+    m_PersistentCalls:
+      m_Calls: []
   id: Artillery
   attackRange: 10
   PrefabArtilleryShoot: {fileID: 2755484241404315759, guid: 27053a115f668da41a8d34509c1a1c41, type: 3}

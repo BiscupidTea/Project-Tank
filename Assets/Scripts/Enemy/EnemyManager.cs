@@ -15,6 +15,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] GameObject BaseAirEnemy;
     [SerializeField] private List<GameObject> enemySpawned;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerPlanePosition;
 
     private Dictionary<string, ObjectPool<GameObject>> EnemyPoolById = new();
     private EnemyFactory enemyFactory = new EnemyFactory();
@@ -117,6 +118,7 @@ public class EnemyManager : MonoBehaviour
         newEnemy.GetComponent<EnemyPlaneController>().onDeath.AddListener(OnKillEnemyPlane);
 
         enemyFactory.NewEnemyPlaneConfigure(ref newEnemy, NewEnemyPlane.EnemySo, NewEnemyPlane.SpawnPoint, NewEnemyPlane.PatrolPoints);
+        newEnemy.GetComponent<EnemyPlaneShoot>().StartPlaneBasics(playerPlanePosition, player);
 
         EnemySpawned.Add(newEnemy);
         Debug.Log("Enemy Created! total Enemies = " + enemySpawned.Count);

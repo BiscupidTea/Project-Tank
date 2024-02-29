@@ -45,6 +45,10 @@ public class PlayerHud : MonoBehaviour
 
     [Header("Pause Info")]
     [SerializeField] private PauseSystem pause;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider SFXSlider;
+    [SerializeField] private Slider sensibilitySlider;
+    [SerializeField] private SoundManager soundManager;
 
     public CanvasGroup WinCanvas { get => winCanvas; set => winCanvas = value; }
     public CanvasGroup LoseCanvas { get => loseCanvas; set => loseCanvas = value; }
@@ -68,6 +72,11 @@ public class PlayerHud : MonoBehaviour
         DisableCanvas(pauseCanvas);
         EnableCanvas(UICanvas);
 
+        if (!PlayerPrefs.HasKey("sensibility"))
+        {
+            PlayerPrefs.SetFloat("sensibility", sensibilitySlider.maxValue / 2);
+        }
+        sensibilitySlider.value = PlayerPrefs.GetFloat("sensibility");
 
         weaponUI[0].weaponSelectBorder.color = Color.yellow;
         foreach (var weapon in weaponUI)
@@ -110,6 +119,22 @@ public class PlayerHud : MonoBehaviour
         }
 
         pause.onPause.AddListener(SwitchPause);
+
+        if (!PlayerPrefs.HasKey("MusicVolume"))
+        {
+            PlayerPrefs.SetFloat("MusicVolume", musicSlider.maxValue / 2);
+        }
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+        soundManager.ChangeVolumeMusicSlider(musicSlider.value);
+
+        if (!PlayerPrefs.HasKey("SFXVolume"))
+        {
+            PlayerPrefs.SetFloat("SFXVolume", SFXSlider.maxValue / 2);
+        }
+        SFXSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+        soundManager.ChangeVolumeSFXSlider(SFXSlider.value);
+        PlayerPrefs.Save();
+
         playerController.onTakeDamage.AddListener(SetPlayerHealthBar);
         playerController.onAim.AddListener(SetAim);
         playerController.onSwitchWeapon.AddListener(SetWeaponSelect);
@@ -126,6 +151,12 @@ public class PlayerHud : MonoBehaviour
         {
             weapon.weapon.onReloadTimer.RemoveListener(weapon.ChangeSliderValue);
         }
+    }
+
+    public void SetNewSesibility(float value)
+    {
+        PlayerPrefs.SetFloat("sensibility", value);
+        PlayerPrefs.Save();
     }
 
     private void SwitchPause(GameObject pause)

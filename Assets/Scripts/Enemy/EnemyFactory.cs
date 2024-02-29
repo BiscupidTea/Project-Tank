@@ -143,7 +143,6 @@ public class EnemyFactory
 
         EnemyControllerComponent.AddListenersToController();
         EnemyMoveComponent.StartPlaneBasics();
-        EnemyShootComponent.StartPlaneBasics();
     }
     private void CleanEnemy(GameObject Enemy)
     {

@@ -39,8 +39,6 @@ public class ArtilleryShoot : MonoBehaviour
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.down);
 
         GameObject NewSheel = Instantiate(ArtilleryShell, spawnPoint, spawnRotation, transform);
-        NewSheel.GetComponent<ShellLogic>().LifeTime = 100;
-        NewSheel.GetComponent<ShellLogic>().ExplotionRadius = NewSheel.GetComponent<ShellLogic>().ExplotionRadius * 3;
 
         shellsList.Add(NewSheel);
     }

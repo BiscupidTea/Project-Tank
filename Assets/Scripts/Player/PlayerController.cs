@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour, IHealthComponent
                 if (playerCamera.ActualCamera == artilleryCamera)
                 {
                     playerCamera.ActualCamera = turretCamera;
+                    onAim.Invoke(this.gameObject);
                 }
 
                 playerShoot.SwitchToNextWeapon();

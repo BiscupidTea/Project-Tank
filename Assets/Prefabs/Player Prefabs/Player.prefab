@@ -158,8 +158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraUsed: {fileID: 1556254299665874127}
   cameraPosition: {fileID: 5668808104318838545}
-  rotationControllerSpeedCamera: {x: 1e-10, y: 1e-10}
-  rotationMouseSpeedCamera: {x: 4, y: 4}
+  rotationControllerSpeedCamera: {x: 1, y: 1}
+  rotationMouseSpeedCamera: {x: 10, y: 10}
   aimPosition: {fileID: 5668808104318838545}
   turret: {fileID: 5370433558306613076}
   cannon: {fileID: 5932996788328510579}
@@ -304,8 +304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraUsed: {fileID: 1556254299665874127}
   cameraPosition: {fileID: 5527123507486457448}
-  rotationControllerSpeedCamera: {x: 0.05, y: 0.05}
-  rotationMouseSpeedCamera: {x: 5, y: 5}
+  rotationControllerSpeedCamera: {x: 1, y: 1}
+  rotationMouseSpeedCamera: {x: 7, y: 7}
   maxVerticalAngle: 50
   minVerticalAngle: 10
   mouseSensitivity: 5
@@ -355,8 +355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraUsed: {fileID: 1556254299665874127}
   cameraPosition: {fileID: 5668808105225021532}
-  rotationControllerSpeedCamera: {x: 0.3, y: 0.3}
-  rotationMouseSpeedCamera: {x: 4, y: 4}
+  rotationControllerSpeedCamera: {x: 1, y: 1}
+  rotationMouseSpeedCamera: {x: 1, y: 1}
   turret: {fileID: 5370433558306613076}
   cannon: {fileID: 5932996788328510579}
   cannonAngleMax: 30
@@ -719,7 +719,19 @@ MonoBehaviour:
     m_ActionId: 30e22261-0fa4-4618-ad93-df3f5235a535
     m_ActionName: Game/Nuke[/Keyboard/f12]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6016909988756290251}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ContinueTutorial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 750b1ff6-6ce3-47ec-acf5-6e3291d9bb86
     m_ActionName: Game/ContinueTutorial[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
@@ -948,8 +960,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraUsed: {fileID: 1556254299665874127}
   cameraPosition: {fileID: 5668808105225021532}
-  rotationControllerSpeedCamera: {x: 1, y: 1}
-  rotationMouseSpeedCamera: {x: 4, y: 4}
+  rotationControllerSpeedCamera: {x: 0.5, y: 0.5}
+  rotationMouseSpeedCamera: {x: 5, y: 5}
   turret: {fileID: 5370433558306613076}
 --- !u!1 &6042798452069822622
 GameObject:
@@ -1357,7 +1369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9125320743774371530, guid: a6b450021b22e7541bce423990d86287, type: 3}
       propertyPath: reloadTime
-      value: 90
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

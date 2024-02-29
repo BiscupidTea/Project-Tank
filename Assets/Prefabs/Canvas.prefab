@@ -138,13 +138,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 5978198852008247013}
   m_HandleRect: {fileID: 5017803121838980565}
   m_Direction: 0
-  m_MinValue: 0.5
-  m_MaxValue: 10
+  m_MinValue: 1
+  m_MaxValue: 11
   m_WholeNumbers: 0
-  m_Value: 5.3
+  m_Value: 6
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6899756920408652194}
+        m_TargetAssemblyTypeName: PlayerHud, Assembly-CSharp
+        m_MethodName: SetNewSesibility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &380458945129993428
 GameObject:
   m_ObjectHideFlags: 0
@@ -5532,7 +5544,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level 1
+          m_StringArgument: Level 2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &5962467511278762731
@@ -6420,6 +6432,10 @@ MonoBehaviour:
   tankSprite: {fileID: 5962467509897830471}
   tankInfo: {fileID: 5962467511278762733}
   pause: {fileID: 4668952609007972522}
+  musicSlider: {fileID: 2448260334912284977}
+  SFXSlider: {fileID: 4872709817496606549}
+  sensibilitySlider: {fileID: 551566151273344991}
+  soundManager: {fileID: 0}
 --- !u!114 &7621596144842178892
 MonoBehaviour:
   m_ObjectHideFlags: 0

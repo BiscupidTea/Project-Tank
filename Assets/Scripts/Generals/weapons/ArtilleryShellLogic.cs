@@ -1,8 +1,9 @@
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 /// <summary>
 /// shell behavior
 /// </summary>
-public class ShellLogic : MonoBehaviour
+public class ArtilleryShellLogic : MonoBehaviour
 {
     [SerializeField] private GameObject Shell;
     [SerializeField] private MeshRenderer ShellRender;
@@ -59,6 +60,7 @@ public class ShellLogic : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Collider[] entitys = Physics.OverlapSphere(transform.position, ExplotionRadius);
+        IHealthComponent EntityHealth;
 
         foreach (Collider collider in entitys)
         {
@@ -68,16 +70,21 @@ public class ShellLogic : MonoBehaviour
                 EntRB.AddExplosionForce(explotionForce, transform.position, ExplotionRadius);
                 RunExplotionAnimation();
 
+                EntityHealth = EntRB.gameObject.GetComponent<IHealthComponent>();
+                if (EntityHealth != null)
+                {
+                    EntityHealth.ReceiveDamage(damage);
+                    RunExplotionAnimation();
+                }
             }
         }
 
-        IHealthComponent EntityHealth = collision.gameObject.GetComponent<IHealthComponent>();
+        EntityHealth = collision.gameObject.GetComponent<IHealthComponent>();
         if (EntityHealth != null)
         {
             EntityHealth.ReceiveDamage(damage);
             RunExplotionAnimation();
         }
-
     }
 
     private void RunExplotionAnimation()

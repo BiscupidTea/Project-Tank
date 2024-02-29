@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33a7151c93d80c478daf377c34124e8, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  health: 2500
+  health: 6000
   Asset: {fileID: 8322648213895008230, guid: 639da28ec7bc5cc47837261c20a2685c, type: 3}
   boxColliderCenter: {x: 0, y: 0.8, z: 0}
   boxColliderSize: {x: 3.3, y: 1.6, z: 7}

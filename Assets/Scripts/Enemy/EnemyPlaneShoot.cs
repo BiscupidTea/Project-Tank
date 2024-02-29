@@ -23,10 +23,10 @@ public class EnemyPlaneShoot : MonoBehaviour
     public Weapon Cannon { get => cannon; set => cannon = value; }
     public Transform ShootPosition { get => shootPosition; set => shootPosition = value; }
 
-    public void StartPlaneBasics()
+    public void StartPlaneBasics(GameObject objectivePlane, GameObject playerPosition)
     {
-        objective = GameObject.FindGameObjectWithTag("AirPlaneObjective");
-        player = GameObject.FindGameObjectWithTag("Turret");
+        objective = objectivePlane;
+        player = playerPosition;
         timer = 0;
         attacking = false;
         startAttack = false;

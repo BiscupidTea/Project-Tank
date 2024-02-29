@@ -80,6 +80,9 @@ public class SoundManager : MonoBehaviour
     {
         currentVolumeSfx = Value;
         effectSource.volume = currentVolumeSfx;
+
+        PlayerPrefs.SetFloat("SFXVolume", currentVolumeSfx);
+        PlayerPrefs.Save();
     }
 
     /// <summary>
@@ -90,5 +93,8 @@ public class SoundManager : MonoBehaviour
     {
         currentVolumeMusic = Value;
         musicSource.volume = currentVolumeMusic;
+
+        PlayerPrefs.SetFloat("MusicVolume", currentVolumeMusic);
+        PlayerPrefs.Save();
     }
 }

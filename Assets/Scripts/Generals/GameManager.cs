@@ -1,4 +1,3 @@
-using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,12 +12,10 @@ public class GameManager : MonoBehaviour
 
     private GameObject player;
     private PlayerController playerController;
-    private bool cheats;
+    private bool cheats = false;
 
     private void Start()
     {
-        cheats = PlayerPrefs.GetInt("cheats", 0) == 1;
-
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         playerController.onDeath.AddListener(PlayerDeath);
@@ -109,7 +106,5 @@ public class GameManager : MonoBehaviour
     private void SwitchCheatsState(GameObject gameObject)
     {
         cheats = !cheats;
-        PlayerPrefs.SetInt("cheats", cheats ? 1 : 0);
-        PlayerPrefs.Save();
     }
 }

@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5210192802611845743}
   - component: {fileID: 6761399807706487044}
   - component: {fileID: 282361557159267344}
-  - component: {fileID: 3172073774485086772}
+  - component: {fileID: -3126602701752623059}
   m_Layer: 0
   m_Name: Artillery_Shell
   m_TagString: Untagged
@@ -112,7 +112,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.31721324, y: 0.31721324, z: 0.31721324}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1213304178089725039}
@@ -169,7 +169,7 @@ CapsuleCollider:
   m_Height: 2.468731
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3172073774485086772
+--- !u!114 &-3126602701752623059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,18 +178,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 4829409194887708885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f060cb7f3cffd4f9ddb885d6d970e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 957851af78536014b9c9ef69bba53583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Shell: {fileID: 4829409194887708885}
-  ShellRender: {fileID: 0}
+  ShellRender: {fileID: 1057905221178991762}
   ExplotionAnimation: {fileID: 1214540017548006883}
   Rigidbody: {fileID: 6761399807706487044}
   explotionForce: 200
-  explotionRadius: 10
+  explotionRadius: 9
   explotionTimerAnimation: 2
-  damage: 400
-  lifeTime: 10
+  damage: 800
+  lifeTime: 100
 --- !u!1001 &1214021373716751449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -208,15 +208,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4388947112716342, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.79
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4388947112716342, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.79
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4388947112716342, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.79
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4388947112716342, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
       propertyPath: m_LocalPosition.x

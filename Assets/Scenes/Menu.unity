@@ -2342,6 +2342,9 @@ MonoBehaviour:
   canvasCredits: {fileID: 25134304}
   canvasOptions: {fileID: 870407806}
   currentCanvas: {fileID: 350822540}
+  musicSlider: {fileID: 570286592}
+  SFXSlider: {fileID: 836380657}
+  soundManager: {fileID: 896181585}
 --- !u!114 &838526987
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1702,6 +1702,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2576099437672264805, guid: dd201b164391ca34bad4fb876bfc2439, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1807452381}
+    - target: {fileID: 2576099437672264805, guid: dd201b164391ca34bad4fb876bfc2439, type: 3}
+      propertyPath: playerPlanePosition
+      value: 
+      objectReference: {fileID: 523497076}
+    - target: {fileID: 2576099437672264805, guid: dd201b164391ca34bad4fb876bfc2439, type: 3}
       propertyPath: EnemyTankList.Array.size
       value: 10
       objectReference: {fileID: 0}
@@ -2936,6 +2944,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
+--- !u!1 &523497076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 511451542779352826, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
+  m_PrefabInstance: {fileID: 523497075}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &524429384
 GameObject:
   m_ObjectHideFlags: 0
@@ -3264,6 +3277,10 @@ PrefabInstance:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 1686324883}
+    - target: {fileID: 6899756920408652194, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 500191025}
     - target: {fileID: 6899756920408652194, guid: 645615c66ae193644b81141cc3a8d52d, type: 3}
       propertyPath: weaponUI.Array.data[0].weapon
       value: 
@@ -8711,6 +8728,11 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!1 &1807452381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8634996330306031384, guid: da940a31e7f0e4642b0b6200001d5fd8, type: 3}
+  m_PrefabInstance: {fileID: 523497075}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1808179842
 GameObject:
   m_ObjectHideFlags: 0
